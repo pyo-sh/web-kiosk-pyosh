@@ -9,5 +9,8 @@
     "packages": [
       "packages/**"
     ]
+  },
+  "scripts": {
+    "client:start": "yarn workspace client run start"
   }
 }
