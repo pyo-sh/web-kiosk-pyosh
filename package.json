@@ -1,6 +1,7 @@
 {
   "name": "web-kiosk-pyosh",
   "version": "0.0.0",
+  "private": true,
   "repository": "https://github.com/woowa-techcamp-2022/web-kiosk-pyosh.git",
   "author": "pyo-sh <pygosky@gmail.com>",
   "license": "MIT",
