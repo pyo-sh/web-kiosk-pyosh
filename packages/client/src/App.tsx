@@ -1,12 +1,12 @@
 import React from "react";
 import "./Global.style";
 import appStyle from "./App.style";
-import Navigator from "./components/navigator";
+import Order from "./pages/Order";
 
 const App: React.FC = () => {
   return (
     <div className={appStyle}>
-      <Navigator />
+      <Order />
     </div>
   );
 };

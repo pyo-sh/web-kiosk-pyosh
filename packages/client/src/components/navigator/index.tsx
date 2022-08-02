@@ -7,9 +7,12 @@ import {
   navListStyle,
 } from "./index.style";
 
-const dummyData = [1, 2, 3, 4, 5];
+interface NavigatorPropsType {
+  menus: Array<string>;
+  setMenu: React.Dispatch<React.SetStateAction<string>>;
+}
 
-const Navigator: React.FC = ({}) => {
+const Navigator: React.FC<NavigatorPropsType> = ({ menus, setMenu }) => {
   const $navList = useRef<HTMLUListElement>(null);
   const isClickPrevented = useRef<boolean>(true);
   const isDragging = useRef<boolean>(false);
@@ -31,11 +34,10 @@ const Navigator: React.FC = ({}) => {
     }
   };
 
-  const onMouseUpList: React.MouseEventHandler<HTMLUListElement> = (e) => {
-    if (isDragging.current) {
-      console.log("drag");
-    } else {
-      console.log("click");
+  const onMouseUpList: React.MouseEventHandler<HTMLUListElement> = ({ target }) => {
+    if (!isDragging.current && target) {
+      const { id } = target as HTMLElement;
+      setMenu(id);
     }
     isClickPrevented.current = true;
     isDragging.current = false;
@@ -52,6 +54,7 @@ const Navigator: React.FC = ({}) => {
       <nav className={navStyle}>
         <button className={controllerStyle}></button>
         <ul
+          id={"Navigate-Menu"}
           ref={$navList}
           className={navListStyle}
           onMouseDown={onMouseDownList}
@@ -59,8 +62,10 @@ const Navigator: React.FC = ({}) => {
           onMouseUp={onMouseUpList}
           onMouseLeave={onMouseLeaveList}
         >
-          {dummyData.map((item) => (
-            <li key={`nav-${item}`}>{item}</li>
+          {menus.map((item) => (
+            <li id={item} key={`nav-${item}`}>
+              {item}
+            </li>
           ))}
         </ul>
       </nav>
