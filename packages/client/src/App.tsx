@@ -1,6 +1,6 @@
 import React from "react";
-import "./styles/GlobalStyles";
-import AppStyle from "./styles/App";
+import "./Global.style";
+import AppStyle from "./App.style";
 
 const App: React.FC = () => {
   return <div className={AppStyle}></div>;
