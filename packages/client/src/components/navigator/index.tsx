@@ -7,6 +7,8 @@ import {
   navListStyle,
 } from "./index.style";
 
+const MAX_BOUNCE_MOVEMENT = 3;
+
 interface NavigatorPropsType {
   menus: Array<string>;
   setMenu: React.Dispatch<React.SetStateAction<string>>;
@@ -14,6 +16,7 @@ interface NavigatorPropsType {
 
 const Navigator: React.FC<NavigatorPropsType> = ({ menus, setMenu }) => {
   const $navList = useRef<HTMLUListElement>(null);
+  const moveCounter = useRef<number>(0);
   const isClickPrevented = useRef<boolean>(true);
   const isDragging = useRef<boolean>(false);
 
@@ -24,10 +27,16 @@ const Navigator: React.FC<NavigatorPropsType> = ({ menus, setMenu }) => {
   const onMouseMoveList: React.MouseEventHandler<HTMLUListElement> = ({ movementX }) => {
     // Detect Drag
     if (!isClickPrevented.current) {
-      isDragging.current = true;
+      moveCounter.current += 1;
+      console.log(moveCounter.current);
+
+      if (moveCounter.current > MAX_BOUNCE_MOVEMENT) {
+        moveCounter.current = 0;
+        // Prevent Click & Drag
+        isClickPrevented.current = true;
+        isDragging.current = true;
+      }
     }
-    // Prevent Click
-    isClickPrevented.current = true;
     // Dragging
     if (isDragging.current && $navList.current) {
       $navList.current.scrollLeft -= movementX * 2;
@@ -41,11 +50,13 @@ const Navigator: React.FC<NavigatorPropsType> = ({ menus, setMenu }) => {
     }
     isClickPrevented.current = true;
     isDragging.current = false;
+    moveCounter.current = 0;
   };
 
   const onMouseLeaveList: React.MouseEventHandler<HTMLUListElement> = () => {
     isClickPrevented.current = true;
     isDragging.current = false;
+    moveCounter.current = 0;
   };
 
   return (
