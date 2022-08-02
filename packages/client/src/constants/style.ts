@@ -77,6 +77,7 @@ export const TEXT_DISPLAY_LARGE = css`
   font-size: 48px;
   line-height: 56px;
 `;
+
 export const TEXT_DISPLAY_SMALL = css`
   font-family: "BMDOHYEON";
   font-style: normal;
@@ -92,6 +93,7 @@ export const TEXT_BODY_REGULAR = css`
   font-size: 16px;
   line-height: 24px;
 `;
+
 export const TEXT_BODY_MEDIUM = css`
   font-family: "Noto Sans KR";
   font-style: normal;
@@ -99,6 +101,7 @@ export const TEXT_BODY_MEDIUM = css`
   font-size: 18px;
   line-height: 24px;
 `;
+
 export const TEXT_BODY_LARGE = css`
   font-family: "Noto Sans KR";
   font-style: normal;
@@ -129,4 +132,12 @@ export const TEXT_BOLD_LARGE = css`
   font-weight: 500;
   font-size: 16px;
   line-height: 16px;
+`;
+
+export const PROTECT_DRAG = css`
+  -ms-user-select: none;
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 `;
