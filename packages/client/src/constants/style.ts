@@ -15,6 +15,7 @@ export const COLOR = Object.freeze({
   lightError: "#FFD4D3",
   darkError: "#CD6766",
   darkGreen: "#394032",
+  white: "#ffffff",
 });
 
 export const INPUT_STYLE = css`
@@ -67,4 +68,65 @@ export const CANCEL_BTN_STYLE = css`
 export const BOX_SHADOW = css`
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1);
+`;
+
+export const TEXT_DISPLAY_LARGE = css`
+  font-family: "BMDOHYEON";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 56px;
+`;
+export const TEXT_DISPLAY_SMALL = css`
+  font-family: "BMDOHYEON";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 24px;
+`;
+
+export const TEXT_BODY_REGULAR = css`
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+`;
+export const TEXT_BODY_MEDIUM = css`
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+`;
+export const TEXT_BODY_LARGE = css`
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 32px;
+`;
+
+export const TEXT_BOLD_SMALL = css`
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+`;
+
+export const TEXT_BOLD_MEDIUM = css`
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+`;
+
+export const TEXT_BOLD_LARGE = css`
+  font-family: "Noto Sans KR";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
 `;
