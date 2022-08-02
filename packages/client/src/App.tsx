@@ -1,13 +1,13 @@
 import React from "react";
 import "./Global.style";
-import appStyle from "./App.style";
+import { Router, Route } from "./hooks/router";
 import Order from "./pages/Order";
 
 const App: React.FC = () => {
   return (
-    <div className={appStyle}>
-      <Order />
-    </div>
+    <Router>
+      <Route path="/" component={Order} />
+    </Router>
   );
 };
 
