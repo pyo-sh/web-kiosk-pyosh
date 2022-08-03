@@ -10,6 +10,7 @@ import { ProductModule } from "./product/product.module";
 import { PersonalOptionModule } from "./personal-option/personal-option.module";
 import { BillModule } from "./bill/bill.module";
 import { BillProductModule } from "./bill-product/bill-product.module";
+import { ProductPersonalOptionModule } from './product-personal-option/product-personal-option.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { BillProductModule } from "./bill-product/bill-product.module";
     PersonalOptionModule,
     BillModule,
     BillProductModule,
+    ProductPersonalOptionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
