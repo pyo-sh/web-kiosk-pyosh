@@ -7,8 +7,9 @@ import { AppService } from "./app.service";
 import { validateEnv, Environment } from "./configs/env.validation";
 import { MenuModule } from "./menu/menu.module";
 import { ProductModule } from "./product/product.module";
-import { PersonalOptionModule } from './personal-option/personal-option.module';
-import { BillModule } from './bill/bill.module';
+import { PersonalOptionModule } from "./personal-option/personal-option.module";
+import { BillModule } from "./bill/bill.module";
+import { BillProductModule } from "./bill-product/bill-product.module";
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { BillModule } from './bill/bill.module';
     ProductModule,
     PersonalOptionModule,
     BillModule,
+    BillProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],

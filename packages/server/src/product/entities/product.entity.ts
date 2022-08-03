@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm";
 import { Menu } from "src/menu/entities/menu.entity";
+import { BillProduct } from "src/bill-product/entities/bill-product.entity";
 
 @Entity()
 export class Product {
@@ -17,4 +18,7 @@ export class Product {
 
   @ManyToOne((type) => Menu, (menu) => menu.products)
   menu: Menu;
+
+  @OneToMany((type) => BillProduct, (billProduct) => billProduct.product)
+  billProducts: BillProduct[];
 }

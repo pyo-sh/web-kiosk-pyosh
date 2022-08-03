@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn } from "typeorm";
+import { BillProduct } from "src/bill-product/entities/bill-product.entity";
 
 @Entity()
 export class Bill {
@@ -19,4 +20,7 @@ export class Bill {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @OneToMany((type) => BillProduct, (billProduct) => billProduct.bill)
+  billProducts: BillProduct[];
 }
