@@ -7,6 +7,7 @@ import { AppService } from "./app.service";
 import { validateEnv, Environment } from "./configs/env.validation";
 import { MenuModule } from "./menu/menu.module";
 import { ProductModule } from "./product/product.module";
+import { PersonalOptionModule } from './personal-option/personal-option.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { ProductModule } from "./product/product.module";
     }),
     MenuModule,
     ProductModule,
+    PersonalOptionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
