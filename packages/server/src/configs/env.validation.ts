@@ -13,7 +13,7 @@ class EnvironmentVariables {
   PORT: number = 5000;
 
   @IsEnum(Environment)
-  NODE_ENV: Environment = Environment.Development;
+  NODE_ENV: Environment = Environment.Production;
 
   @IsString()
   DB_HOST: string;
