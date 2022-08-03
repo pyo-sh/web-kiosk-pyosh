@@ -1,4 +1,4 @@
-import { Entity, Column, ManyToOne, CreateDateColumn } from "typeorm";
+import { Entity, Column, ManyToOne, CreateDateColumn, PrimaryColumn } from "typeorm";
 import { Bill } from "src/bill/entities/bill.entity";
 import { Product } from "src/product/entities/product.entity";
 
@@ -9,6 +9,12 @@ export class BillProduct {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @PrimaryColumn()
+  billId: number;
+
+  @PrimaryColumn()
+  productId: number;
 
   @ManyToOne((type) => Bill, (bill) => bill.billProducts)
   bill: Bill;

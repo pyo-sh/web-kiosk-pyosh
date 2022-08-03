@@ -10,7 +10,7 @@ import { ProductModule } from "./product/product.module";
 import { PersonalOptionModule } from "./personal-option/personal-option.module";
 import { BillModule } from "./bill/bill.module";
 import { BillProductModule } from "./bill-product/bill-product.module";
-import { ProductPersonalOptionModule } from './product-personal-option/product-personal-option.module';
+import { ProductPersonalOptionModule } from "./product-personal-option/product-personal-option.module";
 
 @Module({
   imports: [
@@ -28,9 +28,10 @@ import { ProductPersonalOptionModule } from './product-personal-option/product-p
         username: configService.get("DB_USER"),
         password: configService.get("DB_PASS"),
         database: configService.get("DB_NAME"),
-        entities: [],
         synchronize: configService.get("NODE_ENV") === Environment.Development,
         namingStrategy: new SnakeNamingStrategy(),
+        logging: true,
+        autoLoadEntities: true,
       }),
     }),
     MenuModule,
