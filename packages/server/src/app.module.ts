@@ -5,6 +5,7 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { validateEnv, Environment } from "./configs/env.validation";
 import { MenuModule } from './menu/menu.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -27,6 +28,7 @@ import { MenuModule } from './menu/menu.module';
       }),
     }),
     MenuModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],
