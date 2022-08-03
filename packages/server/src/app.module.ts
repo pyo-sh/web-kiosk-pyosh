@@ -8,6 +8,7 @@ import { validateEnv, Environment } from "./configs/env.validation";
 import { MenuModule } from "./menu/menu.module";
 import { ProductModule } from "./product/product.module";
 import { PersonalOptionModule } from './personal-option/personal-option.module';
+import { BillModule } from './bill/bill.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { PersonalOptionModule } from './personal-option/personal-option.module';
     MenuModule,
     ProductModule,
     PersonalOptionModule,
+    BillModule,
   ],
   controllers: [AppController],
   providers: [AppService],
