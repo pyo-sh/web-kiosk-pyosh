@@ -4,13 +4,13 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-import { validateEnv, Environment } from "./configs/env.validation";
+import { validateEnv } from "./config/env.validation";
 import { MenuModule } from "./menu/menu.module";
 import { ProductModule } from "./product/product.module";
 import { PersonalOptionModule } from "./personal-option/personal-option.module";
 import { BillModule } from "./bill/bill.module";
 import { BillProductModule } from "./bill-product/bill-product.module";
-import { ProductPersonalOptionModule } from "./product-personal-option/product-personal-option.module";
+import { Environment } from "./common/enums";
 
 @Module({
   imports: [
@@ -32,6 +32,7 @@ import { ProductPersonalOptionModule } from "./product-personal-option/product-p
         namingStrategy: new SnakeNamingStrategy(),
         logging: true,
         autoLoadEntities: true,
+        dropSchema: true,
       }),
     }),
     MenuModule,
@@ -39,7 +40,6 @@ import { ProductPersonalOptionModule } from "./product-personal-option/product-p
     PersonalOptionModule,
     BillModule,
     BillProductModule,
-    ProductPersonalOptionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

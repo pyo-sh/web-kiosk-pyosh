@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm";
 import { Menu } from "src/menu/entities/menu.entity";
 import { BillProduct } from "src/bill-product/entities/bill-product.entity";
-import { ProductPersonalOption } from "src/product-personal-option/entities/product-personal-option.entity";
+import { PersonalOption } from "src/personal-option/entities/personal-option.entity";
 
 @Entity()
 export class Product {
@@ -23,9 +23,6 @@ export class Product {
   @OneToMany((type) => BillProduct, (billProduct) => billProduct.product)
   billProducts: BillProduct[];
 
-  @OneToMany(
-    (type) => ProductPersonalOption,
-    (productPersonalOption) => productPersonalOption.product,
-  )
-  productPersonalOptions: ProductPersonalOption[];
+  @OneToMany((type) => PersonalOption, (personalOption) => personalOption.product)
+  personalOptions: PersonalOption[];
 }

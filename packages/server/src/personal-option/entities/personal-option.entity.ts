@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
-import { ProductPersonalOption } from "src/product-personal-option/entities/product-personal-option.entity";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Product } from "src/product/entities/product.entity";
+import { OptionType } from "src/common/enums";
 
 @Entity()
 export class PersonalOption {
@@ -9,12 +10,15 @@ export class PersonalOption {
   @Column({ type: "varchar", length: 20 })
   name: string;
 
+  @Column()
+  price: number;
+
+  @Column({ type: "enum", enum: OptionType })
+  optionType: OptionType;
+
   @Column({ type: "varchar", length: 40 })
   category: string;
 
-  @OneToMany(
-    (type) => ProductPersonalOption,
-    (productPersonalOption) => productPersonalOption.personalOption,
-  )
-  productPersonalOptions: ProductPersonalOption[];
+  @ManyToOne((type) => Product, (personalOption) => personalOption.personalOptions)
+  product: Product;
 }

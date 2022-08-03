@@ -1,12 +1,6 @@
 import { plainToInstance } from "class-transformer";
 import { IsEnum, IsNumber, IsString, validateSync } from "class-validator";
-
-export enum Environment {
-  Development = "development",
-  Production = "production",
-  Test = "test",
-  Provision = "provision",
-}
+import { Environment } from "src/common/enums";
 
 class EnvironmentVariables {
   @IsNumber()
