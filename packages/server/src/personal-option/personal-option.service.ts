@@ -1,26 +1,35 @@
-import { Injectable } from '@nestjs/common';
-import { CreatePersonalOptionDto } from './dto/create-personal-option.dto';
-import { UpdatePersonalOptionDto } from './dto/update-personal-option.dto';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { CreatePersonalOptionDto } from "./dto/create-personal-option.dto";
+import { UpdatePersonalOptionDto } from "./dto/update-personal-option.dto";
+import { PersonalOption } from "./entities/personal-option.entity";
 
 @Injectable()
 export class PersonalOptionService {
+  constructor(
+    @InjectRepository(PersonalOption) private personalOptionRepository: Repository<PersonalOption>,
+  ) {
+    this.personalOptionRepository = personalOptionRepository;
+  }
+
   create(createPersonalOptionDto: CreatePersonalOptionDto) {
-    return 'This action adds a new personalOption';
+    return this.personalOptionRepository.create(createPersonalOptionDto);
   }
 
-  findAll() {
-    return `This action returns all personalOption`;
+  findAll(): Promise<PersonalOption[]> {
+    return this.personalOptionRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} personalOption`;
+  findOne(id: number): Promise<PersonalOption> {
+    return this.personalOptionRepository.findOneBy({ id });
   }
 
   update(id: number, updatePersonalOptionDto: UpdatePersonalOptionDto) {
-    return `This action updates a #${id} personalOption`;
+    return this.personalOptionRepository.update(id, updatePersonalOptionDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} personalOption`;
+    return this.personalOptionRepository.delete({ id });
   }
 }

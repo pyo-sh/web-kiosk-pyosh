@@ -1,26 +1,29 @@
-import { Injectable } from '@nestjs/common';
-import { CreateBillProductDto } from './dto/create-bill-product.dto';
-import { UpdateBillProductDto } from './dto/update-bill-product.dto';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { CreateBillProductDto } from "./dto/create-bill-product.dto";
+import { BillProduct } from "./entities/bill-product.entity";
 
 @Injectable()
 export class BillProductService {
+  constructor(
+    @InjectRepository(BillProduct) private billProductRepository: Repository<BillProduct>,
+  ) {
+    this.billProductRepository = billProductRepository;
+  }
   create(createBillProductDto: CreateBillProductDto) {
-    return 'This action adds a new billProduct';
+    return this.billProductRepository.create(createBillProductDto);
   }
 
-  findAll() {
-    return `This action returns all billProduct`;
+  findAll(): Promise<BillProduct[]> {
+    return this.billProductRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} billProduct`;
+  findOne(billId: number, productId: number): Promise<BillProduct> {
+    return this.billProductRepository.findOneBy({ billId, productId });
   }
 
-  update(id: number, updateBillProductDto: UpdateBillProductDto) {
-    return `This action updates a #${id} billProduct`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} billProduct`;
+  remove(billId: number, productId: number) {
+    return this.billProductRepository.delete({ billId, productId });
   }
 }
