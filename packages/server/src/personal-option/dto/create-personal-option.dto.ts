@@ -1,19 +1,10 @@
-import { IsEnum, IsNumber, IsString } from "class-validator";
-import { OptionType } from "src/common/enums";
+import { PickType } from "@nestjs/mapped-types";
+import { PersonalOption } from "../entities/personal-option.entity";
 
-export class CreatePersonalOptionDto {
-  @IsString()
-  name: string;
-
-  @IsNumber()
-  price: number;
-
-  @IsEnum(OptionType)
-  optionType: OptionType;
-
-  @IsString()
-  category: string;
-
-  @IsNumber()
-  productId: number;
-}
+export class CreatePersonalOptionDto extends PickType(PersonalOption, [
+  "name",
+  "price",
+  "optionType",
+  "category",
+  "productId",
+] as const) {}

@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { BillProductService } from './bill-product.service';
-import { CreateBillProductDto } from './dto/create-bill-product.dto';
-import { UpdateBillProductDto } from './dto/update-bill-product.dto';
+import { Controller, Get, Post, Body, Patch, Param, Delete } from "@nestjs/common";
+import { BillProductService } from "./bill-product.service";
+import { CreateBillProductDto } from "./dto/create-bill-product.dto";
+import { DeleteBillProductDto } from "./dto/delete-bill-product.dto";
+import { FindOneBillProductDto } from "./dto/findone-bill-product.dto";
 
-@Controller('bill-product')
+@Controller("bill-product")
 export class BillProductController {
   constructor(private readonly billProductService: BillProductService) {}
 
@@ -17,18 +18,13 @@ export class BillProductController {
     return this.billProductService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.billProductService.findOne(+id);
+  @Get(":productId/:billId")
+  findOne(@Param() ids: FindOneBillProductDto) {
+    return this.billProductService.findOne(ids.billId, ids.productId);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBillProductDto: UpdateBillProductDto) {
-    return this.billProductService.update(+id, updateBillProductDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.billProductService.remove(+id);
+  @Delete(":productId/:billId")
+  remove(@Param() ids: DeleteBillProductDto) {
+    return this.billProductService.remove(ids.billId, ids.productId);
   }
 }

@@ -1,6 +1,4 @@
-import { IsString } from "class-validator";
+import { PickType } from "@nestjs/mapped-types";
+import { Menu } from "../entities/menu.entity";
 
-export class CreateMenuDto {
-  @IsString()
-  readonly name: string;
-}
+export class CreateMenuDto extends PickType(Menu, ["name"] as const) {}

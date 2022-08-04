@@ -1,15 +1,9 @@
-import { IsNumber, IsString } from "class-validator";
+import { PickType } from "@nestjs/mapped-types";
+import { Product } from "../entities/product.entity";
 
-export class CreateProductDto {
-  @IsString()
-  name: string;
-
-  @IsNumber()
-  price: number;
-
-  @IsString()
-  image: string;
-
-  @IsNumber()
-  menuId: number;
-}
+export class CreateProductDto extends PickType(Product, [
+  "name",
+  "price",
+  "image",
+  "menuId",
+] as const) {}

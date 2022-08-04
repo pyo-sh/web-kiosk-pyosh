@@ -1,15 +1,9 @@
-import { IsNumber, IsString } from "class-validator";
+import { PickType } from "@nestjs/mapped-types";
+import { Bill } from "../entities/bill.entity";
 
-export class CreateBillDto {
-  @IsString()
-  readonly content: string;
-
-  @IsString()
-  readonly paymentMethod: string;
-
-  @IsNumber()
-  readonly paymentPrice: number;
-
-  @IsNumber()
-  readonly totalPrice: number;
-}
+export class CreateBillDto extends PickType(Bill, [
+  "content",
+  "paymentMethod",
+  "paymentPrice",
+  "totalPrice",
+] as const) {}
