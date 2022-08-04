@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { DeleteResult, Repository } from "typeorm";
 import { CreateBillDto } from "./dto/create-bill.dto";
 import { UpdateBillDto } from "./dto/update-bill.dto";
 import { Bill } from "./entities/bill.entity";
@@ -11,8 +11,8 @@ export class BillService {
     this.billRepository = billRepository;
   }
 
-  create(createBillDto: CreateBillDto) {
-    return this.billRepository.create(createBillDto);
+  create(createBillDto: CreateBillDto): Promise<Bill> {
+    return this.billRepository.save(createBillDto);
   }
 
   findAll(): Promise<Bill[]> {
@@ -23,11 +23,13 @@ export class BillService {
     return this.billRepository.findOneBy({ id });
   }
 
-  update(id: number, updateBillDto: UpdateBillDto) {
-    return this.billRepository.update(id, updateBillDto);
+  async update(id: number, updateBillDto: UpdateBillDto): Promise<Bill> {
+    const pureBill = await this.billRepository.findOneBy({ id });
+    await this.billRepository.update(id, updateBillDto);
+    return { ...pureBill, ...updateBillDto };
   }
 
-  remove(id: number) {
+  remove(id: number): Promise<DeleteResult> {
     return this.billRepository.delete({ id });
   }
 }

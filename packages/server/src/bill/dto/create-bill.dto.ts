@@ -1,4 +1,4 @@
-import { PickType } from "@nestjs/mapped-types";
+import { PickType } from "@nestjs/swagger";
 import { Bill } from "../entities/bill.entity";
 
 export class CreateBillDto extends PickType(Bill, [
