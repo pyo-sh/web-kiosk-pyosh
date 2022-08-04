@@ -1,26 +1,40 @@
-import { Injectable } from '@nestjs/common';
-import { CreatePersonalOptionDto } from './dto/create-personal-option.dto';
-import { UpdatePersonalOptionDto } from './dto/update-personal-option.dto';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { DeleteResult, Repository } from "typeorm";
+import { CreatePersonalOptionDto } from "./dto/create-personal-option.dto";
+import { UpdatePersonalOptionDto } from "./dto/update-personal-option.dto";
+import { PersonalOption } from "./entities/personal-option.entity";
 
 @Injectable()
 export class PersonalOptionService {
-  create(createPersonalOptionDto: CreatePersonalOptionDto) {
-    return 'This action adds a new personalOption';
+  constructor(
+    @InjectRepository(PersonalOption) private personalOptionRepository: Repository<PersonalOption>,
+  ) {
+    this.personalOptionRepository = personalOptionRepository;
   }
 
-  findAll() {
-    return `This action returns all personalOption`;
+  create(createPersonalOptionDto: CreatePersonalOptionDto): Promise<PersonalOption> {
+    return this.personalOptionRepository.save(createPersonalOptionDto);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} personalOption`;
+  findAll(): Promise<PersonalOption[]> {
+    return this.personalOptionRepository.find();
   }
 
-  update(id: number, updatePersonalOptionDto: UpdatePersonalOptionDto) {
-    return `This action updates a #${id} personalOption`;
+  findOne(id: number): Promise<PersonalOption> {
+    return this.personalOptionRepository.findOneBy({ id });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} personalOption`;
+  async update(
+    id: number,
+    updatePersonalOptionDto: UpdatePersonalOptionDto,
+  ): Promise<PersonalOption> {
+    const purePersonalOption = await this.personalOptionRepository.findOneBy({ id });
+    await this.personalOptionRepository.update(id, updatePersonalOptionDto);
+    return { ...purePersonalOption, ...updatePersonalOptionDto };
+  }
+
+  remove(id: number): Promise<DeleteResult> {
+    return this.personalOptionRepository.delete({ id });
   }
 }

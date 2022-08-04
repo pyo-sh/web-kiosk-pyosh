@@ -32,7 +32,6 @@ import { Environment } from "./common/enums";
         namingStrategy: new SnakeNamingStrategy(),
         logging: true,
         autoLoadEntities: true,
-        dropSchema: true,
       }),
     }),
     MenuModule,

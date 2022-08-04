@@ -1,4 +1,4 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateBillProductDto } from './create-bill-product.dto';
+import { PickType } from "@nestjs/swagger";
+import { BillProduct } from "../entities/bill-product.entity";
 
-export class UpdateBillProductDto extends PartialType(CreateBillProductDto) {}
+export class UpdateBillProductDto extends PickType(BillProduct, ["count"] as const) {}
