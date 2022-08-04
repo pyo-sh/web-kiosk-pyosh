@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { CreateBillProductDto } from "./dto/create-bill-product.dto";
+import { UpdateBillProductDto } from "./dto/update-bill-product.dto";
 import { BillProduct } from "./entities/bill-product.entity";
 
 @Injectable()
@@ -21,6 +22,16 @@ export class BillProductService {
 
   findOne(billId: number, productId: number): Promise<BillProduct> {
     return this.billProductRepository.findOneBy({ billId, productId });
+  }
+
+  async update(
+    billId: number,
+    productId: number,
+    updateBillProductDto: UpdateBillProductDto,
+  ): Promise<BillProduct> {
+    const pureBillProduct = await this.billProductRepository.findOneBy({ billId, productId });
+    await this.billProductRepository.update({ billId, productId }, updateBillProductDto);
+    return { ...pureBillProduct, ...updateBillProductDto };
   }
 
   remove(billId: number, productId: number) {
