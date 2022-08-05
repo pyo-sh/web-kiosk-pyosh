@@ -1,6 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { DeleteResult, Repository } from "typeorm";
+import { CreateBillDto } from "src/bill/dto/create-bill.dto";
+import { arrayToObjectById } from "src/util/array";
+import { DeleteResult, In, Repository } from "typeorm";
 import { CreatePersonalOptionDto } from "./dto/create-personal-option.dto";
 import { UpdatePersonalOptionDto } from "./dto/update-personal-option.dto";
 import { PersonalOption } from "./entities/personal-option.entity";
@@ -23,6 +25,19 @@ export class PersonalOptionService {
 
   findOne(id: number): Promise<PersonalOption> {
     return this.personalOptionRepository.findOneBy({ id });
+  }
+
+  async findByCreateBillDto({
+    products,
+  }: CreateBillDto): Promise<{ [id: string]: PersonalOption }> {
+    const optionIds = [
+      ...products.reduce((idSet, { personalOptionIds: ids }) => {
+        ids.forEach(({ id }) => idSet.add(id));
+        return idSet;
+      }, new Set<number>()),
+    ];
+    const optionArray = await this.personalOptionRepository.find({ where: { id: In(optionIds) } });
+    return arrayToObjectById(optionArray);
   }
 
   async update(

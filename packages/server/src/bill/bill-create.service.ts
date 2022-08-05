@@ -1,13 +1,10 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { BillProductService } from "src/bill-product/bill-product.service";
-import { BillProduct } from "src/bill-product/entities/bill-product.entity";
 import { OptionType } from "src/common/enums";
 import { PersonalOption } from "src/personal-option/entities/personal-option.entity";
 import { PersonalOptionService } from "src/personal-option/personal-option.service";
-import { Product } from "src/product/entities/product.entity";
 import { ProductService } from "src/product/product.service";
-import { arrayToObjectById } from "src/util/array";
 import { Repository } from "typeorm";
 import { CreateBillDto } from "./dto/create-bill.dto";
 import { CreateBuiltOptionDto } from "./dto/create-built-option.dto";
@@ -47,25 +44,6 @@ export class BillCreateService {
     return newBill;
   }
 
-  async getProductRows(createBillDto: CreateBillDto): Promise<{ [id: string]: Product }> {
-    const productIds = [...new Set(createBillDto.products.map(({ id }) => id))];
-    const productArray = await Promise.all(productIds.map((id) => this.productService.findOne(id)));
-    return arrayToObjectById(productArray);
-  }
-
-  async getOptionRows(createBillDto: CreateBillDto): Promise<{ [id: string]: PersonalOption }> {
-    const optionIds = [
-      ...createBillDto.products.reduce((idSet, { personalOptionIds }) => {
-        personalOptionIds.forEach(({ id: pOId }) => idSet.add(pOId));
-        return idSet;
-      }, new Set<number>()),
-    ];
-    const optionArray = await Promise.all(
-      optionIds.map((id) => this.personalOptionService.findOne(id)),
-    );
-    return arrayToObjectById(optionArray);
-  }
-
   getProductCounts(createBillDto: CreateBillDto): Map<number, number> {
     const counter = new Map();
 
@@ -78,8 +56,8 @@ export class BillCreateService {
 
   async getPriceTag(createBillDto: CreateBillDto) {
     const [products, options] = await Promise.all([
-      this.getProductRows(createBillDto),
-      this.getOptionRows(createBillDto),
+      this.productService.findByCreateBillDto(createBillDto),
+      this.personalOptionService.findByCreateBillDto(createBillDto),
     ]);
 
     const [totalPrice, productStrings] = createBillDto.products.reduce(
