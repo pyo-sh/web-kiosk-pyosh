@@ -21,7 +21,7 @@ export class BillService {
   async update(id: number, updateBillDto: UpdateBillDto): Promise<Bill> {
     const pureBill = await this.billRepository.findOneBy({ id });
     await this.billRepository.update(id, updateBillDto);
-    return { ...pureBill, ...updateBillDto };
+    return this.billRepository.create({ ...pureBill, ...updateBillDto });
   }
 
   remove(id: number): Promise<DeleteResult> {

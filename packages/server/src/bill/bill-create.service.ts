@@ -25,23 +25,23 @@ export class BillCreateService {
     const { paymentMethod, paymentPrice } = createBillDto;
     if (paymentPrice < totalPrice) throw Error("Payment: Insufficient cash");
 
-    // save Bill
-    const newBill = await this.billRepository.save({
+    const newBill = this.billRepository.create({
       content,
       paymentMethod,
       paymentPrice,
       totalPrice,
     });
+    const bill = await this.billRepository.save(newBill);
 
     const productCounter = this.getProductCounts(createBillDto);
     const billProducts = Array.from(productCounter).map(([productId, count]) => ({
       productId,
-      billId: newBill.id,
+      billId: bill.id,
       count,
     }));
     this.billProductService.createAll(billProducts);
 
-    return newBill;
+    return bill;
   }
 
   getProductCounts(createBillDto: CreateBillDto): Map<number, number> {

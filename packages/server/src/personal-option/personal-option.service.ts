@@ -16,7 +16,8 @@ export class PersonalOptionService {
   }
 
   create(createPersonalOptionDto: CreatePersonalOptionDto): Promise<PersonalOption> {
-    return this.personalOptionRepository.save(createPersonalOptionDto);
+    const newPersonalOption = this.personalOptionRepository.create(createPersonalOptionDto);
+    return this.personalOptionRepository.save(newPersonalOption);
   }
 
   findAll(): Promise<PersonalOption[]> {
@@ -46,7 +47,10 @@ export class PersonalOptionService {
   ): Promise<PersonalOption> {
     const purePersonalOption = await this.personalOptionRepository.findOneBy({ id });
     await this.personalOptionRepository.update(id, updatePersonalOptionDto);
-    return { ...purePersonalOption, ...updatePersonalOptionDto };
+    return this.personalOptionRepository.create({
+      ...purePersonalOption,
+      ...updatePersonalOptionDto,
+    });
   }
 
   remove(id: number): Promise<DeleteResult> {

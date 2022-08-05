@@ -12,7 +12,8 @@ export class ProductService {
   constructor(@InjectRepository(Product) private readonly productRepository: Repository<Product>) {}
 
   create(createProductDto: CreateProductDto): Promise<Product> {
-    return this.productRepository.save(createProductDto);
+    const newProduct = this.productRepository.create(createProductDto);
+    return this.productRepository.save(newProduct);
   }
 
   findAll(): Promise<Product[]> {
