@@ -8,6 +8,6 @@ import { PersonalOption } from "./entities/personal-option.entity";
   imports: [TypeOrmModule.forFeature([PersonalOption])],
   controllers: [PersonalOptionController],
   providers: [PersonalOptionService],
-  exports: [PersonalOptionService],
+  exports: [TypeOrmModule, PersonalOptionService],
 })
 export class PersonalOptionModule {}

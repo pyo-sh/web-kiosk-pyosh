@@ -7,9 +7,7 @@ import { Product } from "./entities/product.entity";
 
 @Injectable()
 export class ProductService {
-  constructor(@InjectRepository(Product) private productRepository: Repository<Product>) {
-    this.productRepository = productRepository;
-  }
+  constructor(@InjectRepository(Product) private readonly productRepository: Repository<Product>) {}
 
   create(createProductDto: CreateProductDto): Promise<Product> {
     return this.productRepository.save(createProductDto);
@@ -21,6 +19,13 @@ export class ProductService {
 
   findOne(id: number): Promise<Product> {
     return this.productRepository.findOneBy({ id });
+  }
+
+  findOneByIdWithOptions(id: number): Promise<Product> {
+    return this.productRepository.findOne({
+      where: { id },
+      relations: { personalOptions: true },
+    });
   }
 
   async update(id: number, updateProductDto: UpdateProductDto): Promise<Product> {

@@ -1,7 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeleteResult, Repository } from "typeorm";
-import { CreateBillDto } from "./dto/create-bill.dto";
 import { UpdateBillDto } from "./dto/update-bill.dto";
 import { Bill } from "./entities/bill.entity";
 
@@ -9,10 +8,6 @@ import { Bill } from "./entities/bill.entity";
 export class BillService {
   constructor(@InjectRepository(Bill) private billRepository: Repository<Bill>) {
     this.billRepository = billRepository;
-  }
-
-  create(createBillDto: CreateBillDto): Promise<Bill> {
-    return this.billRepository.save(createBillDto);
   }
 
   findAll(): Promise<Bill[]> {

@@ -6,6 +6,6 @@ import { BillProduct } from "./entities/bill-product.entity";
 @Module({
   imports: [TypeOrmModule.forFeature([BillProduct])],
   providers: [BillProductService],
-  exports: [BillProductService],
+  exports: [TypeOrmModule, BillProductService],
 })
 export class BillProductModule {}
