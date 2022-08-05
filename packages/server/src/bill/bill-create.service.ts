@@ -33,13 +33,13 @@ export class BillCreateService {
       totalPrice,
     });
 
-    // save Bill Products
     const productCounter = this.getProductCounts(createBillDto);
-    await Promise.all(
-      Array.from(productCounter).map(([productId, count]) => {
-        return this.billProductService.create({ productId, billId: newBill.id, count });
-      }),
-    );
+    const billProducts = Array.from(productCounter).map(([productId, count]) => ({
+      productId,
+      billId: newBill.id,
+      count,
+    }));
+    this.billProductService.createAll(billProducts);
 
     return newBill;
   }

@@ -13,7 +13,11 @@ export class BillProductService {
     this.billProductRepository = billProductRepository;
   }
   create(createBillProductDto: CreateBillProductDto) {
-    return this.billProductRepository.create(createBillProductDto);
+    return this.billProductRepository.save(createBillProductDto);
+  }
+
+  createAll(createBillProductDtos: CreateBillProductDto[]) {
+    return this.billProductRepository.save(createBillProductDtos);
   }
 
   findAll(): Promise<BillProduct[]> {
