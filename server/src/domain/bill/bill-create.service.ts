@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { BillProductService } from "src/bill-product/bill-product.service";
+import { BillProductService } from "src/domain/bill-product/bill-product.service";
 import { OptionType } from "src/common/enums";
-import { PersonalOption } from "src/personal-option/entities/personal-option.entity";
-import { PersonalOptionService } from "src/personal-option/personal-option.service";
-import { ProductService } from "src/product/product.service";
+import { PersonalOption } from "src/domain/personal-option/entities/personal-option.entity";
+import { PersonalOptionService } from "src/domain/personal-option/personal-option.service";
+import { ProductService } from "src/domain/product/product.service";
 import { Repository } from "typeorm";
 import { CreateBillDto } from "./dto/create-bill.dto";
 import { CreateBuiltOptionDto } from "./dto/create-built-option.dto";

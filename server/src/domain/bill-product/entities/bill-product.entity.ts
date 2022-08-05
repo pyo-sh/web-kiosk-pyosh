@@ -1,6 +1,6 @@
 import { Entity, Column, ManyToOne, CreateDateColumn, PrimaryColumn } from "typeorm";
-import { Bill } from "src/bill/entities/bill.entity";
-import { Product } from "src/product/entities/product.entity";
+import { Bill } from "src/domain/bill/entities/bill.entity";
+import { Product } from "src/domain/product/entities/product.entity";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNumber } from "class-validator";
 

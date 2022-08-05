@@ -5,11 +5,11 @@ import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { validateEnv } from "./config/env.validation";
-import { MenuModule } from "./menu/menu.module";
-import { ProductModule } from "./product/product.module";
-import { PersonalOptionModule } from "./personal-option/personal-option.module";
-import { BillModule } from "./bill/bill.module";
-import { BillProductModule } from "./bill-product/bill-product.module";
+import { MenuModule } from "./domain/menu/menu.module";
+import { ProductModule } from "./domain/product/product.module";
+import { PersonalOptionModule } from "./domain/personal-option/personal-option.module";
+import { BillModule } from "./domain/bill/bill.module";
+import { BillProductModule } from "./domain/bill-product/bill-product.module";
 import { Environment } from "./common/enums";
 
 @Module({
