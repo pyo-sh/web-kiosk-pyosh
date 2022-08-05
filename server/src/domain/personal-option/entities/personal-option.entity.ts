@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
-import { Product } from "src/product/entities/product.entity";
+import { Product } from "src/domain/product/entities/product.entity";
 import { OptionType } from "src/common/enums";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEnum, IsNumber, IsString } from "class-validator";

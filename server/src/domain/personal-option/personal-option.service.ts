@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CreateBillDto } from "src/bill/dto/create-bill.dto";
+import { CreateBillDto } from "src/domain/bill/dto/create-bill.dto";
 import { arrayToObjectById } from "src/util/array";
 import { DeleteResult, In, Repository } from "typeorm";
 import { CreatePersonalOptionDto } from "./dto/create-personal-option.dto";

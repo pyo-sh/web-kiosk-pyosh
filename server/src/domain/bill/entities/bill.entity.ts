@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn } from "typeorm";
-import { BillProduct } from "src/bill-product/entities/bill-product.entity";
+import { BillProduct } from "src/domain/bill-product/entities/bill-product.entity";
 import { IsNumber, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 

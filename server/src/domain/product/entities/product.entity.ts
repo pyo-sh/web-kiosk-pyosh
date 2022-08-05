@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm";
-import { Menu } from "src/menu/entities/menu.entity";
-import { BillProduct } from "src/bill-product/entities/bill-product.entity";
-import { PersonalOption } from "src/personal-option/entities/personal-option.entity";
+import { Menu } from "src/domain/menu/entities/menu.entity";
+import { BillProduct } from "src/domain/bill-product/entities/bill-product.entity";
+import { PersonalOption } from "src/domain/personal-option/entities/personal-option.entity";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsNumber } from "class-validator";
 
