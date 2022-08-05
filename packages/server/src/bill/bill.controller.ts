@@ -7,6 +7,7 @@ import {
   ApiTags,
 } from "@nestjs/swagger";
 import { Response } from "express";
+import { BillCreateService } from "./bill-create.service";
 import { BillService } from "./bill.service";
 import { CreateBillDto } from "./dto/create-bill.dto";
 import { UpdateBillDto } from "./dto/update-bill.dto";
@@ -14,13 +15,19 @@ import { UpdateBillDto } from "./dto/update-bill.dto";
 @ApiTags("영수증 API")
 @Controller("bill")
 export class BillController {
-  constructor(private readonly billService: BillService) {}
+  constructor(
+    private readonly billService: BillService,
+    private readonly billCreateService: BillCreateService,
+  ) {}
 
-  @ApiOperation({ summary: "영수증 생성 API", description: "영수증을 생성하고 정보를 반환한다" })
-  @ApiCreatedResponse({ description: "생성 성공" })
+  @ApiOperation({
+    summary: "결제(영수증 생성) API",
+    description: "영수증을 생성하고 정보를 반환한다",
+  })
+  @ApiCreatedResponse({ description: "결제(생성) 성공" })
   @Post()
   async create(@Body() createBillDto: CreateBillDto, @Res() res: Response) {
-    const bill = await this.billService.create(createBillDto);
+    const bill = await this.billCreateService.create(createBillDto);
     return res.status(HttpStatus.CREATED).json({ bill });
   }
 

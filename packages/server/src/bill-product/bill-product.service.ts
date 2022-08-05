@@ -13,7 +13,12 @@ export class BillProductService {
     this.billProductRepository = billProductRepository;
   }
   create(createBillProductDto: CreateBillProductDto) {
-    return this.billProductRepository.create(createBillProductDto);
+    const newBillProduct = this.billProductRepository.create(createBillProductDto);
+    return this.billProductRepository.save(newBillProduct);
+  }
+
+  createAll(createBillProductDtos: CreateBillProductDto[]) {
+    return this.billProductRepository.save(createBillProductDtos);
   }
 
   findAll(): Promise<BillProduct[]> {
@@ -31,7 +36,7 @@ export class BillProductService {
   ): Promise<BillProduct> {
     const pureBillProduct = await this.billProductRepository.findOneBy({ billId, productId });
     await this.billProductRepository.update({ billId, productId }, updateBillProductDto);
-    return { ...pureBillProduct, ...updateBillProductDto };
+    return this.billProductRepository.create({ ...pureBillProduct, ...updateBillProductDto });
   }
 
   remove(billId: number, productId: number) {
