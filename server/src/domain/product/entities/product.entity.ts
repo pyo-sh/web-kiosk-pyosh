@@ -15,7 +15,7 @@ export class Product {
   name: string;
 
   @ApiProperty()
-  @Column()
+  @Column({ type: "decimal" })
   price: number;
 
   @ApiProperty()

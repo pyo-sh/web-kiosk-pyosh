@@ -16,7 +16,7 @@ export class PersonalOption {
 
   @ApiProperty()
   @IsNumber()
-  @Column()
+  @Column({ type: "decimal" })
   price: number;
 
   @ApiProperty()
