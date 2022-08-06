@@ -11,9 +11,29 @@ export class MenuService {
     this.menuRepository = menuRepository;
   }
 
-  create(createMenuDto: CreateMenuDto): Promise<Menu> {
-    const newMenu = this.menuRepository.create(createMenuDto);
-    return this.menuRepository.save(newMenu);
+  async create(createMenuDto: CreateMenuDto): Promise<Menu> {
+    try {
+      const newMenu = this.menuRepository.create(createMenuDto);
+      const menu = await this.menuRepository.save(newMenu);
+      return menu;
+    } catch ({ errno }) {
+      if (errno === 1364) {
+        throw new HttpException(
+          {
+            status: HttpStatus.BAD_REQUEST,
+            error: "요청 오류: 메뉴 항목에서 빠진 것이 있습니다!",
+          },
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      throw new HttpException(
+        {
+          status: HttpStatus.INTERNAL_SERVER_ERROR,
+          error: "서버 오류: 데이터 베이스에 오류가 있습니다. 다시 요청해주세요!",
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
   findAll(): Promise<Menu[]> {

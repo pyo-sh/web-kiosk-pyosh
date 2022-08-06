@@ -23,7 +23,17 @@ export class BillCreateService {
     const { totalPrice, content } = await this.getPriceTag(createBillDto);
 
     const { paymentMethod, paymentPrice } = createBillDto;
-    if (paymentPrice < totalPrice)
+    if (totalPrice === 0 && !createBillDto.products.length) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: "결제 오류: 상품을 추가해주세요",
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    if (paymentPrice < totalPrice) {
+      console.log(totalPrice);
       throw new HttpException(
         {
           status: HttpStatus.PAYMENT_REQUIRED,
@@ -31,24 +41,45 @@ export class BillCreateService {
         },
         HttpStatus.PAYMENT_REQUIRED,
       );
+    }
 
-    const newBill = this.billRepository.create({
-      content,
-      paymentMethod,
-      paymentPrice,
-      totalPrice,
-    });
-    const bill = await this.billRepository.save(newBill);
+    try {
+      const newBill = this.billRepository.create({
+        content,
+        paymentMethod,
+        paymentPrice,
+        totalPrice,
+      });
 
-    const productCounter = this.getProductCounts(createBillDto);
-    const billProducts = Array.from(productCounter).map(([productId, count]) => ({
-      productId,
-      billId: bill.id,
-      count,
-    }));
-    this.billProductService.createAll(billProducts);
+      const bill = await this.billRepository.save(newBill);
 
-    return bill;
+      const productCounter = this.getProductCounts(createBillDto);
+      const billProducts = Array.from(productCounter).map(([productId, count]) => ({
+        productId,
+        billId: bill.id,
+        count,
+      }));
+      this.billProductService.createAll(billProducts);
+
+      return bill;
+    } catch ({ errno }) {
+      if (errno === 1364) {
+        throw new HttpException(
+          {
+            status: HttpStatus.BAD_REQUEST,
+            error: "요청 오류: 결제 중 빠진 요청이 있습니다!",
+          },
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      throw new HttpException(
+        {
+          status: HttpStatus.INTERNAL_SERVER_ERROR,
+          error: "서버 오류: 데이터 베이스에 오류가 있습니다. 다시 요청해주세요!",
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
   getProductCounts(createBillDto: CreateBillDto): Map<number, number> {
@@ -69,7 +100,7 @@ export class BillCreateService {
 
     const [totalPrice, productStrings] = createBillDto.products.reduce(
       ([totalPrice, productStrings], { id, count, personalOptionIds }) => {
-        if (count <= 0)
+        if (count <= 0 || !count)
           throw new HttpException(
             {
               status: HttpStatus.BAD_REQUEST,
@@ -115,7 +146,7 @@ export class BillCreateService {
           optionPrice = price;
         }
         if (optionType === OptionType.COUNT) {
-          if (pOCount <= 0)
+          if (pOCount <= 0 || !pOCount)
             throw new HttpException(
               {
                 status: HttpStatus.BAD_REQUEST,

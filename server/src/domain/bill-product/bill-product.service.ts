@@ -13,9 +13,29 @@ export class BillProductService {
   ) {
     this.billProductRepository = billProductRepository;
   }
-  create(createBillProductDto: CreateBillProductDto) {
-    const newBillProduct = this.billProductRepository.create(createBillProductDto);
-    return this.billProductRepository.save(newBillProduct);
+  async create(createBillProductDto: CreateBillProductDto) {
+    try {
+      const newBillProduct = this.billProductRepository.create(createBillProductDto);
+      const billProduct = await this.billProductRepository.save(newBillProduct);
+      return billProduct;
+    } catch ({ errno }) {
+      if (errno === 1364) {
+        throw new HttpException(
+          {
+            status: HttpStatus.BAD_REQUEST,
+            error: "요청 오류: 물품 주문 목록에서 빠진 것이 있습니다!",
+          },
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      throw new HttpException(
+        {
+          status: HttpStatus.INTERNAL_SERVER_ERROR,
+          error: "서버 오류: 데이터 베이스에 오류가 있습니다. 다시 요청해주세요!",
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
   createAll(createBillProductDtos: CreateBillProductDto[]) {
