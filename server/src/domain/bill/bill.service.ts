@@ -14,8 +14,19 @@ export class BillService {
     return this.billRepository.find();
   }
 
-  findOne(id: number): Promise<Bill> {
-    return this.billRepository.findOneBy({ id });
+  async findOne(id: number): Promise<Bill> {
+    const bill = await this.billRepository.findOneBy({ id });
+    if (!bill) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: "요청 오류: 해당 영수증을 찾을 수 없습니다",
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    return bill;
   }
 
   async update(id: number, updateBillDto: UpdateBillDto): Promise<Bill> {

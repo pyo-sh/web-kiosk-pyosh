@@ -20,8 +20,19 @@ export class ProductService {
     return this.productRepository.find();
   }
 
-  findOne(id: number): Promise<Product> {
-    return this.productRepository.findOneBy({ id });
+  async findOne(id: number): Promise<Product> {
+    const product = await this.productRepository.findOneBy({ id });
+    if (!product) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: "요청 오류: 해당 상품을 찾을 수 없습니다!",
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    return product;
   }
 
   findOneByIdWithOptions(id: number): Promise<Product> {

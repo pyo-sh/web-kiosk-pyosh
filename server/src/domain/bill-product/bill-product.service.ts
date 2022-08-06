@@ -46,8 +46,19 @@ export class BillProductService {
     }, new Map());
   }
 
-  findOne(billId: number, productId: number): Promise<BillProduct> {
-    return this.billProductRepository.findOneBy({ billId, productId });
+  async findOne(billId: number, productId: number): Promise<BillProduct> {
+    const billProduct = await this.billProductRepository.findOneBy({ billId, productId });
+    if (!billProduct) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: "요청 오류: 해당 물품 주문 목록을 찾을 수 없습니다!",
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    return billProduct;
   }
 
   async update(

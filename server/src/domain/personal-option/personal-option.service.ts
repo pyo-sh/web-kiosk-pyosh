@@ -24,8 +24,19 @@ export class PersonalOptionService {
     return this.personalOptionRepository.find();
   }
 
-  findOne(id: number): Promise<PersonalOption> {
-    return this.personalOptionRepository.findOneBy({ id });
+  async findOne(id: number): Promise<PersonalOption> {
+    const personalOption = await this.personalOptionRepository.findOneBy({ id });
+    if (!personalOption) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: "요청 오류: 해당 상품 옵션을 찾을 수 없습니다!",
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    return personalOption;
   }
 
   async findByCreateBillDto({

@@ -12,15 +12,27 @@ export class MenuService {
   }
 
   create(createMenuDto: CreateMenuDto): Promise<Menu> {
-    return this.menuRepository.save(createMenuDto);
+    const newMenu = this.menuRepository.create(createMenuDto);
+    return this.menuRepository.save(newMenu);
   }
 
   findAll(): Promise<Menu[]> {
     return this.menuRepository.find();
   }
 
-  findOne(id: number): Promise<Menu> {
-    return this.menuRepository.findOneBy({ id });
+  async findOne(id: number): Promise<Menu> {
+    const menu = await this.menuRepository.findOneBy({ id });
+    if (!menu) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: "요청 오류: 해당 메뉴를 찾을 수 없습니다!",
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    return menu;
   }
 
   async update(id: number, updateMenuDto: UpdateMenuDto): Promise<Menu> {
