@@ -6,7 +6,7 @@ import { IsEnum, IsNumber, IsString } from "class-validator";
 
 @Entity()
 export class PersonalOption {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: "int" })
   id: number;
 
   @ApiProperty()
@@ -31,7 +31,7 @@ export class PersonalOption {
 
   @ApiProperty()
   @IsNumber()
-  @Column()
+  @Column({ type: "int" })
   productId: number;
 
   @ManyToOne((type) => Product, (personalOption) => personalOption.personalOptions)

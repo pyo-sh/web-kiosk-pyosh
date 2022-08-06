@@ -5,7 +5,7 @@ import { ApiProperty } from "@nestjs/swagger";
 
 @Entity()
 export class Bill {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: "int" })
   id: number;
 
   @ApiProperty()

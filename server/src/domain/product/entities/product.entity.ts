@@ -7,7 +7,7 @@ import { IsNumber } from "class-validator";
 
 @Entity()
 export class Product {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: "int" })
   id: number;
 
   @ApiProperty()
@@ -24,7 +24,7 @@ export class Product {
 
   @ApiProperty()
   @IsNumber()
-  @Column()
+  @Column({ type: "int" })
   menuId: number;
 
   @ManyToOne((type) => Menu, (menu) => menu.products)

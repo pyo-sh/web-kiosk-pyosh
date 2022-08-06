@@ -8,17 +8,17 @@ import { IsNumber } from "class-validator";
 export class BillProduct {
   @ApiProperty()
   @IsNumber()
-  @PrimaryColumn()
+  @PrimaryColumn({ type: "int" })
   billId: number;
 
   @ApiProperty()
   @IsNumber()
-  @PrimaryColumn()
+  @PrimaryColumn({ type: "int" })
   productId: number;
 
   @ApiProperty()
   @IsNumber()
-  @Column()
+  @Column({ type: "int" })
   count: number;
 
   @CreateDateColumn()

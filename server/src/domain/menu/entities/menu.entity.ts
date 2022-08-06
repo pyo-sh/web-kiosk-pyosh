@@ -5,7 +5,7 @@ import { IsString } from "class-validator";
 
 @Entity()
 export class Menu {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: "int" })
   id: number;
 
   @ApiProperty()
