@@ -1,4 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+} from "typeorm";
 import { Menu } from "src/domain/menu/entities/menu.entity";
 import { BillProduct } from "src/domain/bill-product/entities/bill-product.entity";
 import { PersonalOption } from "src/domain/personal-option/entities/personal-option.entity";
@@ -26,6 +35,15 @@ export class Product {
   @IsNumber()
   @Column({ type: "int" })
   menuId: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 
   @ManyToOne((type) => Menu, (menu) => menu.products)
   menu: Menu;

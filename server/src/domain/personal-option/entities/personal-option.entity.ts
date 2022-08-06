@@ -1,4 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+} from "typeorm";
 import { Product } from "src/domain/product/entities/product.entity";
 import { OptionType } from "src/common/enums";
 import { ApiProperty } from "@nestjs/swagger";
@@ -28,6 +36,15 @@ export class PersonalOption {
   @IsString()
   @Column({ type: "varchar", length: 40 })
   category: string;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 
   @ApiProperty()
   @IsNumber()

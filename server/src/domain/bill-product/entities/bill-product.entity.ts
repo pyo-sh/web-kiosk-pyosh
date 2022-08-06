@@ -1,4 +1,12 @@
-import { Entity, Column, ManyToOne, CreateDateColumn, PrimaryColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  ManyToOne,
+  CreateDateColumn,
+  PrimaryColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+} from "typeorm";
 import { Bill } from "src/domain/bill/entities/bill.entity";
 import { Product } from "src/domain/product/entities/product.entity";
 import { ApiProperty } from "@nestjs/swagger";
@@ -23,6 +31,12 @@ export class BillProduct {
 
   @CreateDateColumn()
   createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 
   @ManyToOne((type) => Bill, (bill) => bill.billProducts)
   bill: Bill;
