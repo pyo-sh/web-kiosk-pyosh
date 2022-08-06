@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CreateBillDto } from "src/domain/bill/dto/create-bill.dto";
 import { arrayToObjectById } from "src/util/array";
@@ -15,30 +15,81 @@ export class PersonalOptionService {
     this.personalOptionRepository = personalOptionRepository;
   }
 
-  create(createPersonalOptionDto: CreatePersonalOptionDto): Promise<PersonalOption> {
-    const newPersonalOption = this.personalOptionRepository.create(createPersonalOptionDto);
-    return this.personalOptionRepository.save(newPersonalOption);
+  async create(createPersonalOptionDto: CreatePersonalOptionDto): Promise<PersonalOption> {
+    try {
+      const newPersonalOption = this.personalOptionRepository.create(createPersonalOptionDto);
+      const personalOption = await this.personalOptionRepository.save(newPersonalOption);
+      return personalOption;
+    } catch ({ errno }) {
+      if (errno === 1364) {
+        throw new HttpException(
+          {
+            status: HttpStatus.BAD_REQUEST,
+            error: "요청 오류: 상품 옵션 항목에서 빠진 것이 있습니다!",
+          },
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      throw new HttpException(
+        {
+          status: HttpStatus.INTERNAL_SERVER_ERROR,
+          error: "서버 오류: 데이터 베이스에 오류가 있습니다. 다시 요청해주세요!",
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 
   findAll(): Promise<PersonalOption[]> {
     return this.personalOptionRepository.find();
   }
 
-  findOne(id: number): Promise<PersonalOption> {
-    return this.personalOptionRepository.findOneBy({ id });
+  async findOne(id: number): Promise<PersonalOption> {
+    const personalOption = await this.personalOptionRepository.findOneBy({ id });
+    if (!personalOption) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: "요청 오류: 해당 상품 옵션을 찾을 수 없습니다!",
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+    return personalOption;
   }
 
   async findByCreateBillDto({
     products,
   }: CreateBillDto): Promise<{ [id: string]: PersonalOption }> {
-    const optionIds = [
-      ...products.reduce((idSet, { personalOptionIds: ids }) => {
-        ids.forEach(({ id }) => idSet.add(id));
-        return idSet;
-      }, new Set<number>()),
-    ];
-    const optionArray = await this.personalOptionRepository.find({ where: { id: In(optionIds) } });
-    return arrayToObjectById(optionArray);
+    try {
+      const optionIds = [
+        ...products.reduce((idSet, { personalOptionIds: ids }) => {
+          ids.forEach(({ id }) => {
+            if (!id) throw Error();
+            idSet.add(id);
+          });
+          return idSet;
+        }, new Set<number>()),
+      ];
+      const optionArray = await this.personalOptionRepository.find({
+        where: { id: In(optionIds) },
+      });
+
+      const hasEmpty = optionArray.length !== optionIds.length;
+      if (hasEmpty) throw new Error("요청 오류: 존재하지 않는 상품 번호에 접근했습니다.");
+
+      return arrayToObjectById(optionArray);
+    } catch ({ message }) {
+      if (!message) message = "요청 오류: 잘못된 상품 옵션 결제 요청으로 결제가 취소됩니다";
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: message,
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 
   async update(
@@ -46,6 +97,16 @@ export class PersonalOptionService {
     updatePersonalOptionDto: UpdatePersonalOptionDto,
   ): Promise<PersonalOption> {
     const purePersonalOption = await this.personalOptionRepository.findOneBy({ id });
+    if (!purePersonalOption) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: "요청 오류: 올바르지 않은 옵션 번호입니다!",
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     await this.personalOptionRepository.update(id, updatePersonalOptionDto);
     return this.personalOptionRepository.create({
       ...purePersonalOption,
@@ -53,7 +114,18 @@ export class PersonalOptionService {
     });
   }
 
-  remove(id: number): Promise<DeleteResult> {
-    return this.personalOptionRepository.delete({ id });
+  async remove(id: number): Promise<DeleteResult> {
+    const result = await this.personalOptionRepository.delete({ id });
+    if (result.affected <= 0) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: "요청 오류: 올바르지 않은 상품 옵션 번호입니다!",
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    return result;
   }
 }
