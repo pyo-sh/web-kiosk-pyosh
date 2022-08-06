@@ -10,11 +10,15 @@ import {
   ApiTags,
 } from "@nestjs/swagger";
 import { Response } from "express";
+import { ProductRankService } from "./product.rank.service";
 
 @ApiTags("상품 API")
 @Controller("product")
 export class ProductController {
-  constructor(private readonly productService: ProductService) {}
+  constructor(
+    private readonly productService: ProductService,
+    private readonly productRankService: ProductRankService,
+  ) {}
 
   @ApiOperation({ summary: "상품 생성 API", description: "상품을 생성하고 정보를 반환한다" })
   @ApiCreatedResponse({ description: "생성 성공" })
@@ -24,9 +28,20 @@ export class ProductController {
     return res.status(HttpStatus.CREATED).json({ product });
   }
 
-  @ApiOperation({ summary: "전체 상품 읽기 API", description: "전체 상품을 읽어서 반환한다" })
+  @ApiOperation({
+    summary: "전체 메뉴 포함 상품 API",
+    description: "전체 정렬된 상품을 읽어서 반환한다",
+  })
   @ApiOkResponse({ description: "읽기 성공" })
   @Get()
+  async findAllWithMenus(@Res() res: Response) {
+    const menus = await this.productRankService.getAllProducts();
+    return res.status(HttpStatus.OK).json({ menus });
+  }
+
+  @ApiOperation({ summary: "전체 상품 읽기 API", description: "전체 상품을 읽어서 반환한다" })
+  @ApiOkResponse({ description: "읽기 성공" })
+  @Get("all")
   async findAll(@Res() res: Response) {
     const products = await this.productService.findAll();
     return res.status(HttpStatus.OK).json({ products });
