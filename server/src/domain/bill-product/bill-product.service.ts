@@ -1,6 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { getYesterdayEnd } from "src/util/date";
+import { MoreThan, Repository } from "typeorm";
 import { CreateBillProductDto } from "./dto/create-bill-product.dto";
 import { UpdateBillProductDto } from "./dto/update-bill-product.dto";
 import { BillProduct } from "./entities/bill-product.entity";
@@ -23,6 +24,26 @@ export class BillProductService {
 
   findAll(): Promise<BillProduct[]> {
     return this.billProductRepository.find();
+  }
+
+  async countAllByMenuId(menuId: number): Promise<Map<number, number>> {
+    const yesterday = getYesterdayEnd();
+
+    const billProducts = await this.billProductRepository.find({
+      select: {
+        productId: true,
+        count: true,
+      },
+      where: {
+        product: { menuId },
+        createdAt: MoreThan(yesterday),
+      },
+    });
+
+    return billProducts.reduce((counter, { productId, count }) => {
+      const preCount = counter.get(productId) || 0;
+      return counter.set(productId, preCount + count);
+    }, new Map());
   }
 
   findOne(billId: number, productId: number): Promise<BillProduct> {
