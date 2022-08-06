@@ -70,7 +70,18 @@ export class BillProductService {
     return this.billProductRepository.create({ ...pureBillProduct, ...updateBillProductDto });
   }
 
-  remove(billId: number, productId: number) {
-    return this.billProductRepository.delete({ billId, productId });
+  async remove(billId: number, productId: number) {
+    const result = await this.billProductRepository.delete({ billId, productId });
+    if (result.affected <= 0) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: "요청 오류: 올바르지 않은 상품 주문 목록 번호입니다!",
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    return result;
   }
 }

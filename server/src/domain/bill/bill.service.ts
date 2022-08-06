@@ -34,7 +34,17 @@ export class BillService {
     return this.billRepository.create({ ...pureBill, ...updateBillDto });
   }
 
-  remove(id: number): Promise<DeleteResult> {
+  async remove(id: number): Promise<DeleteResult> {
+    const result = await this.billRepository.delete({ id });
+    if (result.affected <= 0) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: "요청 오류: 올바르지 않은 영수증 번호입니다!",
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
     return this.billRepository.delete({ id });
   }
 }

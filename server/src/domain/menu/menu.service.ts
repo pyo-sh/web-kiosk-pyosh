@@ -39,7 +39,17 @@ export class MenuService {
     return { ...pureMenu, ...updateMenuDto };
   }
 
-  remove(id: number): Promise<DeleteResult> {
-    return this.menuRepository.delete({ id });
+  async remove(id: number): Promise<DeleteResult> {
+    const result = await this.menuRepository.delete({ id });
+    if (result.affected <= 0) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: "요청 오류: 올바르지 않은 메뉴 번호입니다!",
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+    return result;
   }
 }

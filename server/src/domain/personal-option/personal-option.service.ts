@@ -63,7 +63,18 @@ export class PersonalOptionService {
     });
   }
 
-  remove(id: number): Promise<DeleteResult> {
-    return this.personalOptionRepository.delete({ id });
+  async remove(id: number): Promise<DeleteResult> {
+    const result = await this.personalOptionRepository.delete({ id });
+    if (result.affected <= 0) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: "요청 오류: 올바르지 않은 상품 옵션 번호입니다!",
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    return result;
   }
 }
