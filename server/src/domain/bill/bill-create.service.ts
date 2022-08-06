@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { BillProductService } from "src/domain/bill-product/bill-product.service";
 import { OptionType } from "src/common/enums";
@@ -23,7 +23,14 @@ export class BillCreateService {
     const { totalPrice, content } = await this.getPriceTag(createBillDto);
 
     const { paymentMethod, paymentPrice } = createBillDto;
-    if (paymentPrice < totalPrice) throw Error("Payment: Insufficient cash");
+    if (paymentPrice < totalPrice)
+      throw new HttpException(
+        {
+          status: HttpStatus.PAYMENT_REQUIRED,
+          error: "결제 오류: 물품 가격에 알맞은 결제를 행해주세요!",
+        },
+        HttpStatus.PAYMENT_REQUIRED,
+      );
 
     const newBill = this.billRepository.create({
       content,
@@ -62,7 +69,14 @@ export class BillCreateService {
 
     const [totalPrice, productStrings] = createBillDto.products.reduce(
       ([totalPrice, productStrings], { id, count, personalOptionIds }) => {
-        if (count <= 0) throw Error("Product: Invalid Counts");
+        if (count <= 0)
+          throw new HttpException(
+            {
+              status: HttpStatus.BAD_REQUEST,
+              error: "요청 문제: 물품의 수량이 올바르지 않습니다!",
+            },
+            HttpStatus.BAD_REQUEST,
+          );
         let { name: productName, price: productPrice } = products[id];
         const { optionsPrice, optionContent } = this.getOptionPriceTag(personalOptionIds, options);
 
@@ -89,12 +103,26 @@ export class BillCreateService {
 
         let optionPrice = 0;
         if (optionType === OptionType.RADIO) {
-          if (duplicateChecker.has(category)) throw Error("Personal Option: Duplicated Radio!");
+          if (duplicateChecker.has(category))
+            throw new HttpException(
+              {
+                status: HttpStatus.BAD_REQUEST,
+                error: "요청 문제: 물품 옵션이 중복되어 들어왔습니다!",
+              },
+              HttpStatus.BAD_REQUEST,
+            );
           duplicateChecker.set(category, name);
           optionPrice = price;
         }
         if (optionType === OptionType.COUNT) {
-          if (pOCount <= 0) throw Error("Personal Option: Invalid Counts");
+          if (pOCount <= 0)
+            throw new HttpException(
+              {
+                status: HttpStatus.BAD_REQUEST,
+                error: "요청 문제: 물품 옵션 수량이 올바르지 않습니다!",
+              },
+              HttpStatus.BAD_REQUEST,
+            );
           optionPrice = price * pOCount;
         }
         if (optionType === OptionType.CHECK) {
