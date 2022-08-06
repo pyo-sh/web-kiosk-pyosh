@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CreateBillDto } from "src/domain/bill/dto/create-bill.dto";
 import { arrayToObjectById } from "src/util/array";
@@ -46,6 +46,16 @@ export class PersonalOptionService {
     updatePersonalOptionDto: UpdatePersonalOptionDto,
   ): Promise<PersonalOption> {
     const purePersonalOption = await this.personalOptionRepository.findOneBy({ id });
+    if (!purePersonalOption) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: "요청 오류: 올바르지 않은 옵션 번호입니다!",
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     await this.personalOptionRepository.update(id, updatePersonalOptionDto);
     return this.personalOptionRepository.create({
       ...purePersonalOption,

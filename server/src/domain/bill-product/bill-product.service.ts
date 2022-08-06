@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { getYesterdayEnd } from "src/util/date";
 import { MoreThan, Repository } from "typeorm";
@@ -56,6 +56,16 @@ export class BillProductService {
     updateBillProductDto: UpdateBillProductDto,
   ): Promise<BillProduct> {
     const pureBillProduct = await this.billProductRepository.findOneBy({ billId, productId });
+    if (!pureBillProduct) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: "요청 오류: 올바르지 않은 수정 번호입니다!",
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     await this.billProductRepository.update({ billId, productId }, updateBillProductDto);
     return this.billProductRepository.create({ ...pureBillProduct, ...updateBillProductDto });
   }

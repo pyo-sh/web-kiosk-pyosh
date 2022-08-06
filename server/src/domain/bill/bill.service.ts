@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeleteResult, Repository } from "typeorm";
 import { UpdateBillDto } from "./dto/update-bill.dto";
@@ -20,6 +20,16 @@ export class BillService {
 
   async update(id: number, updateBillDto: UpdateBillDto): Promise<Bill> {
     const pureBill = await this.billRepository.findOneBy({ id });
+    if (!pureBill) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: "요청 오류: 올바르지 않은 영수증 번호입니다!",
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     await this.billRepository.update(id, updateBillDto);
     return this.billRepository.create({ ...pureBill, ...updateBillDto });
   }

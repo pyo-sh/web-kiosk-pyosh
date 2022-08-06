@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { DeleteResult, Repository } from "typeorm";
 import { CreateMenuDto } from "./dto/create-menu.dto";
@@ -25,6 +25,16 @@ export class MenuService {
 
   async update(id: number, updateMenuDto: UpdateMenuDto): Promise<Menu> {
     const pureMenu = await this.menuRepository.findOneBy({ id });
+    if (!pureMenu) {
+      throw new HttpException(
+        {
+          status: HttpStatus.BAD_REQUEST,
+          error: "요청 오류: 올바르지 않은 메뉴 번호입니다!",
+        },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
     await this.menuRepository.update(id, updateMenuDto);
     return { ...pureMenu, ...updateMenuDto };
   }
