@@ -1,12 +1,6 @@
 import React, { useRef } from "react";
 import useDraggable from "@hooks/useDraggable";
-import {
-  navContainerStyle,
-  navStyle,
-  titleStyle,
-  controllerStyle,
-  navListStyle,
-} from "./index.style";
+import { ContainerHeader, TitleH1, MenuNav, ControlButton, MenuUL } from "./index.style";
 
 interface NavigatorPropsType {
   menus: Array<string>;
@@ -35,14 +29,13 @@ const Navigator: React.FC<NavigatorPropsType> = ({ menus, setMenu }) => {
   });
 
   return (
-    <header className={navContainerStyle}>
-      <h1 className={titleStyle}>주문</h1>
-      <nav className={navStyle}>
-        <button className={controllerStyle}></button>
-        <ul
+    <ContainerHeader>
+      <TitleH1>주문</TitleH1>
+      <MenuNav>
+        <ControlButton></ControlButton>
+        <MenuUL
           id={"Navigate-Menu"}
           ref={listRef}
-          className={navListStyle}
           onMouseDown={onMouseDownList}
           onMouseMove={onMouseMoveList}
           onMouseUp={onMouseUpList}
@@ -53,9 +46,9 @@ const Navigator: React.FC<NavigatorPropsType> = ({ menus, setMenu }) => {
               {item}
             </li>
           ))}
-        </ul>
-      </nav>
-    </header>
+        </MenuUL>
+      </MenuNav>
+    </ContainerHeader>
   );
 };
 

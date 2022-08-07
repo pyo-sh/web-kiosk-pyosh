@@ -1,17 +1,17 @@
-import { css } from "@emotion/css";
+import styled from "@emotion/styled";
 import { COLOR, PROTECT_DRAG, TEXT_DISPLAY_LARGE } from "@constants/style";
 
-export const navContainerStyle = css`
+export const ContainerHeader = styled.header`
   ${PROTECT_DRAG}
 `;
 
-export const titleStyle = css`
+export const TitleH1 = styled.h1`
   ${TEXT_DISPLAY_LARGE}
   padding: 30px 30px 15px 30px;
   margin: 0;
 `;
 
-export const navStyle = css`
+export const MenuNav = styled.nav`
   width: 100%;
   height: 46px;
 
@@ -20,7 +20,7 @@ export const navStyle = css`
   align-items: center;
 `;
 
-export const controllerStyle = css`
+export const ControlButton = styled.button`
   width: 46px;
   height: 100%;
 
@@ -36,7 +36,7 @@ export const controllerStyle = css`
   background-color: transparent;
 `;
 
-export const navListStyle = css`
+export const MenuUL = styled.ul`
   height: 100%;
   margin: 0;
   padding: 0;
