@@ -87,12 +87,20 @@ Project is in Development...
 
 ### Prerequisites
 
-Project is running with yarn
+Project is running with yarn.
 
 You need to install yarn before run this Project
 
 ```
 npm install yarn -g
+```
+
+Also, Project is using yarn berry.
+
+You need to upgrade yarn to yarn berry
+
+```
+yarn set version berry && yarn set version latest
 ```
 
 ### Installation
@@ -105,7 +113,12 @@ npm install yarn -g
    ```sh
    yarn install
    ```
-3. Set Environments in `.env` (**[Environments](<https://github.com/woowa-techcamp-2022/web-kiosk-pyosh/wiki/Environments-(dotenv)>)**)
+3. Set Yarn Berry's IDE (In Development)
+   - Select your IDE [Refs](https://yarnpkg.com/getting-started/editor-sdks)
+   ```sh
+   yarn dlx @yarnpkg/sdks vscode
+   ```
+4. Set Environments in `.env` (**[Environments](<https://github.com/woowa-techcamp-2022/web-kiosk-pyosh/wiki/Environments-(dotenv)>)**)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

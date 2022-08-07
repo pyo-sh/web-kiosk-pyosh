@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navigator from "../components/navigator";
+import Navigator from "@components/navigator";
 
 const Order: React.FC = () => {
   const [menu, setMenu] = useState<string>("");

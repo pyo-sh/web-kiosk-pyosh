@@ -1,5 +1,5 @@
 import { css } from "@emotion/css";
-import { COLOR, PROTECT_DRAG, TEXT_DISPLAY_LARGE } from "../../constants/style";
+import { COLOR, PROTECT_DRAG, TEXT_DISPLAY_LARGE } from "@constants/style";
 
 export const navContainerStyle = css`
   ${PROTECT_DRAG}

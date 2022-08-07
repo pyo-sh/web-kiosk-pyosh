@@ -1,5 +1,5 @@
 import { css } from "@emotion/css";
-import { BOX_SHADOW } from "../../constants/style";
+import { BOX_SHADOW } from "@constants/style";
 
 interface modalStylePropType {
   zIndex?: number;

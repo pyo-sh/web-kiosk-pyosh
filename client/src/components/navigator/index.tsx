@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import useDraggable from "../../hooks/useDraggable";
+import useDraggable from "@hooks/useDraggable";
 import {
   navContainerStyle,
   navStyle,
