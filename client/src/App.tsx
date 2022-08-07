@@ -1,7 +1,7 @@
 import React from "react";
-import "./Global.style";
-import { Router, Route } from "./hooks/router";
-import Order from "./pages/Order";
+import "@src/Global.style";
+import { Router, Route } from "@hooks/router";
+import Order from "@pages/Order";
 
 const App: React.FC = () => {
   return (

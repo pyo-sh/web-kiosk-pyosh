@@ -1,5 +1,5 @@
 import { injectGlobal } from "@emotion/css";
-import { COLOR } from "./constants/style";
+import { COLOR } from "@constants/style";
 
 injectGlobal`
     * {
