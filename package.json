@@ -8,12 +8,14 @@
   "workspaces": {
     "packages": [
       "./client",
-      "./server"
+      "./server",
+      "./common"
     ]
   },
   "scripts": {
     "client": "yarn workspace client",
-    "server": "yarn workspace server"
+    "server": "yarn workspace server",
+    "common": "yarn workspace @kiosk/common"
   },
   "devDependencies": {
     "typescript": "^4.7.4"
