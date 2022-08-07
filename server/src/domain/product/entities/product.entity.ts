@@ -1,4 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
+  DeleteDateColumn,
+} from "typeorm";
 import { Menu } from "src/domain/menu/entities/menu.entity";
 import { BillProduct } from "src/domain/bill-product/entities/bill-product.entity";
 import { PersonalOption } from "src/domain/personal-option/entities/personal-option.entity";
@@ -7,7 +16,7 @@ import { IsNumber } from "class-validator";
 
 @Entity()
 export class Product {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: "int" })
   id: number;
 
   @ApiProperty()
@@ -15,7 +24,7 @@ export class Product {
   name: string;
 
   @ApiProperty()
-  @Column()
+  @Column({ type: "decimal" })
   price: number;
 
   @ApiProperty()
@@ -24,8 +33,17 @@ export class Product {
 
   @ApiProperty()
   @IsNumber()
-  @Column()
+  @Column({ type: "int" })
   menuId: number;
+
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @DeleteDateColumn()
+  deletedAt: Date;
 
   @ManyToOne((type) => Menu, (menu) => menu.products)
   menu: Menu;
