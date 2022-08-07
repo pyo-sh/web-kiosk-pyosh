@@ -7,9 +7,9 @@
   "license": "MIT",
   "workspaces": {
     "packages": [
-      "./client",
-      "./server",
-      "./common"
+      "client",
+      "server",
+      "common"
     ]
   },
   "scripts": {
