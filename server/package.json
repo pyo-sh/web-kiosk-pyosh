@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "@kiosk/server",
   "version": "1.0.0",
   "description": "",
   "author": "",
@@ -80,5 +80,6 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "packageManager": "yarn@3.2.2"
 }
