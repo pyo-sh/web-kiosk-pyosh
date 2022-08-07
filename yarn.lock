@@ -2437,7 +2437,7 @@ __metadata:
   dependencies:
     "@craco/craco": ^6.4.5
     "@emotion/css": ^11.10.0
-    "@kiosk/common": "workspace:^"
+    "@kiosk/common": "workspace:common"
     "@types/node": ^18.6.3
     "@types/react": ^18.0.15
     "@types/react-dom": ^18.0.6
@@ -2450,7 +2450,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@kiosk/common@workspace:^, @kiosk/common@workspace:common":
+"@kiosk/common@workspace:common":
   version: 0.0.0-use.local
   resolution: "@kiosk/common@workspace:common"
   dependencies:
@@ -2462,7 +2462,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@kiosk/server@workspace:server"
   dependencies:
-    "@kiosk/common": "workspace:^"
+    "@kiosk/common": "workspace:common"
     "@nestjs/cli": ^9.0.0
     "@nestjs/common": ^9.0.0
     "@nestjs/config": ^2.2.0
