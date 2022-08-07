@@ -14,5 +14,8 @@
   "scripts": {
     "client": "yarn workspace client",
     "server": "yarn workspace server"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
   }
 }
