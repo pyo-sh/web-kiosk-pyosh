@@ -6,9 +6,6 @@ function initAxios() {
   axios.interceptors.response.use(
     (res: AxiosResponse<any, any>) => res,
     async (error) => {
-      const {
-        response: { status },
-      } = error;
       // TODO : Error Handler
       return Promise.reject(error);
     },

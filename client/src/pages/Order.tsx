@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from "react";
 import Navigator from "@components/navigator";
+import { getAllProductsWithMenu } from "@apis/product";
+import Menu from "@kiosk/common/types/menu";
 
 const Order: React.FC = () => {
-  const [menu, setMenu] = useState<string>("");
-  const [menus, setMenus] = useState<Array<string>>([]);
+  const [selectedId, setSelectedId] = useState<number>(-1);
+  const [menus, setMenus] = useState<Menu[]>([]);
+  const menu = menus.find((menu) => (menu?.id || -2) === selectedId) || { id: -1, name: "" };
 
   useEffect(() => {
-    const dummyData = ["하나", "둘", "셋", "넷", "다섯"];
-    setMenus(dummyData);
-    setMenu(dummyData[0]);
+    (async () => {
+      const menus = await getAllProductsWithMenu();
+      setMenus(menus);
+      setSelectedId(menus[0].id || 0);
+    })();
   }, []);
 
   return (
     <div>
-      <Navigator menus={menus} setMenu={setMenu} />
-      <div>{menu}</div>
+      <Navigator menus={menus} setMenu={setSelectedId} />
+      <div>{menu.name}</div>
     </div>
   );
 };
