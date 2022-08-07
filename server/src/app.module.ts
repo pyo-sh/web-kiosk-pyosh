@@ -11,6 +11,7 @@ import { PersonalOptionModule } from "./domain/personal-option/personal-option.m
 import { BillModule } from "./domain/bill/bill.module";
 import { BillProductModule } from "./domain/bill-product/bill-product.module";
 import { Environment } from "./common/enums";
+import { MockModule } from "./mock/mock.module";
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { Environment } from "./common/enums";
         namingStrategy: new SnakeNamingStrategy(),
         logging: true,
         autoLoadEntities: true,
+        dropSchema: true,
       }),
     }),
     MenuModule,
@@ -39,6 +41,7 @@ import { Environment } from "./common/enums";
     PersonalOptionModule,
     BillModule,
     BillProductModule,
+    MockModule,
   ],
   controllers: [AppController],
   providers: [AppService],
