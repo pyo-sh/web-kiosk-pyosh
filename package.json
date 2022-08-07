@@ -12,8 +12,7 @@
     ]
   },
   "scripts": {
-    "client:start": "yarn workspace client run start",
-    "server:start": "yarn workspace server run start",
-    "server:dev": "yarn workspace server run start:dev"
+    "client": "yarn workspace client",
+    "server": "yarn workspace server"
   }
 }
