@@ -32,6 +32,9 @@ import { Environment } from "./common/enums";
         namingStrategy: new SnakeNamingStrategy(),
         logging: true,
         autoLoadEntities: true,
+        extra: {
+          decimalNumbers: true,
+        }
       }),
     }),
     MenuModule,
