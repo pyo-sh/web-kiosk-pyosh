@@ -1,5 +1,5 @@
 import React from "react";
-import { backgroundStyle, modalStyle } from "./Modal.style";
+import { BackgroundDiv, ContentDiv } from "./Modal.style";
 
 interface ModalPropsType {
   children: any;
@@ -16,12 +16,12 @@ const Modal: React.FunctionComponent<ModalPropsType> = ({
 }): React.ReactElement => {
   if (!isOpen) return <></>;
 
-  if (!hasBackground) return <div className={modalStyle({ zIndex })}>{children}</div>;
+  if (!hasBackground) return <ContentDiv zIndex={zIndex}>{children}</ContentDiv>;
 
   return (
     <>
-      <div className={backgroundStyle({ zIndex })}></div>
-      <div className={modalStyle({ zIndex: zIndex + 1 })}>{children}</div>
+      <BackgroundDiv zIndex={zIndex} />
+      <ContentDiv zIndex={zIndex}>{children}</ContentDiv>
     </>
   );
 };
