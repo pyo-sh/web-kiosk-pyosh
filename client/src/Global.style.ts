@@ -25,7 +25,7 @@ injectGlobal`
     }
 
     body {
-        padding: 20px;
+        padding: 20px 0;
         display: flex;
         justify-content: center;
         background-color: ${COLOR.titleActive};
@@ -34,9 +34,6 @@ injectGlobal`
     #root {
         max-width: 1280px;
         flex: 1;
-
-        display: flex;
-        flex-direction: column;
 
         border: 1px solid black;
         border-radius: 10px;
