@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Navigator from "@components/navigator";
 import { getAllProductsWithMenu } from "@apis/product";
 import Menu from "@kiosk/common/types/menu";
-import ProductList from "@components/order/ProductList";
+import ProductList from "@components/product/ProductList";
 import { ContainerDiv } from "./Order.style";
 
 const Order: React.FC = () => {
