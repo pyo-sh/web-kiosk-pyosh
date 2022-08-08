@@ -13,6 +13,7 @@ injectGlobal`
         padding: 0;
         font-family: 'Noto Sans KR';
         font-style: normal; 
+        overflow: hidden;
     }
 
     @font-face {
@@ -32,6 +33,10 @@ injectGlobal`
 
     #root {
         max-width: 1280px;
+        flex: 1;
+
+        display: flex;
+        flex-direction: column;
 
         border: 1px solid black;
         border-radius: 10px;

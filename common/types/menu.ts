@@ -1,4 +1,4 @@
-import Product from "./option";
+import Product from "./product";
 
 type Menu = {
   id: number;

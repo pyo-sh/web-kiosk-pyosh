@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Navigator from "@components/navigator";
 import { getAllProductsWithMenu } from "@apis/product";
 import Menu from "@kiosk/common/types/menu";
+import ProductList from "@components/order/ProductList";
+import { ContainerDiv } from "./Order.style";
 
 const Order: React.FC = () => {
   const [selectedId, setSelectedId] = useState<number>(-1);
@@ -17,10 +19,10 @@ const Order: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <ContainerDiv>
       <Navigator menus={menus} setMenu={setSelectedId} />
-      <div>{menu.name}</div>
-    </div>
+      <ProductList menu={menu} />
+    </ContainerDiv>
   );
 };
 
