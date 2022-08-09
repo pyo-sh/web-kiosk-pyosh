@@ -1,7 +1,7 @@
-import Product from "@kiosk/common/types/product";
 import React, { useState } from "react";
+import Product from "@kiosk/common/types/product";
+import ProductModal from "@components/product/select/ProductModal";
 import { ContainerLI, Image } from "./ProductItem.style";
-import ProductModal from "./ProductModal";
 
 type ProductItemPropsType = {
   product: Product;

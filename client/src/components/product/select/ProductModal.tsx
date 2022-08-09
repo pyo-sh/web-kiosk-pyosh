@@ -3,7 +3,9 @@ import Modal from "@components/custom/Modal";
 import Option from "@kiosk/common/types/option";
 import Product from "@kiosk/common/types/product";
 import React, { useEffect, useState } from "react";
+import ProductInfo from "./ProductInfo";
 import { CloseButton } from "./ProductModal.style";
+import ProductOption from "@components/product/option";
 
 type ProductModalPropsType = {
   product: Product;
@@ -28,8 +30,8 @@ const ProductModal: React.FC<ProductModalPropsType> = ({ product, isOpen, closeM
   return (
     <Modal isOpen={isOpen}>
       <CloseButton onClick={closeModal} />
-      <div>{JSON.stringify(product)}</div>
-      <div>{JSON.stringify(options)}</div>
+      <ProductInfo product={product} />
+      <ProductOption options={options} />
     </Modal>
   );
 };
