@@ -1,14 +1,11 @@
 import { OptionSelection } from "@constants/option";
 import Product from "@kiosk/common/types/product";
-import React, { useReducer, useContext, createContext, Dispatch } from "react";
 
 // State
 type CartProduct = Product & {
   options: OptionSelection;
 };
-export type CartState = {
-  products: CartProduct[];
-};
+export type CartState = CartProduct[];
 
 // Types
 const CART_ADD_PRODUCT = "CART_ADD_PRODUCT";
@@ -27,11 +24,9 @@ export type CartAction = ReturnType<typeof cartAddProduct>;
 export default function reducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case CART_ADD_PRODUCT: {
-      return {
-        ...state,
-      };
+      return [...state];
     }
     default:
-      throw new Error("Unhandled action");
+      throw new Error("Unhandled CART Action");
   }
 }
