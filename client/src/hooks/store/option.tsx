@@ -1,5 +1,5 @@
 import { createContext, Dispatch, useContext, useReducer } from "react";
-import reducer from "@src/stores/option";
+import reducer, { initialOptionType } from "@src/stores/option";
 import type { OptionAction, OptionState } from "@src/stores/option";
 
 type OptionDispatch = Dispatch<OptionAction>;
@@ -7,7 +7,7 @@ const OptionStateContext = createContext<OptionState | null>(null);
 const OptionDispatchContext = createContext<OptionDispatch | null>(null);
 
 export function OptionProvider({ children }: { children: React.ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, { options: [], optionsMap: new Map(), picks: {} });
+  const [state, dispatch] = useReducer(reducer, initialOptionType);
 
   return (
     <OptionStateContext.Provider value={state}>

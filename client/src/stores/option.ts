@@ -4,10 +4,18 @@ import { getEmptyState, groupOptions } from "@utils/optionRefactor";
 
 // State
 export type OptionState = {
+  count: number;
   options: Option[];
   optionsMap: OptionGroup;
   picks: OptionSelection;
 };
+
+export const initialOptionType = Object.freeze({
+  count: 1,
+  options: [],
+  optionsMap: new Map(),
+  picks: {},
+});
 
 // Types
 const OPTION_CLEAR = "OPTION_CLEAR";
@@ -16,6 +24,7 @@ const OPTION_INIT = "OPTION_INIT";
 const OPTION_SELECT_RADIO = "OPTION_SELECT_RADIO";
 const OPTION_SELECT_CHECK = "OPTION_SELECT_CHECK";
 const OPTION_SELECT_COUNT = "OPTION_SELECT_COUNT";
+const OPTION_CHANGE_COUNT = "OPTION_CHANGE_COUNT";
 
 // Actions
 export const optionClear = () => {
@@ -52,6 +61,12 @@ export const optionSelectCount = (payload: { category: string; optionId: number;
     ...payload,
   };
 };
+export const optionChangeCount = (payload: { gap: number }) => {
+  return {
+    type: OPTION_CHANGE_COUNT,
+    ...payload,
+  };
+};
 
 export type OptionAction =
   | ReturnType<typeof optionClear>
@@ -59,21 +74,19 @@ export type OptionAction =
   | ReturnType<typeof optionInit>
   | ReturnType<typeof optionSelectRadio>
   | ReturnType<typeof optionSelectCheck>
-  | ReturnType<typeof optionSelectCount>;
+  | ReturnType<typeof optionSelectCount>
+  | ReturnType<typeof optionChangeCount>;
 
 // Reducer
 export default function reducer(state: OptionState, action: OptionAction): OptionState {
   switch (action.type) {
     case OPTION_CLEAR:
-      return {
-        options: [],
-        optionsMap: new Map(),
-        picks: {},
-      };
+      return { ...initialOptionType };
     case OPTION_PICK_CLEAR: {
       const emptyPicks = getEmptyState(state.optionsMap);
       return {
         ...state,
+        count: 1,
         picks: emptyPicks,
       };
     }
@@ -120,6 +133,16 @@ export default function reducer(state: OptionState, action: OptionAction): Optio
       return {
         ...state,
         picks: { ...state.picks, [category]: newCounts },
+      };
+    }
+    case OPTION_CHANGE_COUNT: {
+      const { gap } = action as ReturnType<typeof optionChangeCount>;
+      const amount = (state.count || 0) + gap;
+      if (amount <= 0) return state;
+
+      return {
+        ...state,
+        count: amount,
       };
     }
     default:

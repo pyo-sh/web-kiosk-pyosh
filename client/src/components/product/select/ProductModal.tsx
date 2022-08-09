@@ -7,6 +7,8 @@ import { CloseButton } from "./ProductModal.style";
 import ProductOption from "@components/product/option";
 import { useOptionDispatch } from "@hooks/store/option";
 import { optionInit, optionPickClear } from "@src/stores/option";
+import ProductCount from "./ProductCount";
+import ProductButtons from "./ProductButtons";
 
 type ProductModalPropsType = {
   product: Product;
@@ -35,7 +37,9 @@ const ProductModal: React.FC<ProductModalPropsType> = ({ product, isOpen, closeM
     <Modal isOpen={isOpen} closeModal={closeModal}>
       <CloseButton onClick={closeModal} />
       <ProductInfo product={product} />
+      <ProductCount />
       <ProductOption />
+      <ProductButtons product={product} closeModal={closeModal} />
     </Modal>
   );
 };
