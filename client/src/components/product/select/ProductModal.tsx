@@ -29,7 +29,7 @@ const ProductModal: React.FC<ProductModalPropsType> = ({ product, isOpen, closeM
 
   if (isLoading) return <></>;
   return (
-    <Modal isOpen={isOpen}>
+    <Modal isOpen={isOpen} closeModal={closeModal}>
       <CloseButton onClick={closeModal} />
       <ProductInfo product={product} />
       <ProductOption options={options} />

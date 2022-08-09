@@ -5,6 +5,7 @@ import { BackgroundDiv, ContentDiv } from "./Modal.style";
 interface ModalPropsType {
   children?: React.ReactNode;
   isOpen: boolean;
+  closeModal?: () => void;
   hasBackground?: boolean;
   zIndex?: number;
 }
@@ -16,6 +17,7 @@ const ModalPortal = ({ children }: { children?: React.ReactNode }) => {
 const Modal: React.FunctionComponent<ModalPropsType> = ({
   children,
   isOpen,
+  closeModal,
   hasBackground = true,
   zIndex = 10,
 }): React.ReactElement => {
@@ -31,7 +33,7 @@ const Modal: React.FunctionComponent<ModalPropsType> = ({
 
   return (
     <ModalPortal>
-      <BackgroundDiv zIndex={zIndex} />
+      <BackgroundDiv onClick={closeModal} zIndex={zIndex} />
       <ContentDiv zIndex={zIndex}>{children}</ContentDiv>
     </ModalPortal>
   );
