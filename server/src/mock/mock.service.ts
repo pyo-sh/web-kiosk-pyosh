@@ -39,7 +39,7 @@ export class MockService {
   }
   async initOption({ options }, productId) {
     for (const option of options) {
-      const optionType = OptionType[option.optionType];
+      const { optionType } = option;
       await this.personalOptionService.create({ ...option, optionType, productId });
     }
   }
