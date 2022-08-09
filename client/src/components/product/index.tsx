@@ -4,7 +4,6 @@ import { getAllProductsWithMenu } from "@apis/product";
 import ProductList from "@components/product/ProductList";
 import Navigator from "@components/navigator";
 import { ContainerDiv } from "./index.style";
-import { css } from "@emotion/css";
 
 const Product: React.FC = () => {
   const [selectedId, setSelectedId] = useState<number>(-1);

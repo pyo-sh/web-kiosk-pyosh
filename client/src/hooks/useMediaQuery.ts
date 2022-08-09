@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+
+export const MediaContext = createContext<boolean>(false);
 
 const getMatches = (mediaQuery: string): boolean => {
   return window ? window.matchMedia(mediaQuery).matches : false;

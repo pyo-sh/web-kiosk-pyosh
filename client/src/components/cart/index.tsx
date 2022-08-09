@@ -1,13 +1,11 @@
-import React, { useRef, useState } from "react";
+import { MediaContext } from "@hooks/useMediaQuery";
+import React, { useContext, useRef, useState } from "react";
 import { ContainerDiv, MobileWrapper, TabletWrapper, ToggleButton } from "./index.style";
 
-type CartPropsType = {
-  isMobile: boolean;
-};
-
-const Cart: React.FC<CartPropsType> = ({ isMobile }) => {
+const Cart: React.FC = () => {
   const [isShow, setIsShow] = useState<boolean>(false);
   const cartWrapper = useRef<HTMLDivElement>(null);
+  const isMobile = useContext(MediaContext);
   const WrapperDiv = isMobile ? MobileWrapper : TabletWrapper;
 
   const onToggleShow = (e: any) => {
