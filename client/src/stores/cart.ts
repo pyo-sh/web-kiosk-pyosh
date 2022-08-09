@@ -12,10 +12,10 @@ export type CartState = CartProduct[];
 const CART_ADD_PRODUCT = "CART_ADD_PRODUCT";
 
 // Actions
-export const cartAddProduct = (product: CartProduct) => {
+export const cartAddProduct = (payload: { product: CartProduct }) => {
   return {
     type: CART_ADD_PRODUCT,
-    payload: product,
+    ...payload,
   };
 };
 
@@ -25,7 +25,8 @@ export type CartAction = ReturnType<typeof cartAddProduct>;
 export default function reducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case CART_ADD_PRODUCT: {
-      return [...state];
+      const { product } = action as ReturnType<typeof cartAddProduct>;
+      return [...state, product];
     }
     default:
       throw new Error("Unhandled CART Action");

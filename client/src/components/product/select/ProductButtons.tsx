@@ -18,7 +18,7 @@ const ProductButtons: React.FC<ProductButtonsPropsType> = ({ product, closeModal
 
   const addProduct = () => {
     const newProduct = { ...product, count, options: picks };
-    cartDispatch(cartAddProduct(newProduct));
+    cartDispatch(cartAddProduct({ product: newProduct }));
     optionDispatch(optionPickClear());
     closeModal();
   };
