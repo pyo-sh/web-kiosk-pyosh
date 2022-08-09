@@ -1,8 +1,6 @@
 import { useState } from "react";
-import type { RadioSelection } from "@components/product/option/OptionRadio";
-import type { CheckSelection } from "@components/product/option/OptionCheck";
-import type { CountSelection } from "@components/product/option/OptionCount";
 import Option from "@kiosk/common/types/option";
+import { CheckSelection, CountSelection, OptionSelection } from "@constants/option";
 
 const groupOptions = (options: Option[]): Map<string, Option[]> => {
   const conflictCheck = new Map();
@@ -35,10 +33,6 @@ const getEmptyState = (groupedOptions: Map<string, Option[]>) => {
   }, {});
 };
 
-type OptionSelection = {
-  [id: string]: RadioSelection | CheckSelection | CountSelection;
-};
-
 const useOptionSelect = (options: Option[]) => {
   const groupedOptions = groupOptions(options);
   const [selection, setSelection] = useState<OptionSelection>(getEmptyState(groupedOptions));
@@ -46,7 +40,6 @@ const useOptionSelect = (options: Option[]) => {
   const selectRadio = (category: string, targetId: number) => {
     setSelection((prev) => ({ ...prev, [category]: targetId }));
   };
-
   const selectCheck = (category: string, targetId: number) => {
     setSelection((prev) => {
       const countSets = prev[category] as CheckSelection;

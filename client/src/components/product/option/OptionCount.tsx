@@ -1,7 +1,6 @@
 import React from "react";
 import Option from "@kiosk/common/types/option";
-
-export type CountSelection = { [id: number]: number };
+import { CountSelection } from "@constants/option";
 
 type OptionCountPropsType = {
   options: Option[];

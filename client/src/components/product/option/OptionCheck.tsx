@@ -1,7 +1,6 @@
 import React from "react";
 import Option from "@kiosk/common/types/option";
-
-export type CheckSelection = Set<number>;
+import { CheckSelection } from "@constants/option";
 
 type OptionCheckPropsType = {
   options: Option[];

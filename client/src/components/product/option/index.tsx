@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { ContainerDiv } from "./index.style";
 import Option from "@kiosk/common/types/option";
-import OptionRadio, { RadioSelection } from "./OptionRadio";
-import OptionCheck, { CheckSelection } from "./OptionCheck";
-import OptionCount, { CountSelection } from "./OptionCount";
+import OptionRadio from "./OptionRadio";
+import OptionCheck from "./OptionCheck";
+import OptionCount from "./OptionCount";
 import useOptionSelect from "@hooks/useOptionSelect";
+import { CheckSelection, CountSelection, RadioSelection } from "@constants/option";
 
 type ProductOptionPropsType = {
   options: Option[];

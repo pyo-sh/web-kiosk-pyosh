@@ -1,7 +1,6 @@
 import React from "react";
 import Option from "@kiosk/common/types/option";
-
-export type RadioSelection = number;
+import { RadioSelection } from "@constants/option";
 
 type OptionRadioPropsType = {
   options: Option[];
