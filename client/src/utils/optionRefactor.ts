@@ -25,9 +25,9 @@ export const getEmptyState = (groupedOptions: Map<string, Option[]>) => {
   return categories.reduce((obj: OptionSelection, category) => {
     const firstOption = (groupedOptions.get(category) as Option[])[0];
     const { id, optionType } = firstOption;
-    if (optionType === "count") obj[category] = id;
+    if (optionType === "radio") obj[category] = id;
     if (optionType === "check") obj[category] = new Set();
-    if (optionType === "radio") obj[category] = {};
+    if (optionType === "count") obj[category] = {};
     return obj;
   }, {});
 };

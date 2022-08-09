@@ -1,13 +1,12 @@
 import { getProductOptions } from "@apis/product";
 import Modal from "@components/custom/Modal";
-import Option from "@kiosk/common/types/option";
 import Product from "@kiosk/common/types/product";
 import React, { useEffect, useState } from "react";
 import ProductInfo from "./ProductInfo";
 import { CloseButton } from "./ProductModal.style";
 import ProductOption from "@components/product/option";
-import { OptionProvider, useOptionDispatch } from "@hooks/store/option";
-import { optionInit } from "@src/stores/option";
+import { useOptionDispatch } from "@hooks/store/option";
+import { optionInit, optionPickClear } from "@src/stores/option";
 
 type ProductModalPropsType = {
   product: Product;
@@ -26,6 +25,8 @@ const ProductModal: React.FC<ProductModalPropsType> = ({ product, isOpen, closeM
         optionDispatch(optionInit({ options: data }));
         setIsLoading(false);
       })();
+    } else if (!isOpen && !isLoading) {
+      optionDispatch(optionPickClear());
     }
   }, [isLoading, isOpen]);
 

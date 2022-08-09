@@ -10,16 +10,22 @@ export type OptionState = {
 };
 
 // Types
-const OPTION_CLEAR = "Option_CLEAR";
-const OPTION_INIT = "Option_INIT";
-const OPTION_SELECT_RADIO = "Option_SELECT_RADIO";
-const OPTION_SELECT_CHECK = "Option_SELECT_CHECK";
-const OPTION_SELECT_COUNT = "Option_SELECT_COUNT";
+const OPTION_CLEAR = "OPTION_CLEAR";
+const OPTION_PICK_CLEAR = "OPTION_PICK_CLEAR";
+const OPTION_INIT = "OPTION_INIT";
+const OPTION_SELECT_RADIO = "OPTION_SELECT_RADIO";
+const OPTION_SELECT_CHECK = "OPTION_SELECT_CHECK";
+const OPTION_SELECT_COUNT = "OPTION_SELECT_COUNT";
 
 // Actions
 export const optionClear = () => {
   return {
     type: OPTION_CLEAR,
+  };
+};
+export const optionPickClear = () => {
+  return {
+    type: OPTION_PICK_CLEAR,
   };
 };
 export const optionInit = (payload: { options: Option[] }) => {
@@ -49,6 +55,7 @@ export const optionSelectCount = (payload: { category: string; optionId: number;
 
 export type OptionAction =
   | ReturnType<typeof optionClear>
+  | ReturnType<typeof optionPickClear>
   | ReturnType<typeof optionInit>
   | ReturnType<typeof optionSelectRadio>
   | ReturnType<typeof optionSelectCheck>
@@ -63,6 +70,13 @@ export default function reducer(state: OptionState, action: OptionAction): Optio
         optionsMap: new Map(),
         picks: {},
       };
+    case OPTION_PICK_CLEAR: {
+      const emptyPicks = getEmptyState(state.optionsMap);
+      return {
+        ...state,
+        picks: emptyPicks,
+      };
+    }
     case OPTION_INIT: {
       const { options } = action as ReturnType<typeof optionInit>;
       const optionsMap = groupOptions(options);
