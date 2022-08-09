@@ -21,12 +21,13 @@ const ProductModal: React.FC<ProductModalPropsType> = ({ product, isOpen, closeM
     if (isOpen && isLoading) {
       (async () => {
         const data = await getProductOptions(product.id);
-        setIsLoading(false);
         setOptions(data);
+        setIsLoading(false);
       })();
     }
   }, [isLoading, isOpen]);
 
+  if (isLoading) return <></>;
   return (
     <Modal isOpen={isOpen}>
       <CloseButton onClick={closeModal} />

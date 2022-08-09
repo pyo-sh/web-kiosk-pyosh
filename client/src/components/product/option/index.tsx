@@ -1,32 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import { ContainerDiv } from "./index.style";
 import Option from "@kiosk/common/types/option";
-import { groupOptions } from "@utils/groupOptions";
-import OptionRadio from "./OptionRadio";
-import OptionCheck from "./OptionCheck";
-import OptionCount from "./OptionCount";
+import OptionRadio, { RadioSelection } from "./OptionRadio";
+import OptionCheck, { CheckSelection } from "./OptionCheck";
+import OptionCount, { CountSelection } from "./OptionCount";
+import useOptionSelect from "@hooks/useOptionSelect";
 
 type ProductOptionPropsType = {
   options: Option[];
 };
 
 const ProductOption: React.FC<ProductOptionPropsType> = ({ options }) => {
-  const groupedOptions = groupOptions(options);
+  const { groupedOptions, selection, setSelections } = useOptionSelect(options);
   const categories = Array.from(groupedOptions.keys());
-
   return (
     <ContainerDiv>
-      {categories.map((category, i) => {
+      {categories.map((category) => {
         const opts = groupedOptions.get(category) as Option[];
         if (opts.length === 0) <></>;
 
         const optionType = opts[0].optionType;
-        if (optionType === "radio")
-          return <OptionRadio key={`option-${category}`} category={category} options={opts} />;
-        if (optionType === "check")
-          return <OptionCheck key={`option-${category}`} category={category} options={opts} />;
         if (optionType === "count")
-          return <OptionCount key={`option-${category}`} category={category} options={opts} />;
+          return (
+            <OptionRadio
+              key={`option-${category}`}
+              category={category}
+              options={opts}
+              selected={selection[category] as RadioSelection}
+              select={setSelections["radio"]}
+            />
+          );
+        if (optionType === "check")
+          return (
+            <OptionCheck
+              key={`option-${category}`}
+              category={category}
+              options={opts}
+              selected={selection[category] as CheckSelection}
+              select={setSelections["check"]}
+            />
+          );
+        if (optionType === "radio")
+          return (
+            <OptionCount
+              key={`option-${category}`}
+              category={category}
+              options={opts}
+              selected={selection[category] as CountSelection}
+              select={setSelections["count"]}
+            />
+          );
         return <></>;
       })}
     </ContainerDiv>
