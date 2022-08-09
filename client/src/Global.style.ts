@@ -1,5 +1,5 @@
 import { injectGlobal } from "@emotion/css";
-import { COLOR } from "./constants/style";
+import { COLOR } from "@constants/style";
 
 injectGlobal`
     * {
@@ -13,6 +13,7 @@ injectGlobal`
         padding: 0;
         font-family: 'Noto Sans KR';
         font-style: normal; 
+        overflow: hidden;
     }
 
     @font-face {
@@ -24,7 +25,7 @@ injectGlobal`
     }
 
     body {
-        padding: 20px;
+        padding: 20px 0;
         display: flex;
         justify-content: center;
         background-color: ${COLOR.titleActive};
@@ -32,6 +33,7 @@ injectGlobal`
 
     #root {
         max-width: 1280px;
+        flex: 1;
 
         border: 1px solid black;
         border-radius: 10px;

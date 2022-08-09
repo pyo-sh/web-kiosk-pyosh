@@ -1,28 +1,41 @@
 import React from "react";
-import { backgroundStyle, modalStyle } from "./Modal.style";
+import reactDom from "react-dom";
+import { BackgroundDiv, ContentDiv } from "./Modal.style";
 
 interface ModalPropsType {
-  children: any;
+  children?: React.ReactNode;
   isOpen: boolean;
+  closeModal?: () => void;
   hasBackground?: boolean;
   zIndex?: number;
 }
 
+const ModalPortal = ({ children }: { children?: React.ReactNode }) => {
+  return reactDom.createPortal(children, document.body);
+};
+
 const Modal: React.FunctionComponent<ModalPropsType> = ({
   children,
   isOpen,
+  closeModal,
   hasBackground = true,
   zIndex = 10,
 }): React.ReactElement => {
   if (!isOpen) return <></>;
 
-  if (!hasBackground) return <div className={modalStyle({ zIndex })}>{children}</div>;
+  if (!hasBackground) {
+    return (
+      <ModalPortal>
+        <ContentDiv zIndex={zIndex}>{children}</ContentDiv>
+      </ModalPortal>
+    );
+  }
 
   return (
-    <>
-      <div className={backgroundStyle({ zIndex })}></div>
-      <div className={modalStyle({ zIndex: zIndex + 1 })}>{children}</div>
-    </>
+    <ModalPortal>
+      <BackgroundDiv onClick={closeModal} zIndex={zIndex} />
+      <ContentDiv zIndex={zIndex}>{children}</ContentDiv>
+    </ModalPortal>
   );
 };
 

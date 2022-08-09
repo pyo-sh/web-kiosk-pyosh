@@ -1,11 +1,11 @@
-import { css } from "@emotion/css";
-import { BOX_SHADOW } from "../../constants/style";
+import styled from "@emotion/styled";
+import { BOX_SHADOW } from "@constants/style";
 
 interface modalStylePropType {
   zIndex?: number;
 }
 
-export const backgroundStyle = ({ zIndex }: modalStylePropType) => css`
+export const BackgroundDiv = styled.div<modalStylePropType>`
   width: 100vw;
   height: 100vh;
 
@@ -14,19 +14,19 @@ export const backgroundStyle = ({ zIndex }: modalStylePropType) => css`
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: ${zIndex};
+  z-index: ${(props) => props.zIndex};
 
   background-color: rgba(0, 0, 0, 0.2);
 `;
 
-export const modalStyle = ({ zIndex }: modalStylePropType) => css`
+export const ContentDiv = styled.div<modalStylePropType>`
   ${BOX_SHADOW}
   min-width: 400px;
   min-height: 100px;
   padding: 5px;
 
   position: absolute;
-  z-index: ${zIndex};
+  z-index: ${(props) => props.zIndex};
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);

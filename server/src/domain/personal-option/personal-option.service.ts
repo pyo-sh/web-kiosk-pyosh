@@ -59,6 +59,22 @@ export class PersonalOptionService {
     return personalOption;
   }
 
+  async findByProductId(productId: number): Promise<PersonalOption[]> {
+    try{
+      const personalOption = await this.personalOptionRepository.findBy({ productId });
+      return personalOption;
+    } catch (e) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: "요청 오류: 해당 상품 옵션에 문제가 있습니다",
+        },
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
+  }
+
   async findByCreateBillDto({
     products,
   }: CreateBillDto): Promise<{ [id: string]: PersonalOption }> {

@@ -1,16 +1,11 @@
 import React, { useRef } from "react";
-import useDraggable from "../../hooks/useDraggable";
-import {
-  navContainerStyle,
-  navStyle,
-  titleStyle,
-  controllerStyle,
-  navListStyle,
-} from "./index.style";
+import useDraggable from "@hooks/useDraggable";
+import { ContainerHeader, TitleH1, MenuNav, ControlButton, MenuUL } from "./index.style";
+import Menu from "@kiosk/common/types/menu";
 
 interface NavigatorPropsType {
-  menus: Array<string>;
-  setMenu: React.Dispatch<React.SetStateAction<string>>;
+  menus: Menu[];
+  setMenu: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Navigator: React.FC<NavigatorPropsType> = ({ menus, setMenu }) => {
@@ -19,7 +14,7 @@ const Navigator: React.FC<NavigatorPropsType> = ({ menus, setMenu }) => {
   const handleClickNav = ({ target }: React.MouseEvent<HTMLUListElement>) => {
     const id = (target as HTMLLIElement).getAttribute("data-id");
     if (id) {
-      setMenu(id);
+      setMenu(Number(id));
     }
   };
 
@@ -35,27 +30,30 @@ const Navigator: React.FC<NavigatorPropsType> = ({ menus, setMenu }) => {
   });
 
   return (
-    <header className={navContainerStyle}>
-      <h1 className={titleStyle}>주문</h1>
-      <nav className={navStyle}>
-        <button className={controllerStyle}></button>
-        <ul
+    <ContainerHeader>
+      <TitleH1>주문</TitleH1>
+      <MenuNav>
+        <ControlButton></ControlButton>
+        <MenuUL
           id={"Navigate-Menu"}
           ref={listRef}
-          className={navListStyle}
           onMouseDown={onMouseDownList}
           onMouseMove={onMouseMoveList}
           onMouseUp={onMouseUpList}
           onMouseLeave={onMouseLeaveList}
         >
-          {menus.map((item) => (
-            <li data-id={item} key={`nav-${item}`}>
-              {item}
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </header>
+          {menus.map((menu) => {
+            const id = menu.id || -1;
+            const name = menu.name || "";
+            return (
+              <li data-id={id} key={`nav-${name}`}>
+                {name}
+              </li>
+            );
+          })}
+        </MenuUL>
+      </MenuNav>
+    </ContainerHeader>
   );
 };
 

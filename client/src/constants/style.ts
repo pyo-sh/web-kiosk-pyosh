@@ -1,5 +1,3 @@
-import { css } from "@emotion/css";
-
 export const COLOR = Object.freeze({
   primary: "#2AC1BC",
   primary2: "#A0E1E0",
@@ -18,7 +16,7 @@ export const COLOR = Object.freeze({
   white: "#ffffff",
 });
 
-export const INPUT_STYLE = css`
+export const INPUT_STYLE = `
   padding: 0;
   margin: 0;
   outline: none;
@@ -29,7 +27,7 @@ export const INPUT_STYLE = css`
   }
 `;
 
-export const BTN_STYLE = css`
+export const BTN_STYLE = `
   padding: 0;
   margin: 0;
   background-color: ${COLOR.primary};
@@ -47,7 +45,7 @@ export const BTN_STYLE = css`
   }
 `;
 
-export const CANCEL_BTN_STYLE = css`
+export const CANCEL_BTN_STYLE = `
   padding: 0;
   margin: 0;
   background-color: ${COLOR.error};
@@ -65,12 +63,12 @@ export const CANCEL_BTN_STYLE = css`
   }
 `;
 
-export const BOX_SHADOW = css`
+export const BOX_SHADOW = `
   border-radius: 10px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1), 0px 4px 20px rgba(0, 0, 0, 0.1);
 `;
 
-export const TEXT_DISPLAY_LARGE = css`
+export const TEXT_DISPLAY_LARGE = `
   font-family: "BMDOHYEON";
   font-style: normal;
   font-weight: 400;
@@ -78,7 +76,7 @@ export const TEXT_DISPLAY_LARGE = css`
   line-height: 56px;
 `;
 
-export const TEXT_DISPLAY_SMALL = css`
+export const TEXT_DISPLAY_SMALL = `
   font-family: "BMDOHYEON";
   font-style: normal;
   font-weight: 400;
@@ -86,7 +84,7 @@ export const TEXT_DISPLAY_SMALL = css`
   line-height: 24px;
 `;
 
-export const TEXT_BODY_REGULAR = css`
+export const TEXT_BODY_REGULAR = `
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 400;
@@ -94,7 +92,7 @@ export const TEXT_BODY_REGULAR = css`
   line-height: 24px;
 `;
 
-export const TEXT_BODY_MEDIUM = css`
+export const TEXT_BODY_MEDIUM = `
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 400;
@@ -102,7 +100,7 @@ export const TEXT_BODY_MEDIUM = css`
   line-height: 24px;
 `;
 
-export const TEXT_BODY_LARGE = css`
+export const TEXT_BODY_LARGE = `
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 400;
@@ -110,7 +108,7 @@ export const TEXT_BODY_LARGE = css`
   line-height: 32px;
 `;
 
-export const TEXT_BOLD_SMALL = css`
+export const TEXT_BOLD_SMALL = `
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
@@ -118,7 +116,7 @@ export const TEXT_BOLD_SMALL = css`
   line-height: 16px;
 `;
 
-export const TEXT_BOLD_MEDIUM = css`
+export const TEXT_BOLD_MEDIUM = `
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
@@ -126,7 +124,7 @@ export const TEXT_BOLD_MEDIUM = css`
   line-height: 16px;
 `;
 
-export const TEXT_BOLD_LARGE = css`
+export const TEXT_BOLD_LARGE = `
   font-family: "Noto Sans KR";
   font-style: normal;
   font-weight: 500;
@@ -134,7 +132,7 @@ export const TEXT_BOLD_LARGE = css`
   line-height: 16px;
 `;
 
-export const PROTECT_DRAG = css`
+export const PROTECT_DRAG = `
   -ms-user-select: none;
   -moz-user-select: -moz-none;
   -khtml-user-select: none;

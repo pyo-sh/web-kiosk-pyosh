@@ -34,6 +34,9 @@ import { MockModule } from "./mock/mock.module";
         logging: true,
         autoLoadEntities: true,
         dropSchema: true,
+        extra: {
+          decimalNumbers: true,
+        }
       }),
     }),
     MenuModule,

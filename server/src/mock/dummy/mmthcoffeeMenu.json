@@ -535,7 +535,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -644,7 +644,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -741,7 +741,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -838,7 +838,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -935,7 +935,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -1123,7 +1123,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -1220,7 +1220,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -1408,7 +1408,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -1572,7 +1572,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -1669,7 +1669,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -1911,7 +1911,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -2100,7 +2100,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -2191,7 +2191,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -2288,7 +2288,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -2379,7 +2379,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -2647,7 +2647,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -2744,7 +2744,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -2841,7 +2841,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -2938,7 +2938,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -3035,7 +3035,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -3229,7 +3229,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -3326,7 +3326,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "radio",
+              "optionType": "check",
               "category": "휘핑 추가"
             },
             {
@@ -3929,7 +3929,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "count",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -3990,7 +3990,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "count",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -4051,7 +4051,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "count",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -4112,7 +4112,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "count",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -4173,7 +4173,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "count",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -4234,7 +4234,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "count",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -4271,7 +4271,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "count",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -4398,7 +4398,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "count",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -4459,7 +4459,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "count",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -4520,7 +4520,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "count",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -4581,7 +4581,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "count",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]
@@ -4642,7 +4642,7 @@
             {
               "name": "휘핑 추가",
               "price": 300,
-              "optionType": "count",
+              "optionType": "check",
               "category": "휘핑 추가"
             }
           ]

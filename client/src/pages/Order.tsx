@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import Navigator from "../components/navigator";
+import React, { useContext } from "react";
+import { ContainerRowDiv, ContainerColDiv } from "./Order.style";
+import Product from "@components/product";
+import Cart from "@components/cart";
+import { MediaContext } from "@hooks/useMediaQuery";
+import { CartProvider } from "@hooks/store/cart";
 
 const Order: React.FC = () => {
-  const [menu, setMenu] = useState<string>("");
-  const [menus, setMenus] = useState<Array<string>>([]);
-
-  useEffect(() => {
-    const dummyData = ["하나", "둘", "셋", "넷", "다섯"];
-    setMenus(dummyData);
-    setMenu(dummyData[0]);
-  }, []);
+  const isMobile = useContext(MediaContext);
+  const ContainerDiv = isMobile ? ContainerColDiv : ContainerRowDiv;
 
   return (
-    <div>
-      <Navigator menus={menus} setMenu={setMenu} />
-      <div>{menu}</div>
-    </div>
+    <CartProvider>
+      <ContainerDiv>
+        <Product />
+        <Cart />
+      </ContainerDiv>
+    </CartProvider>
   );
 };
 
