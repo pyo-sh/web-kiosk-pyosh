@@ -35,12 +35,12 @@ export class PersonalOptionController {
     return res.status(HttpStatus.OK).json({ personalOptions });
   }
 
-  @ApiOperation({ summary: "상품 옵션 읽기 API", description: "상품 옵션 ID로 찾기" })
-  @ApiOkResponse({ description: "읽기 성공" })
+  @ApiOperation({ summary: "상품 옵션 읽기 API", description: "상품 ID로 상품 옵션들 찾기" })
+  @ApiOkResponse({ description: "전체 읽기 성공" })
   @Get(":id")
-  async findOne(@Param("id") id: string, @Res() res: Response) {
-    const personalOption = await this.personalOptionService.findOne(+id);
-    return res.status(HttpStatus.OK).json({ personalOption });
+  async findByProductId(@Param("id") productId: number, @Res() res: Response) {
+    const personalOptions = await this.personalOptionService.findByProductId(+productId);
+    return res.status(HttpStatus.OK).json({ personalOptions });
   }
 
   @ApiOperation({ summary: "상품 옵션 수정 API", description: "상품 옵션 수정" })
