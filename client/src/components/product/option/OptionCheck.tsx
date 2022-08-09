@@ -1,24 +1,27 @@
 import React from "react";
 import Option from "@kiosk/common/types/option";
+import { useOptionDispatch, useOptionState } from "@hooks/store/option";
 import { CheckSelection } from "@constants/option";
+import { optionSelectCheck } from "@src/stores/option";
 
 type OptionCheckPropsType = {
-  options: Option[];
   category: string;
-  selected: CheckSelection;
-  select: (category: string, id: number) => void;
+  siblingOptions: Option[];
 };
 
-const OptionCheck: React.FC<OptionCheckPropsType> = ({ category, options, selected, select }) => {
+const OptionCheck: React.FC<OptionCheckPropsType> = ({ category, siblingOptions }) => {
+  const optionDispatch = useOptionDispatch();
+  const { picks } = useOptionState();
+  const selects = picks[category] as CheckSelection;
+
   const onChangeCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target as HTMLInputElement;
-    select(category, Number(value));
+    optionDispatch(optionSelectCheck({ category, optionId: Number(value) }));
   };
 
   return (
-    <div>
-      <h3>{category}</h3>
-      {options.map(({ id, name, price }) => {
+    <>
+      {siblingOptions.map(({ id, name, price }) => {
         const priceString = price ? ` (${price})` : "";
         return (
           <label key={`option-${id}`}>
@@ -27,7 +30,7 @@ const OptionCheck: React.FC<OptionCheckPropsType> = ({ category, options, select
               type="checkbox"
               name={category}
               value={id}
-              checked={selected?.has(id)}
+              checked={selects?.has(id)}
             />
             <span>
               {name}
@@ -36,7 +39,7 @@ const OptionCheck: React.FC<OptionCheckPropsType> = ({ category, options, select
           </label>
         );
       })}
-    </div>
+    </>
   );
 };
 

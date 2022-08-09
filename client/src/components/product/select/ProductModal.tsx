@@ -6,6 +6,8 @@ import React, { useEffect, useState } from "react";
 import ProductInfo from "./ProductInfo";
 import { CloseButton } from "./ProductModal.style";
 import ProductOption from "@components/product/option";
+import { OptionProvider, useOptionDispatch } from "@hooks/store/option";
+import { optionInit } from "@src/stores/option";
 
 type ProductModalPropsType = {
   product: Product;
@@ -14,14 +16,14 @@ type ProductModalPropsType = {
 };
 
 const ProductModal: React.FC<ProductModalPropsType> = ({ product, isOpen, closeModal }) => {
+  const optionDispatch = useOptionDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [options, setOptions] = useState<Option[]>([]);
 
   useEffect(() => {
     if (isOpen && isLoading) {
       (async () => {
         const data = await getProductOptions(product.id);
-        setOptions(data);
+        optionDispatch(optionInit({ options: data }));
         setIsLoading(false);
       })();
     }
@@ -32,7 +34,7 @@ const ProductModal: React.FC<ProductModalPropsType> = ({ product, isOpen, closeM
     <Modal isOpen={isOpen} closeModal={closeModal}>
       <CloseButton onClick={closeModal} />
       <ProductInfo product={product} />
-      <ProductOption options={options} />
+      <ProductOption />
     </Modal>
   );
 };

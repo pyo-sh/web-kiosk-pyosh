@@ -1,24 +1,27 @@
 import React from "react";
 import Option from "@kiosk/common/types/option";
+import { useOptionDispatch, useOptionState } from "@hooks/store/option";
 import { RadioSelection } from "@constants/option";
+import { optionSelectRadio } from "@src/stores/option";
 
 type OptionRadioPropsType = {
-  options: Option[];
   category: string;
-  selected: RadioSelection;
-  select: (category: string, id: number) => void;
+  siblingOptions: Option[];
 };
 
-const OptionRadio: React.FC<OptionRadioPropsType> = ({ category, options, selected, select }) => {
+const OptionRadio: React.FC<OptionRadioPropsType> = ({ category, siblingOptions }) => {
+  const optionDispatch = useOptionDispatch();
+  const { picks } = useOptionState();
+  const selects = picks[category] as RadioSelection;
+
   const onChangeRadio = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = target as HTMLInputElement;
-    select(category, Number(value));
+    optionDispatch(optionSelectRadio({ category, optionId: Number(value) }));
   };
 
   return (
-    <div>
-      <h3>{category}</h3>
-      {options.map(({ id, name, price }) => {
+    <>
+      {siblingOptions.map(({ id, name, price }) => {
         const priceString = price ? ` (${price})` : "";
         return (
           <label key={`option-${id}`}>
@@ -27,7 +30,7 @@ const OptionRadio: React.FC<OptionRadioPropsType> = ({ category, options, select
               type="radio"
               name={category}
               value={id}
-              checked={selected === id}
+              checked={selects === id}
             />
             <span>
               {name}
@@ -36,7 +39,7 @@ const OptionRadio: React.FC<OptionRadioPropsType> = ({ category, options, select
           </label>
         );
       })}
-    </div>
+    </>
   );
 };
 
