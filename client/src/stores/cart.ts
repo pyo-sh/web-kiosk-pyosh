@@ -23,6 +23,7 @@ export const initialCartType = Object.freeze({
 const CART_CLEAR = "CART_CLEAR";
 const CART_ADD_PRODUCT = "CART_ADD_PRODUCT";
 const CART_EDIT_COUNT = "CART_EDIT_COUNT";
+const CART_DELETE_PRODUCT = "CART_DELETE_PRODUCT";
 
 // Actions
 export const cartClear = () => {
@@ -45,10 +46,18 @@ export const cartEditCount = (payload: { cartIndex: number; gap: number }) => {
   };
 };
 
+export const cartDeleteProduct = (payload: { cartIndex: number }) => {
+  return {
+    type: CART_DELETE_PRODUCT,
+    ...payload,
+  };
+};
+
 export type CartAction =
   | ReturnType<typeof cartClear>
   | ReturnType<typeof cartAddProduct>
-  | ReturnType<typeof cartEditCount>;
+  | ReturnType<typeof cartEditCount>
+  | ReturnType<typeof cartDeleteProduct>;
 
 // Reducer
 export default function reducer(state: CartState, action: CartAction): CartState {
@@ -72,7 +81,7 @@ export default function reducer(state: CartState, action: CartAction): CartState
       if (0 > cartIndex || cartIndex > len) return state;
 
       const target = { ...state.products[cartIndex] };
-      const amount = (target.count || 0) + gap;
+      const amount = (target.count || 0) + (gap || 0);
       if (amount <= 0) return state;
 
       const { product, price: optionPrice } = target;
@@ -87,6 +96,22 @@ export default function reducer(state: CartState, action: CartAction): CartState
           target,
           ...state.products.slice(cartIndex + 1),
         ],
+      };
+    }
+    case CART_DELETE_PRODUCT: {
+      const { cartIndex } = action as ReturnType<typeof cartDeleteProduct>;
+      const len = state.products.length;
+      if (isNaN(cartIndex)) return state;
+      if (0 > cartIndex || cartIndex > len) return state;
+
+      const target = state.products[cartIndex];
+      const { product, price: optionPrice, count } = target;
+      const newTotal = state.totalPrice - (product.price + optionPrice) * count;
+
+      return {
+        ...state,
+        totalPrice: newTotal,
+        products: [...state.products.slice(0, cartIndex), ...state.products.slice(cartIndex + 1)],
       };
     }
     default:

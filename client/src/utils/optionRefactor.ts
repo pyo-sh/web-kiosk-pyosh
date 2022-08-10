@@ -84,7 +84,7 @@ export const getOptionInfo = ({
             if (!countObj.hasOwnProperty(id)) return "";
 
             const count = countObj[id];
-            optionPrice += price + count;
+            optionPrice += price * count;
 
             const countString = count ? `(${count})` : "";
             return `${name}${countString}`;

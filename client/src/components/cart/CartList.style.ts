@@ -1,3 +1,3 @@
 import styled from "@emotion/styled";
 
-const ContainerUL = styled.ul``;
+export const ContainerUL = styled.ul``;

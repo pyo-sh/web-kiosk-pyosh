@@ -1,7 +1,7 @@
-import { ContainerUL } from "@components/product/ProductList.style";
 import { useCartDispatch, useCartState } from "@hooks/store/cart";
-import { cartEditCount } from "@stores/cart";
+import { cartDeleteProduct, cartEditCount } from "@stores/cart";
 import React from "react";
+import { ContainerUL } from "./CartList.style";
 
 const CartList: React.FC = () => {
   const cartDispatch = useCartDispatch();
@@ -14,11 +14,17 @@ const CartList: React.FC = () => {
     cartDispatch(cartEditCount({ cartIndex, gap }));
   };
 
+  const onDeleteProduct = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const target = e.target as HTMLButtonElement;
+    const cartIndex = Number(target.value);
+    cartDispatch(cartDeleteProduct({ cartIndex }));
+  };
+
   return (
     <ContainerUL>
       {products.map(({ count, product, optionContent }, index) => {
         return (
-          <div>
+          <div key={`${product.name}-${optionContent}`}>
             <span>
               {product.name}({optionContent}) {count}개
             </span>
@@ -30,6 +36,9 @@ const CartList: React.FC = () => {
                 +
               </button>
             </div>
+            <button onClick={onDeleteProduct} value={index}>
+              삭제
+            </button>
           </div>
         );
       })}
