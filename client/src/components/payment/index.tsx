@@ -33,7 +33,7 @@ const Payment: React.FC<PaymentPropsType> = ({ isOpen, closeModal }) => {
   const PaymentProcess = selectProcess(payment);
   return (
     <Modal isOpen={isOpen}>
-      <PaymentProcess />
+      <PaymentProcess closeModal={closeModal} />
     </Modal>
   );
 };

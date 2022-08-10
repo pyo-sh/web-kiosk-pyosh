@@ -19,7 +19,7 @@ const Receipt: React.FC = () => {
       <div>결제방식 : {paymentMethod}</div>
       <div>투입금액 : {paymentPrice}</div>
       <div>총 결제금액 : {totalPrice}</div>
-      <div>{isCash ? `잔돈 ${totalPrice - paymentPrice}` : ""}</div>
+      <div>{isCash ? `잔돈 ${Math.abs(totalPrice - paymentPrice)}` : ""}</div>
       <button onClick={clearBill}>돌아가기</button>
     </div>
   );
