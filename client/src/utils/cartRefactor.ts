@@ -28,7 +28,7 @@ const getOptionIds = (options: OptionSelection): PaymentOptionsType[] => {
     if (typeof opt === "number") acc.push({ id: opt });
     else if (opt instanceof Set) Array.from(opt.values(), (id) => acc.push({ id }));
     else
-      Object.entries(opt).map((id, count) => {
+      Object.entries(opt).map(([id, count]) => {
         acc.push({ id: Number(id), count });
       });
     return acc;

@@ -82,7 +82,7 @@ export class PersonalOptionService {
       const optionIds = [
         ...products.reduce((idSet, { personalOptionIds: ids }) => {
           ids.forEach(({ id }) => {
-            if (!id) throw Error();
+            if (!id) throw Error("요청 오류: 상품 옵션의 ID 값이 없습니다.");
             idSet.add(id);
           });
           return idSet;
