@@ -12,13 +12,12 @@ type ProductButtonsPropsType = {
 };
 
 const ProductButtons: React.FC<ProductButtonsPropsType> = ({ product, closeModal }) => {
-  const { count, picks } = useOptionState();
+  const { count, price, optionContent, picks } = useOptionState();
   const cartDispatch = useCartDispatch();
   const optionDispatch = useOptionDispatch();
 
   const addProduct = () => {
-    const newProduct = { ...product, count, options: picks };
-    cartDispatch(cartAddProduct(newProduct));
+    cartDispatch(cartAddProduct({ count, price, product, options: picks, optionContent }));
     optionDispatch(optionPickClear());
     closeModal();
   };

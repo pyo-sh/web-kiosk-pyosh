@@ -1,5 +1,5 @@
 import { createContext, Dispatch, useContext, useReducer } from "react";
-import reducer from "@src/stores/cart";
+import reducer, { initialCartType } from "@src/stores/cart";
 import type { CartState, CartAction } from "@src/stores/cart";
 
 type CartDispatch = Dispatch<CartAction>;
@@ -7,7 +7,7 @@ const CartStateContext = createContext<CartState | null>(null);
 const CartDispatchContext = createContext<CartDispatch | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, []);
+  const [state, dispatch] = useReducer(reducer, initialCartType);
 
   return (
     <CartStateContext.Provider value={state}>
