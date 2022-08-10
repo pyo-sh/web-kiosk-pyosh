@@ -1,6 +1,7 @@
 import { useCartState } from "@hooks/store/cart";
 import { MediaContext } from "@hooks/useMediaQuery";
 import React, { useContext, useRef, useState } from "react";
+import CartList from "./CartList";
 import { ContainerDiv, MobileWrapper, TabletWrapper, ToggleButton } from "./index.style";
 
 const Cart: React.FC = () => {
@@ -19,14 +20,8 @@ const Cart: React.FC = () => {
     <WrapperDiv isShow={isShow} ref={cartWrapper}>
       <ContainerDiv>
         <ToggleButton onClick={onToggleShow}>On/Off</ToggleButton>
-        {products.map(({ product, optionContent }) => {
-          return (
-            <div>
-              {product.name}({optionContent})
-            </div>
-          );
-        })}
-        총 {totalPrice}원
+        <CartList />
+        <div>총 {totalPrice}원</div>
       </ContainerDiv>
     </WrapperDiv>
   );
