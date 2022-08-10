@@ -1,6 +1,6 @@
 import Option from "./option";
 
-type Product = {
+type ProductType = {
   id: number;
   name: string;
   price: number;
@@ -9,4 +9,4 @@ type Product = {
   options?: Option[];
 };
 
-export default Product;
+export default ProductType;

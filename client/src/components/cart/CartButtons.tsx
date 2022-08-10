@@ -1,19 +1,32 @@
+import React, { useState } from "react";
 import { ContainerDiv } from "@components/product/select/ProductButtons.style";
-import { useCartDispatch } from "@hooks/store/cart";
+import { useCartDispatch, useCartState } from "@hooks/store/cart";
 import { cartClear } from "@stores/cart";
-import React from "react";
+import Modal from "@components/custom/Modal";
+import Payment from "@components/payment";
 
 const CartButtons: React.FC = () => {
+  const { products } = useCartState();
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const cartDispatch = useCartDispatch();
 
   const clearCart = () => {
     cartDispatch(cartClear());
   };
 
+  const openModal = () => {
+    if (products.length !== 0) setIsOpenModal(true);
+  };
+
+  const closeModal = () => {
+    setIsOpenModal(false);
+  };
+
   return (
     <ContainerDiv>
       <button onClick={clearCart}>취소</button>
-      <button>추가</button>
+      <button onClick={() => setIsOpenModal(true)}>추가</button>
+      <Payment isOpen={isOpenModal} closeModal={closeModal} />
     </ContainerDiv>
   );
 };

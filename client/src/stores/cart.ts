@@ -1,6 +1,5 @@
 import { OptionSelection } from "@constants/option";
 import Product from "@kiosk/common/types/product";
-import { count } from "console";
 
 // State
 type CartProduct = {
