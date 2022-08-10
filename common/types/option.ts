@@ -1,18 +1,18 @@
-export enum OptionType {
+export enum OptionEnum {
   RADIO = "radio",
   CHECK = "check",
   COUNT = "count",
 }
 
-type Option = {
+type OptionType = {
   id: number;
   name: string;
   price: number;
-  optionType: OptionType;
+  optionType: OptionEnum;
   category: string;
   createdAt?: string;
   updatedAt?: string;
   deletedAt?: string;
 };
 
-export default Option;
+export default OptionType;

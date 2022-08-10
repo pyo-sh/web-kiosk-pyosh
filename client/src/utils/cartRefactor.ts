@@ -1,7 +1,7 @@
 import { CheckSelection, CountSelection, OptionSelection } from "@constants/option";
 import {
   PaymentBodyType,
-  PaymentMethod,
+  PaymentMethodEnum,
   PaymentOptionsType,
   PaymentProductType,
 } from "@constants/payment";
@@ -9,7 +9,7 @@ import { CartState } from "@stores/cart";
 
 export const refineCart = (
   { products: productsState }: CartState,
-  { paymentMethod, paymentPrice }: { paymentMethod: PaymentMethod; paymentPrice: number },
+  { paymentMethod, paymentPrice }: { paymentMethod: PaymentMethodEnum; paymentPrice: number },
 ): PaymentBodyType => {
   const products = productsState.map(({ count, product, options }) => {
     const billProduct: PaymentProductType = {

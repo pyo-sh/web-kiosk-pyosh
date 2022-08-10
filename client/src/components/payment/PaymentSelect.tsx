@@ -1,11 +1,11 @@
 import Modal from "@components/custom/Modal";
-import { PAYMENT_METHOD, PaymentMethod } from "@constants/payment";
+import { PAYMENT_METHOD, PaymentMethodEnum } from "@constants/payment";
 import React from "react";
 
 type PaymentSelectPropsType = {
   isOpen: boolean;
   closeModal: () => void;
-  onClickPayment: (payment: PaymentMethod) => () => void;
+  onClickPayment: (payment: PaymentMethodEnum) => () => void;
 };
 
 const PaymentSelect: React.FC<PaymentSelectPropsType> = ({ onClickPayment, ...modalProps }) => {

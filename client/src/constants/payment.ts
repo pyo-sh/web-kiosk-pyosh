@@ -1,11 +1,11 @@
-export enum PaymentMethod {
+export enum PaymentMethodEnum {
   Cash = "현금",
   Card = "카드",
 }
 
 export const PAYMENT_METHOD = Object.freeze({
-  CASH: "현금" as PaymentMethod.Cash,
-  CARD: "카드" as PaymentMethod.Card,
+  CASH: "현금" as PaymentMethodEnum.Cash,
+  CARD: "카드" as PaymentMethodEnum.Card,
 });
 
 export type PaymentOptionsType = {

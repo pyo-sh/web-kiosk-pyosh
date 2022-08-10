@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PaymentSelect from "./PaymentSelect";
-import { PaymentMethod, PAYMENT_METHOD } from "@constants/payment";
+import { PaymentMethodEnum, PAYMENT_METHOD } from "@constants/payment";
 import PaymentCash from "./PaymentCash";
 import PaymentCard from "./PaymentCard";
 import Modal from "@components/custom/Modal";
@@ -10,7 +10,7 @@ type PaymentPropsType = {
   closeModal: () => void;
 };
 
-const selectProcess = (payment: PaymentMethod) => {
+const selectProcess = (payment: PaymentMethodEnum) => {
   switch (payment) {
     case PAYMENT_METHOD.CASH:
       return PaymentCash;
@@ -22,9 +22,9 @@ const selectProcess = (payment: PaymentMethod) => {
 };
 
 const Payment: React.FC<PaymentPropsType> = ({ isOpen, closeModal }) => {
-  const [payment, setPayment] = useState<PaymentMethod | undefined>(undefined);
+  const [payment, setPayment] = useState<PaymentMethodEnum | undefined>(undefined);
 
-  const onClickPayment = (payment: PaymentMethod) => () => {
+  const onClickPayment = (payment: PaymentMethodEnum) => () => {
     setPayment(payment);
   };
 
