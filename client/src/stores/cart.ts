@@ -20,10 +20,17 @@ export const initialCartType = Object.freeze({
 });
 
 // Types
+const CART_CLEAR = "CART_CLEAR";
 const CART_ADD_PRODUCT = "CART_ADD_PRODUCT";
 const CART_EDIT_COUNT = "CART_EDIT_COUNT";
 
 // Actions
+export const cartClear = () => {
+  return {
+    type: CART_CLEAR,
+  };
+};
+
 export const cartAddProduct = (payload: CartProduct) => {
   return {
     type: CART_ADD_PRODUCT,
@@ -38,11 +45,16 @@ export const cartEditCount = (payload: { cartIndex: number; gap: number }) => {
   };
 };
 
-export type CartAction = ReturnType<typeof cartAddProduct> | ReturnType<typeof cartEditCount>;
+export type CartAction =
+  | ReturnType<typeof cartClear>
+  | ReturnType<typeof cartAddProduct>
+  | ReturnType<typeof cartEditCount>;
 
 // Reducer
 export default function reducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
+    case CART_CLEAR:
+      return { ...initialCartType };
     case CART_ADD_PRODUCT: {
       const { type, ...newProduct } = action as ReturnType<typeof cartAddProduct>;
       const { product, price: optionPrice, count } = newProduct;
