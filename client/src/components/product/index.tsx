@@ -19,7 +19,7 @@ const Product: React.FC = () => {
 
   return (
     <ContainerDiv>
-      <Navigator menus={menus} setMenu={setSelectedIndex} />
+      <Navigator menus={menus} setMenu={setSelectedIndex} selectedIndex={selectedIndex} />
       <MenuWrapperDiv selectedIndex={selectedIndex}>
         {menus.map((menu) => {
           const { id: menuId } = menu;
