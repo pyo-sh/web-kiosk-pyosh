@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
 
 export const ContainerUL = styled.ul`
+  flex: 0 0 auto;
   margin: 0;
   padding: 15px;
-  flex: 1;
+  width: 100%;
+  height: 100%;
 
   display: grid;
   justify-content: center;

@@ -12,7 +12,7 @@ const Navigator: React.FC<NavigatorPropsType> = ({ menus, setMenu }) => {
   const listRef = useRef<HTMLUListElement>(null);
 
   const handleClickNav = ({ target }: React.MouseEvent<HTMLUListElement>) => {
-    const id = (target as HTMLLIElement).getAttribute("data-id");
+    const id = (target as HTMLLIElement).getAttribute("data-index");
     if (id) {
       setMenu(Number(id));
     }
@@ -42,11 +42,10 @@ const Navigator: React.FC<NavigatorPropsType> = ({ menus, setMenu }) => {
           onMouseUp={onMouseUpList}
           onMouseLeave={onMouseLeaveList}
         >
-          {menus.map((menu) => {
-            const id = menu.id || -1;
+          {menus.map((menu, index) => {
             const name = menu.name || "";
             return (
-              <li data-id={id} key={`nav-${name}`}>
+              <li data-index={index} key={`nav-${name}`}>
                 {name}
               </li>
             );
