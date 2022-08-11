@@ -1,11 +1,42 @@
 import { COLOR, PROTECT_DRAG } from "@constants/style";
+import { css, keyframes } from "@emotion/css";
 import styled from "@emotion/styled";
+
+const showOn = keyframes`
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  100% {
+    left: 50%;
+    opacity: 1;
+  }
+`;
+
+export const ModalShowAnimateCSS = css`
+  animation: ${showOn} ease-in 0.2s;
+`;
+
+const showOff = keyframes`
+  0% {
+    left: 50%;
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+`;
+
+export const ModalExitAnimateCSS = css`
+  animation: ease-out ${showOff} 0.1s forwards;
+`;
 
 export const ContainerDiv = styled.div<{ isMobile: boolean }>`
   ${PROTECT_DRAG}
   display: flex;
   flex-direction: ${({ isMobile }) => (isMobile ? "column" : "row")};
-  align-items: center;
+  align-items: ${({ isMobile }) => (isMobile ? "center" : "flex-start")};
   justify-content: center;
 
   margin: 20px;

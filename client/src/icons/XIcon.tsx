@@ -19,16 +19,16 @@ const XIcon: React.FC<XIconPropsType> = ({ width, height, color }) => {
       <path
         d="M12 4L4 12"
         stroke={color || COLOR.titleActive}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M4 4L12 12"
         stroke={color || COLOR.titleActive}
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );
