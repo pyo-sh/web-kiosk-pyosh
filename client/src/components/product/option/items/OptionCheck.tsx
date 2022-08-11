@@ -1,4 +1,5 @@
 import React from "react";
+import { CheckSpan, HideInput, NameTagSpan, WrapperLabel } from "./OptionItems.style";
 import Option from "@kiosk/common/types/option";
 import { useOptionDispatch, useOptionState } from "@hooks/store/option";
 import { CheckSelection } from "@constants/option";
@@ -24,19 +25,20 @@ const OptionCheck: React.FC<OptionCheckPropsType> = ({ category, siblingOptions 
       {siblingOptions.map(({ id, name, price }) => {
         const priceString = price ? ` (${price})` : "";
         return (
-          <label key={`option-${id}`}>
-            <input
+          <WrapperLabel key={`option-${id}`}>
+            <HideInput
               onChange={onChangeCheck}
               type="checkbox"
               name={category}
               value={id}
               checked={selects?.has(id)}
             />
-            <span>
+            <CheckSpan id={"check"} />
+            <NameTagSpan>
               {name}
               {priceString}
-            </span>
-          </label>
+            </NameTagSpan>
+          </WrapperLabel>
         );
       })}
     </>

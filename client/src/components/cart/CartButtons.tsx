@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { ContainerDiv } from "@components/product/select/ProductButtons.style";
+import { AcceptButton, CancelButton, ContainerDiv } from "./CartButtons.style";
 import { useCartDispatch, useCartState } from "@hooks/store/cart";
 import { cartClear } from "@stores/cart";
-import Modal from "@components/custom/Modal";
 import Payment from "@components/payment";
 
 const CartButtons: React.FC = () => {
@@ -24,8 +23,8 @@ const CartButtons: React.FC = () => {
 
   return (
     <ContainerDiv>
-      <button onClick={clearCart}>취소</button>
-      <button onClick={() => setIsOpenModal(true)}>추가</button>
+      <AcceptButton onClick={openModal}>결제하기</AcceptButton>
+      <CancelButton onClick={clearCart}>비우기</CancelButton>
       <Payment isOpen={isOpenModal} closeModal={closeModal} />
     </ContainerDiv>
   );

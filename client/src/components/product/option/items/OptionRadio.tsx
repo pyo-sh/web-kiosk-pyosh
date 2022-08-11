@@ -1,4 +1,5 @@
 import React from "react";
+import { HideInput, NameTagSpan, RadioSpan, WrapperLabel } from "./OptionItems.style";
 import Option from "@kiosk/common/types/option";
 import { useOptionDispatch, useOptionState } from "@hooks/store/option";
 import { RadioSelection } from "@constants/option";
@@ -24,19 +25,20 @@ const OptionRadio: React.FC<OptionRadioPropsType> = ({ category, siblingOptions 
       {siblingOptions.map(({ id, name, price }) => {
         const priceString = price ? ` (${price})` : "";
         return (
-          <label key={`option-${id}`}>
-            <input
+          <WrapperLabel key={`option-${id}`}>
+            <HideInput
               onChange={onChangeRadio}
               type="radio"
               name={category}
               value={id}
               checked={selects === id}
             />
-            <span>
+            <RadioSpan id={"radio"} />
+            <NameTagSpan>
               {name}
               {priceString}
-            </span>
-          </label>
+            </NameTagSpan>
+          </WrapperLabel>
         );
       })}
     </>

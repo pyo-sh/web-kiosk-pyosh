@@ -1,12 +1,12 @@
-import { CheckSelection, CountSelection, OptionGroup, OptionSelection } from "@constants/option";
 import Option from "@kiosk/common/types/option";
+import { CheckSelection, CountSelection, OptionGroup, OptionSelection } from "@constants/option";
 import { getEmptyState, getOptionInfo, groupOptions } from "@utils/optionRefactor";
 
 // State
 export type OptionState = {
   count: number;
-  price: number;
-  optionContent: string;
+  optionPrice: number;
+  optionContents: string[];
   options: Option[];
   optionsMap: OptionGroup;
   picks: OptionSelection;
@@ -14,8 +14,8 @@ export type OptionState = {
 
 export const initialOptionType = Object.freeze({
   count: 1,
-  price: 0,
-  optionContent: "",
+  optionPrice: 0,
+  optionContents: [],
   options: [],
   optionsMap: new Map(),
   picks: {},

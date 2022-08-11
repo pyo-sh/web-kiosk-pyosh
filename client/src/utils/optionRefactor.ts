@@ -47,17 +47,17 @@ export const getOptionInfo = ({
 }) => {
   const categories = Object.keys(picks);
 
-  const { totalPrice, productStrings } = categories.reduce(
+  const { totalPrice, optionContents } = categories.reduce(
     (
-      { totalPrice, productStrings }: { totalPrice: number; productStrings: string[] },
+      { totalPrice, optionContents }: { totalPrice: number; optionContents: string[] },
       category,
     ) => {
-      if (!optionsMap.has(category)) return { totalPrice, productStrings };
+      if (!optionsMap.has(category)) return { totalPrice, optionContents };
 
       const options = optionsMap.get(category) as Option[];
       const { optionType } = options[0];
       let optionPrice = 0;
-      let optionContent = "";
+      let optionContent: string[] = [];
 
       if (optionType === OPTION_TYPE.RADIO) {
         const targetId = picks[category] as number;
@@ -65,7 +65,7 @@ export const getOptionInfo = ({
         const { name, price } = target as Option;
 
         optionPrice = price;
-        optionContent = name;
+        optionContent = [...optionContents, name];
       }
 
       if (optionType === OPTION_TYPE.CHECK) {
@@ -73,13 +73,13 @@ export const getOptionInfo = ({
         const targets = options.filter(({ id }) => checkSets.has(id));
 
         optionPrice = targets.reduce((acc, { price }) => acc + price, 0);
-        optionContent = targets.map(({ name }) => name).join(", ");
+        optionContent = [...optionContents, ...targets.map(({ name }) => name)];
       }
 
       if (optionType === OPTION_TYPE.COUNT) {
         const countObj = picks[category] as CountSelection;
 
-        optionContent = options
+        const thisContents = options
           .map(({ id, name, price }) => {
             if (!countObj.hasOwnProperty(id)) return "";
 
@@ -89,18 +89,18 @@ export const getOptionInfo = ({
             const countString = count ? `(${count})` : "";
             return `${name}${countString}`;
           })
-          .filter((s) => s)
-          .join(", ");
+          .filter((s) => s);
+
+        optionContent = [...optionContents, ...thisContents];
       }
 
       return {
         totalPrice: totalPrice + optionPrice,
-        productStrings: [...productStrings, optionContent],
+        optionContents: optionContent,
       };
     },
-    { totalPrice: 0, productStrings: [] },
+    { totalPrice: 0, optionContents: [] },
   );
 
-  const optionContent = productStrings.filter((s) => s).join(",");
-  return { price: totalPrice, optionContent };
+  return { optionPrice: totalPrice, optionContents };
 };

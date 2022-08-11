@@ -1,14 +1,16 @@
-import { getBill } from "@apis/bill";
-import { PAYMENT_METHOD } from "@constants/payment";
+import React, { useEffect, useRef, useState } from "react";
 import { useBillDispatch } from "@hooks/store/bill";
 import { useCartState } from "@hooks/store/cart";
+import { PAYMENT_METHOD } from "@constants/payment";
 import { billSet } from "@stores/bill";
-import React, { useEffect } from "react";
+import { getBill } from "@apis/bill";
+import { ClockLoaderDiv, ContainerDiv } from "./PaymentCard.style";
 
-const MIN = 300;
-const MAX = 700;
+const MIN = 3000;
+const MAX = 7000;
 
 const PaymentCard: React.FC<{ closeModal: () => void }> = () => {
+  const loader = useRef<boolean>(true);
   const billDispatch = useBillDispatch();
   const cartState = useCartState();
 
@@ -19,13 +21,21 @@ const PaymentCard: React.FC<{ closeModal: () => void }> = () => {
   };
 
   useEffect(() => {
+    if (!loader.current) return;
+
+    loader.current = false;
     const second = Math.random() * (MAX - MIN) + MIN;
     setTimeout(async () => {
       await successPay();
+      loader.current = true;
     }, second);
   }, []);
 
-  return <div>로딩중</div>;
+  return (
+    <ContainerDiv>
+      <ClockLoaderDiv></ClockLoaderDiv>
+    </ContainerDiv>
+  );
 };
 
 export default PaymentCard;

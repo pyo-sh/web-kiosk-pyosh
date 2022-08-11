@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import PaymentSelect from "./PaymentSelect";
 import { PaymentMethodEnum, PAYMENT_METHOD } from "@constants/payment";
+import PaymentSelect from "./PaymentSelect";
 import PaymentCash from "./PaymentCash";
 import PaymentCard from "./PaymentCard";
 import Modal from "@components/custom/Modal";
