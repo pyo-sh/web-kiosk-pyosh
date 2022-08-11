@@ -10,7 +10,7 @@ import {
   CountSpan,
   NameTagSpan,
   WrapperCountLabel,
-} from "./OptionItem.style";
+} from "./OptionItems.style";
 import ArrowIcon from "@icons/ArrowIcon";
 
 type OptionCountPropsType = {
