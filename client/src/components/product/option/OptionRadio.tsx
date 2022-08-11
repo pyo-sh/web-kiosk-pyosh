@@ -33,7 +33,7 @@ const OptionRadio: React.FC<OptionRadioPropsType> = ({ category, siblingOptions 
               value={id}
               checked={selects === id}
             />
-            <RadioSpan id={"radio"}></RadioSpan>
+            <RadioSpan id={"radio"} />
             <NameTagSpan>
               {name}
               {priceString}

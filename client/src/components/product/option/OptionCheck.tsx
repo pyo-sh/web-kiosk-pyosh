@@ -3,7 +3,7 @@ import Option from "@kiosk/common/types/option";
 import { useOptionDispatch, useOptionState } from "@hooks/store/option";
 import { CheckSelection } from "@constants/option";
 import { optionSelectCheck } from "@src/stores/option";
-import { WrapperLabel } from "./OptionItem.style";
+import { CheckSpan, HideInput, NameTagSpan, WrapperLabel } from "./OptionItem.style";
 
 type OptionCheckPropsType = {
   category: string;
@@ -26,17 +26,18 @@ const OptionCheck: React.FC<OptionCheckPropsType> = ({ category, siblingOptions 
         const priceString = price ? ` (${price})` : "";
         return (
           <WrapperLabel key={`option-${id}`}>
-            <input
+            <HideInput
               onChange={onChangeCheck}
               type="checkbox"
               name={category}
               value={id}
               checked={selects?.has(id)}
             />
-            <span>
+            <CheckSpan id={"check"} />
+            <NameTagSpan>
               {name}
               {priceString}
-            </span>
+            </NameTagSpan>
           </WrapperLabel>
         );
       })}

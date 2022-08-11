@@ -67,7 +67,6 @@ export const TEXT_DISPLAY_LARGE = `
   font-style: normal;
   font-weight: 400;
   font-size: 48px;
-  line-height: 56px;
 `;
 
 export const TEXT_DISPLAY_SMALL = `
@@ -75,7 +74,6 @@ export const TEXT_DISPLAY_SMALL = `
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
-  line-height: 24px;
 `;
 
 export const TEXT_BODY_REGULAR = `
@@ -83,7 +81,6 @@ export const TEXT_BODY_REGULAR = `
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 24px;
 `;
 
 export const TEXT_BODY_MEDIUM = `
@@ -91,7 +88,6 @@ export const TEXT_BODY_MEDIUM = `
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
-  line-height: 24px;
 `;
 
 export const TEXT_BODY_LARGE = `
@@ -99,7 +95,6 @@ export const TEXT_BODY_LARGE = `
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
-  line-height: 32px;
 `;
 
 export const TEXT_BOLD_SMALL = `
@@ -107,7 +102,6 @@ export const TEXT_BOLD_SMALL = `
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 16px;
 `;
 
 export const TEXT_BOLD_MEDIUM = `
@@ -115,7 +109,6 @@ export const TEXT_BOLD_MEDIUM = `
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 16px;
 `;
 
 export const TEXT_BOLD_LARGE = `
@@ -123,7 +116,6 @@ export const TEXT_BOLD_LARGE = `
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  line-height: 16px;
 `;
 
 export const PROTECT_DRAG = `
