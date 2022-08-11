@@ -6,16 +6,22 @@ export const ContainerUL = styled.ul`
   flex: 1;
 
   display: grid;
-  @media screen and (min-width: 520px) {
+  justify-content: center;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: repeat(2, 1fr);
+  @media screen and (min-width: 480px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (min-width: 600px) {
     grid-template-columns: repeat(2, 1fr);
   }
   @media screen and (min-width: 730px) {
     grid-template-columns: repeat(3, 1fr);
   }
-  @media screen and (min-width: 920px) {
+  @media screen and (min-width: 860px) {
     grid-template-columns: repeat(4, 1fr);
   }
-  @media screen and (min-width: 1280px) {
+  @media screen and (min-width: 1000px) {
     grid-template-columns: repeat(5, 1fr);
   }
 `;
