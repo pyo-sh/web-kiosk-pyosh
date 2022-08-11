@@ -14,6 +14,8 @@ export const COLOR = Object.freeze({
   darkError: "#CD6766",
   darkGreen: "#394032",
   white: "#ffffff",
+  yellow: "#fbc02d",
+  orange: "#ffa000",
 });
 
 export const INPUT_STYLE = `
