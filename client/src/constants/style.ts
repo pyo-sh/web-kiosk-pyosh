@@ -133,3 +133,11 @@ export const PROTECT_DRAG = `
   -webkit-user-select: none;
   user-select: none;
 `;
+
+export const PROTECT_DRAG_IMAGE = `
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+`;
