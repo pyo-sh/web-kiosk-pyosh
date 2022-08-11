@@ -23,7 +23,7 @@ const CartButtons: React.FC = () => {
 
   return (
     <ContainerDiv>
-      <AcceptButton onClick={() => setIsOpenModal(true)}>결제하기</AcceptButton>
+      <AcceptButton onClick={openModal}>결제하기</AcceptButton>
       <CancelButton onClick={clearCart}>비우기</CancelButton>
       <Payment isOpen={isOpenModal} closeModal={closeModal} />
     </ContainerDiv>

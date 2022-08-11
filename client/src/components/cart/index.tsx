@@ -1,5 +1,12 @@
 import React, { useContext, useRef, useState } from "react";
-import { ButtonWrapperDiv, ContainerDiv, ToggleButton, TotalDiv, WrapperDiv } from "./index.style";
+import {
+  ButtonWrapperDiv,
+  CartInfoDiv,
+  ContainerDiv,
+  ToggleButton,
+  TotalDiv,
+  WrapperDiv,
+} from "./index.style";
 import { useCartState } from "@hooks/store/cart";
 import { MediaContext } from "@hooks/useMediaQuery";
 import CartButtons from "./CartButtons";
@@ -23,7 +30,10 @@ const Cart: React.FC = () => {
           <ToggleButton isMobile={isMobile} onClick={onToggleShow} />
         </ButtonWrapperDiv>
         <CartList />
-        <TotalDiv>총 {totalPrice}원</TotalDiv>
+        <CartInfoDiv>
+          <div id="cart-timer"></div>
+          <TotalDiv>총 {totalPrice}원</TotalDiv>
+        </CartInfoDiv>
         <CartButtons />
       </ContainerDiv>
     </WrapperDiv>

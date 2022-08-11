@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 import { COLOR, TEXT_DISPLAY_SMALL } from "@constants/style";
 
-export const CART_TABLET_WIDTH = 500;
-export const CART_MOBILE_HEIGHT = 370;
+export const CART_TABLET_WIDTH = 31.25;
+export const CART_MOBILE_HEIGHT = 23.125;
 
 export const WrapperDiv = styled.div<{ isMobile: boolean }>`
   flex: 0 0 auto;
@@ -24,19 +24,19 @@ export const ContainerDiv = styled.div<{ isMobile: boolean; isShow: boolean }>`
   position: absolute;
   width: 100%;
   height: 100%;
-  padding: 15px;
+  padding: 1rem;
   ${(props) =>
-    props.isMobile ? `height: ${CART_MOBILE_HEIGHT}px;` : `width: ${CART_TABLET_WIDTH}px;`}
+    props.isMobile ? `height: ${CART_MOBILE_HEIGHT}rem;` : `width: ${CART_TABLET_WIDTH}rem;`}
 
   ${({ isShow, isMobile }) => {
     if (!isMobile) return "";
-    return isShow ? "bottom: 0px" : `bottom: -${CART_MOBILE_HEIGHT - 15}px`;
+    return isShow ? "bottom: 0px" : `bottom: -${CART_MOBILE_HEIGHT - 1}rem`;
   }};
   ${({ isShow, isMobile }) => {
     if (isMobile) return "";
-    return isShow ? "right: 0px" : `right: -${CART_TABLET_WIDTH - 15}px`;
+    return isShow ? "right: 0px" : `right: -${CART_TABLET_WIDTH - 1}rem`;
   }};
-  transition: 0.8s;
+  transition: 0.3s ease-in;
   background-color: ${COLOR.primary};
   border-radius: 10px;
 
@@ -50,12 +50,12 @@ export const ButtonWrapperDiv = styled.div<{ isMobile: boolean }>`
 `;
 
 export const ToggleButton = styled.button<{ isMobile: boolean }>`
-  width: 50px;
-  height: 25px;
+  width: 3.125rem;
+  height: 1.563rem;
   position: relative;
 
   outline: none;
-  border: 1px solid ${COLOR.line};
+  border: 0.063rem solid ${COLOR.line};
   border-radius: 5px;
   background-color: ${COLOR.offWhite};
   cursor: pointer;
@@ -63,10 +63,10 @@ export const ToggleButton = styled.button<{ isMobile: boolean }>`
   ${(props) =>
     props.isMobile
       ? `
-    bottom: 30px;
+    bottom: 1.875rem;
   `
       : `
-    right: 40px;
+    right: 2.5rem;
     transform: rotate(90deg);
   `};
 
@@ -86,8 +86,16 @@ export const ToggleButton = styled.button<{ isMobile: boolean }>`
   }
 `;
 
+export const CartInfoDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const TotalDiv = styled.div`
   ${TEXT_DISPLAY_SMALL};
+  font-size: 2rem;
   width: 100%;
   padding: 10px 0;
   word-break: keep-all;
