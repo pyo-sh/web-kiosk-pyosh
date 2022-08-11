@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getBill } from "@apis/bill";
 import { PAYMENT_METHOD } from "@constants/payment";
 import { useBillDispatch } from "@hooks/store/bill";
 import { useCartState } from "@hooks/store/cart";
 import { billSet } from "@stores/bill";
+import { getBill } from "@apis/bill";
 
 const CASH_PAYS = [100, 500, 1000, 5000, 10000, 50000];
 

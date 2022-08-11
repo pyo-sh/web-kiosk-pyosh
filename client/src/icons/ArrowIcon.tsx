@@ -1,5 +1,5 @@
-import { COLOR } from "@constants/style";
 import React from "react";
+import { COLOR } from "@constants/style";
 
 type ArrowIconPropsType = {
   width?: number;

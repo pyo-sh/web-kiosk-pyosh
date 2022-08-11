@@ -1,9 +1,8 @@
 import React, { useState } from "react";
+import { AcceptButton, CancelButton, ContainerDiv } from "./CartButtons.style";
 import { useCartDispatch, useCartState } from "@hooks/store/cart";
 import { cartClear } from "@stores/cart";
-import Modal from "@components/custom/Modal";
 import Payment from "@components/payment";
-import { AcceptButton, CancelButton, ContainerDiv } from "./CartButtons.style";
 
 const CartButtons: React.FC = () => {
   const { products } = useCartState();

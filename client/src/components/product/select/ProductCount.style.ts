@@ -1,5 +1,5 @@
-import { COLOR, TEXT_DISPLAY_SMALL } from "@constants/style";
 import styled from "@emotion/styled";
+import { COLOR, TEXT_DISPLAY_SMALL } from "@constants/style";
 
 export const ContainerDiv = styled.div`
   padding: 0 10px;

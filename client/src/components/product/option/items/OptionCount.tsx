@@ -8,7 +8,6 @@ import {
   CountNameTagSpan,
   CountSection,
   CountSpan,
-  NameTagSpan,
   WrapperCountLabel,
 } from "./OptionItems.style";
 import ArrowIcon from "@icons/ArrowIcon";

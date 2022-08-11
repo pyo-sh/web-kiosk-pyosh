@@ -1,6 +1,6 @@
-import { BOX_SHADOW, COLOR, TEXT_BOLD_LARGE } from "@constants/style";
-import { TRANSFORM_MAIN_ARRAY, TRANSFORM_SUB_ARRAY } from "@constants/transform";
 import styled from "@emotion/styled";
+import { BOX_SHADOW, TEXT_BOLD_LARGE } from "@constants/style";
+import { TRANSFORM_MAIN_ARRAY, TRANSFORM_SUB_ARRAY } from "@constants/transform";
 
 export const ContainerLI = styled.li<{ rand: number }>`
   ${BOX_SHADOW}

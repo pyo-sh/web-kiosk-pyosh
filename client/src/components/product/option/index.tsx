@@ -1,5 +1,5 @@
 import React from "react";
-import { ContainerDiv, OptionContainerDiv, OptionTitleH3 } from "./index.style";
+import { ContainerDiv } from "./index.style";
 import OptionType from "@kiosk/common/types/option";
 import { useOptionState } from "@hooks/store/option";
 import OptionCollapse from "./OptionCollapse";

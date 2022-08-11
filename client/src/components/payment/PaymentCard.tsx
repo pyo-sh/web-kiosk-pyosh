@@ -1,9 +1,9 @@
-import { getBill } from "@apis/bill";
-import { PAYMENT_METHOD } from "@constants/payment";
+import React, { useEffect } from "react";
 import { useBillDispatch } from "@hooks/store/bill";
 import { useCartState } from "@hooks/store/cart";
+import { PAYMENT_METHOD } from "@constants/payment";
 import { billSet } from "@stores/bill";
-import React, { useEffect } from "react";
+import { getBill } from "@apis/bill";
 
 const MIN = 300;
 const MAX = 700;

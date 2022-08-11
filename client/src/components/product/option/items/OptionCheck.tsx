@@ -1,9 +1,9 @@
 import React from "react";
+import { CheckSpan, HideInput, NameTagSpan, WrapperLabel } from "./OptionItems.style";
 import Option from "@kiosk/common/types/option";
 import { useOptionDispatch, useOptionState } from "@hooks/store/option";
 import { CheckSelection } from "@constants/option";
 import { optionSelectCheck } from "@src/stores/option";
-import { CheckSpan, HideInput, NameTagSpan, WrapperLabel } from "./OptionItems.style";
 
 type OptionCheckPropsType = {
   category: string;

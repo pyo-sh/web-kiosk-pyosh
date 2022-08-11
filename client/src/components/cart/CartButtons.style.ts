@@ -1,5 +1,5 @@
-import { BTN_STYLE, CANCEL_BTN_STYLE, COLOR, TEXT_BOLD_LARGE } from "@constants/style";
 import styled from "@emotion/styled";
+import { BTN_STYLE, CANCEL_BTN_STYLE, COLOR, TEXT_BOLD_LARGE } from "@constants/style";
 
 export const ContainerDiv = styled.div`
   width: 100%;

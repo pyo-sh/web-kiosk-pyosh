@@ -1,5 +1,5 @@
-import { HIDE_SCROLL_BAR } from "@constants/style";
 import styled from "@emotion/styled";
+import { HIDE_SCROLL_BAR } from "@constants/style";
 
 export const WrapperDiv = styled.div`
   flex: 0 0 auto;

@@ -1,7 +1,7 @@
-import Menu from "@kiosk/common/types/menu";
 import React from "react";
-import ProductItem from "./ProductItem";
 import { ContainerUL, WrapperDiv } from "./ProductList.style";
+import Menu from "@kiosk/common/types/menu";
+import ProductItem from "./ProductItem";
 
 type ProductListPropsType = {
   menu: Menu;

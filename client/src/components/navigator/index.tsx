@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
-import useDraggable from "@hooks/useDraggable";
 import { ContainerHeader, TitleH1, MenuNav, ControlButton, MenuUL } from "./index.style";
 import Menu from "@kiosk/common/types/menu";
+import useDraggable from "@hooks/useDraggable";
 
 interface NavigatorPropsType {
   menus: Menu[];

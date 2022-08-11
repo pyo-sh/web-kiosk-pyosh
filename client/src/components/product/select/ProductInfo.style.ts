@@ -2,6 +2,7 @@ import { PROTECT_DRAG_IMAGE, TEXT_BODY_MEDIUM, TEXT_DISPLAY_SMALL } from "@const
 import styled from "@emotion/styled";
 
 export const ContainerDiv = styled.div`
+  min-width: 13.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

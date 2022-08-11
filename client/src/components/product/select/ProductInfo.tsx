@@ -1,5 +1,5 @@
-import Product from "@kiosk/common/types/product";
 import React from "react";
+import Product from "@kiosk/common/types/product";
 import { ContainerDiv, Image, PriceSpan, TitleH3 } from "./ProductInfo.style";
 
 type ProductInfoPropsType = {

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { ContainerDiv, MenuWrapperDiv } from "./index.style";
 import type Menu from "@kiosk/common/types/menu";
 import { getAllProductsWithMenu } from "@apis/product";
 import ProductList from "@components/product/ProductList";
 import Navigator from "@components/navigator";
-import { ContainerDiv, MenuWrapperDiv } from "./index.style";
 
 const Product: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState<number>(-1);

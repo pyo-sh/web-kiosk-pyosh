@@ -1,10 +1,10 @@
-import { useCartDispatch } from "@hooks/store/cart";
-import { useOptionDispatch, useOptionState } from "@hooks/store/option";
-import Product from "@kiosk/common/types/product";
-import { cartAddProduct } from "@src/stores/cart";
-import { optionPickClear } from "@src/stores/option";
 import React from "react";
 import { AddButton, ContainerDiv } from "./ProductButtons.style";
+import Product from "@kiosk/common/types/product";
+import { useCartDispatch } from "@hooks/store/cart";
+import { useOptionDispatch, useOptionState } from "@hooks/store/option";
+import { cartAddProduct } from "@src/stores/cart";
+import { optionPickClear } from "@src/stores/option";
 
 type ProductButtonsPropsType = {
   product: Product;

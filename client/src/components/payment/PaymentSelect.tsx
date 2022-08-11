@@ -1,6 +1,6 @@
-import Modal from "@components/custom/Modal";
-import { PAYMENT_METHOD, PaymentMethodEnum } from "@constants/payment";
 import React from "react";
+import { PAYMENT_METHOD, PaymentMethodEnum } from "@constants/payment";
+import Modal from "@components/custom/Modal";
 
 type PaymentSelectPropsType = {
   isOpen: boolean;

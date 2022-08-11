@@ -1,9 +1,9 @@
 import React from "react";
+import { HideInput, NameTagSpan, RadioSpan, WrapperLabel } from "./OptionItems.style";
 import Option from "@kiosk/common/types/option";
 import { useOptionDispatch, useOptionState } from "@hooks/store/option";
 import { RadioSelection } from "@constants/option";
 import { optionSelectRadio } from "@src/stores/option";
-import { HideInput, NameTagSpan, RadioSpan, WrapperLabel } from "./OptionItems.style";
 
 type OptionRadioPropsType = {
   category: string;

@@ -1,5 +1,5 @@
-import { CheckSelection, CountSelection, OptionGroup, OptionSelection } from "@constants/option";
 import Option from "@kiosk/common/types/option";
+import { CheckSelection, CountSelection, OptionGroup, OptionSelection } from "@constants/option";
 import { getEmptyState, getOptionInfo, groupOptions } from "@utils/optionRefactor";
 
 // State

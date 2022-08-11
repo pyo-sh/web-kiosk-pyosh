@@ -1,5 +1,5 @@
-import { COLOR, TEXT_BOLD_MEDIUM, TEXT_DISPLAY_SMALL } from "@constants/style";
 import styled from "@emotion/styled";
+import { COLOR, TEXT_DISPLAY_SMALL } from "@constants/style";
 
 export const CART_TABLET_WIDTH = 500;
 export const CART_MOBILE_HEIGHT = 370;

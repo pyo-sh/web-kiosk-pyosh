@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { ContainerRowDiv, ContainerColDiv } from "./Order.style";
-import Product from "@components/product";
-import Cart from "@components/cart";
 import { MediaContext } from "@hooks/useMediaQuery";
 import { CartProvider } from "@hooks/store/cart";
 import { BillProvider } from "@hooks/store/bill";
+import Product from "@components/product";
+import Cart from "@components/cart";
 import Receipt from "@components/receipt";
 
 const OrderPage: React.FC = () => {

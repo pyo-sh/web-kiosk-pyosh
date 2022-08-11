@@ -1,9 +1,9 @@
+import React, { useContext, useRef, useState } from "react";
+import { ButtonWrapperDiv, ContainerDiv, ToggleButton, TotalDiv, WrapperDiv } from "./index.style";
 import { useCartState } from "@hooks/store/cart";
 import { MediaContext } from "@hooks/useMediaQuery";
-import React, { useContext, useRef, useState } from "react";
 import CartButtons from "./CartButtons";
 import CartList from "./CartList";
-import { ButtonWrapperDiv, ContainerDiv, ToggleButton, TotalDiv, WrapperDiv } from "./index.style";
 
 const Cart: React.FC = () => {
   const [isShow, setIsShow] = useState<boolean>(false);

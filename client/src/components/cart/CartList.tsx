@@ -1,7 +1,7 @@
-import { useCartDispatch, useCartState } from "@hooks/store/cart";
-import { cartDeleteProduct, cartEditCount } from "@stores/cart";
 import React from "react";
 import { ContainerUL } from "./CartList.style";
+import { useCartDispatch, useCartState } from "@hooks/store/cart";
+import { cartDeleteProduct, cartEditCount } from "@stores/cart";
 
 const CartList: React.FC = () => {
   const cartDispatch = useCartDispatch();

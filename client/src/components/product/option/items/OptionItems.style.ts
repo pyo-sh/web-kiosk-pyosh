@@ -1,5 +1,5 @@
-import { COLOR, TEXT_BODY_REGULAR, TEXT_BOLD_LARGE, TEXT_BOLD_MEDIUM } from "@constants/style";
 import styled from "@emotion/styled";
+import { COLOR, TEXT_BODY_REGULAR, TEXT_BOLD_MEDIUM } from "@constants/style";
 
 export const WrapperLabel = styled.label`
   padding-left: 0.5rem;
