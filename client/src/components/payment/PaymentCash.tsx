@@ -4,6 +4,14 @@ import { useBillDispatch } from "@hooks/store/bill";
 import { useCartState } from "@hooks/store/cart";
 import { billSet } from "@stores/bill";
 import { getBill } from "@apis/bill";
+import {
+  CancelButton,
+  CashButton,
+  CashWrapperDiv,
+  ContainerDiv,
+  PayInfoDiv,
+  PayInfoSpan,
+} from "./PaymentCash.style";
 
 const CASH_PAYS = [100, 500, 1000, 5000, 10000, 50000];
 
@@ -33,18 +41,20 @@ const PaymentCash: React.FC<{ closeModal: () => void }> = ({ closeModal }) => {
   if (isLoading) return <div>로딩중</div>;
 
   return (
-    <div>
-      <ul>
+    <ContainerDiv>
+      <CashWrapperDiv>
         {CASH_PAYS.map((pay) => (
-          <li key={`pay-${pay}`} onClick={onClickList(pay)}>
+          <CashButton key={`pay-${pay}`} onClick={onClickList(pay)}>
             {pay}
-          </li>
+          </CashButton>
         ))}
-      </ul>
-      <div>주문 금액 : {cartState.totalPrice}</div>
-      <div>투입 금액 : {paymentPrice}</div>
-      <button onClick={closeModal}>뒤로가기</button>
-    </div>
+      </CashWrapperDiv>
+      <PayInfoDiv>
+        <PayInfoSpan>투입 금액 : {paymentPrice}</PayInfoSpan>
+        <PayInfoSpan>주문 금액 : {cartState.totalPrice}</PayInfoSpan>
+      </PayInfoDiv>
+      <CancelButton onClick={closeModal}>뒤로가기</CancelButton>
+    </ContainerDiv>
   );
 };
 
