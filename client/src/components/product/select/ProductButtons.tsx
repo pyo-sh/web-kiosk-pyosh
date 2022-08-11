@@ -4,7 +4,7 @@ import Product from "@kiosk/common/types/product";
 import { cartAddProduct } from "@src/stores/cart";
 import { optionPickClear } from "@src/stores/option";
 import React from "react";
-import { ContainerDiv } from "./ProductButtons.style";
+import { AddButton, ContainerDiv } from "./ProductButtons.style";
 
 type ProductButtonsPropsType = {
   product: Product;
@@ -24,8 +24,7 @@ const ProductButtons: React.FC<ProductButtonsPropsType> = ({ product, closeModal
 
   return (
     <ContainerDiv>
-      <button onClick={closeModal}>취소</button>
-      <button onClick={addProduct}>추가</button>
+      <AddButton onClick={addProduct}>추가</AddButton>
     </ContainerDiv>
   );
 };

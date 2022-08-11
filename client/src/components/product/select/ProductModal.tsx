@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import {
   ButtonWrapperDiv,
   CloseButton,
+  CollectorWrapperDiv,
   ContainerDiv,
   ModalExitAnimateCSS,
   ModalShowAnimateCSS,
@@ -70,14 +71,14 @@ const ProductModal: React.FC<ProductModalPropsType> = ({ product, isOpen, closeM
             <XIcon color={COLOR.offWhite} />
           </CloseButton>
         </ButtonWrapperDiv>
-        <div>
-          <ProductInfo product={product} />
-          <ProductCount />
-        </div>
-        <div>
+        <CollectorWrapperDiv isMobile={isMobile}>
+          <div>
+            <ProductInfo product={product} />
+            <ProductCount />
+          </div>
           <ProductOption />
-          <ProductButtons product={product} closeModal={fireCloseAnimate} />
-        </div>
+        </CollectorWrapperDiv>
+        <ProductButtons product={product} closeModal={fireCloseAnimate} />
       </ContainerDiv>
     </Modal>
   );

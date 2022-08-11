@@ -35,19 +35,18 @@ export const ModalExitAnimateCSS = css`
 export const ContainerDiv = styled.div<{ isMobile: boolean }>`
   ${PROTECT_DRAG}
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 
   margin: 20px;
   ${({ isMobile }) =>
     isMobile
       ? `
-      flex-direction: column;
-      align-items: center;
       word-break: break-all;
       white-space: normal;
     `
       : `
-      flex-direction: row;
       align-items: flex-start;
       word-break: keep-all;
       white-space: nowrap;
@@ -76,4 +75,18 @@ export const CloseButton = styled.button`
   &:hover {
     background-color: ${COLOR.primary2};
   }
+`;
+
+export const CollectorWrapperDiv = styled.div<{ isMobile: boolean }>`
+  display: flex;
+  ${({ isMobile }) =>
+    isMobile
+      ? `
+      flex-direction: column;
+      align-items: center;
+    `
+      : `
+      flex-direction: row;
+      align-items: flex-start;
+    `}
 `;
