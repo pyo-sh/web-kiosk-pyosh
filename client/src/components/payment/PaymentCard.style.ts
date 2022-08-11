@@ -38,7 +38,7 @@ export const ClockLoaderDiv = styled.div`
     border-radius: 5px;
     background-color: ${COLOR.primary};
     transform-origin: 50% 100%;
-    animation: grdAiguille 2s linear infinite;
+    animation: ${grdAiguille} 2s linear infinite;
   }
 
   &:before {
@@ -51,6 +51,6 @@ export const ClockLoaderDiv = styled.div`
     border-radius: 5px;
     background-color: ${COLOR.primary};
     transform-origin: 50% 100%;
-    animation: grdAiguille 12s linear infinite;
+    animation: ${grdAiguille} 12s linear infinite;
   }
 `;

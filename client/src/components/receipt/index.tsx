@@ -6,7 +6,7 @@ import { BackButton, BillDiv, ContainerDiv, InfoDiv, InfoSpan, TitleH1 } from ".
 
 const Receipt: React.FC = () => {
   const billDispatch = useBillDispatch();
-  const { id, content, paymentMethod, paymentPrice, totalPrice, createdAt } = useBillState();
+  const { id, content, paymentMethod, paymentPrice, totalPrice } = useBillState();
   const isCash = paymentMethod === PAYMENT_METHOD.CASH;
 
   const clearBill = () => {

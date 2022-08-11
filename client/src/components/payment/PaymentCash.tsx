@@ -12,6 +12,7 @@ import {
   PayInfoDiv,
   PayInfoSpan,
 } from "./PaymentCash.style";
+import { ContainerDiv as ContainerDivDiv, ClockLoaderDiv } from "./PaymentCard.style";
 
 const CASH_PAYS = [100, 500, 1000, 5000, 10000, 50000];
 
@@ -32,13 +33,19 @@ const PaymentCash: React.FC<{ closeModal: () => void }> = ({ closeModal }) => {
   };
 
   useEffect(() => {
+    if (isLoading) return;
     if (paymentPrice >= cartState.totalPrice) {
       setIsLoading(true);
       successPay();
     }
   }, [paymentPrice]);
 
-  if (isLoading) return <div>로딩중</div>;
+  if (isLoading)
+    return (
+      <ContainerDivDiv>
+        <ClockLoaderDiv></ClockLoaderDiv>
+      </ContainerDivDiv>
+    );
 
   return (
     <ContainerDiv>

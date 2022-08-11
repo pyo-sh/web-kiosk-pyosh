@@ -71,7 +71,6 @@ const CartList: React.FC = () => {
                 ))}
               </OptionWrapperDiv>
               <PriceWrapperDiv isMobile={isMobile}>
-                <PriceSpan>{nowPrice}원</PriceSpan>
                 <ButtonWrapperDiv>
                   <CountButton onClick={onEditCount} value={index} data-gap={-1}>
                     <ArrowIcon rotate={90} />
@@ -81,6 +80,7 @@ const CartList: React.FC = () => {
                     <ArrowIcon rotate={-90} />
                   </CountButton>
                 </ButtonWrapperDiv>
+                <PriceSpan>{nowPrice}원</PriceSpan>
               </PriceWrapperDiv>
             </ItemInfoSection>
             <DeleteButton onClick={onDeleteProduct} value={index}>
