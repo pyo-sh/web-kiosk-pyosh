@@ -9,6 +9,8 @@ import {
   TitleH3,
   ButtonWrapperDiv,
   CountSpan,
+  PriceSpan,
+  PriceWrapperDiv,
 } from "./CartList.style";
 import { useCartDispatch, useCartState } from "@hooks/store/cart";
 import { cartDeleteProduct, cartEditCount } from "@stores/cart";
@@ -36,24 +38,27 @@ const CartList: React.FC = () => {
 
   return (
     <ContainerUL>
-      {products.map(({ count, product, optionContent, price }, index) => {
-        const { name, image } = product;
+      {products.map(({ count, product, optionContent, optionPrice }, index) => {
+        const { name, image, price } = product;
         const optionContents = optionContent;
+        const nowPrice = (price + optionPrice) * count;
         return (
           <ItemLI key={`${name}-${optionContents}`}>
             <Image isMobile={isMobile} src={image} />
             <ItemInfoSection>
               <TitleH3>{product.name}</TitleH3>
-              <div>{price}</div>
-              <ButtonWrapperDiv>
-                <CountButton onClick={onEditCount} value={index} data-gap={-1}>
-                  <ArrowIcon rotate={90} />
-                </CountButton>
-                <CountSpan>{count}</CountSpan>
-                <CountButton onClick={onEditCount} value={index} data-gap={1}>
-                  <ArrowIcon rotate={-90} />
-                </CountButton>
-              </ButtonWrapperDiv>
+              <PriceWrapperDiv isMobile={isMobile}>
+                <PriceSpan>{nowPrice}원</PriceSpan>
+                <ButtonWrapperDiv>
+                  <CountButton onClick={onEditCount} value={index} data-gap={-1}>
+                    <ArrowIcon rotate={90} />
+                  </CountButton>
+                  <CountSpan>{count}</CountSpan>
+                  <CountButton onClick={onEditCount} value={index} data-gap={1}>
+                    <ArrowIcon rotate={-90} />
+                  </CountButton>
+                </ButtonWrapperDiv>
+              </PriceWrapperDiv>
             </ItemInfoSection>
             <DeleteButton onClick={onDeleteProduct} value={index}>
               제<br />거

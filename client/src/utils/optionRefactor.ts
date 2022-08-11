@@ -102,5 +102,5 @@ export const getOptionInfo = ({
   );
 
   const optionContent = productStrings.filter((s) => s).join(",");
-  return { price: totalPrice, optionContent };
+  return { optionPrice: totalPrice, optionContent };
 };

@@ -5,7 +5,7 @@ import { getEmptyState, getOptionInfo, groupOptions } from "@utils/optionRefacto
 // State
 export type OptionState = {
   count: number;
-  price: number;
+  optionPrice: number;
   optionContent: string;
   options: Option[];
   optionsMap: OptionGroup;
@@ -14,7 +14,7 @@ export type OptionState = {
 
 export const initialOptionType = Object.freeze({
   count: 1,
-  price: 0,
+  optionPrice: 0,
   optionContent: "",
   options: [],
   optionsMap: new Map(),

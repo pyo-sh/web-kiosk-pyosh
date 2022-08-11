@@ -69,6 +69,30 @@ export const TitleH3 = styled.h3`
   padding: 0;
 `;
 
+export const PriceWrapperDiv = styled.div<{ isMobile: boolean }>`
+  width: 100%;
+  flex: 0;
+  display: flex;
+  ${({ isMobile }) =>
+    isMobile
+      ? `
+    align-items: center;
+    justify-content: space-between;
+    `
+      : `
+    flex-direction: column;
+    align-items: flex-start;
+    `}
+`;
+
+export const PriceSpan = styled.span`
+  ${TEXT_BODY_MEDIUM}
+  font-size: 1.1rem;
+
+  text-align: center;
+  word-break: break-all;
+`;
+
 export const ButtonWrapperDiv = styled.div`
   display: flex;
   align-items: center;
@@ -110,6 +134,7 @@ export const DeleteButton = styled.button`
   ${CANCEL_BTN_STYLE}
   height: 100%;
   padding: 0.5rem;
+  margin-left: 0.75rem;
   font-size: 1.2rem;
   border-radius: 5px;
   background-color: ${COLOR.yellow};

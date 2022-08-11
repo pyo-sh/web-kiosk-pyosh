@@ -4,7 +4,7 @@ import Product from "@kiosk/common/types/product";
 // State
 type CartProduct = {
   count: number;
-  price: number;
+  optionPrice: number;
   product: Omit<Product, "options">;
   options: OptionSelection;
   optionContent: string;
@@ -65,7 +65,7 @@ export default function reducer(state: CartState, action: CartAction): CartState
       return { ...initialCartType };
     case CART_ADD_PRODUCT: {
       const { type, ...newProduct } = action as ReturnType<typeof cartAddProduct>;
-      const { product, price: optionPrice, count } = newProduct;
+      const { product, optionPrice, count } = newProduct;
       const newTotal = state.totalPrice + (product.price + optionPrice) * count;
       return {
         ...state,
@@ -83,7 +83,7 @@ export default function reducer(state: CartState, action: CartAction): CartState
       const amount = (target.count || 0) + (gap || 0);
       if (amount <= 0) return state;
 
-      const { product, price: optionPrice } = target;
+      const { product, optionPrice } = target;
       const newTotal = state.totalPrice + (product.price + optionPrice) * gap;
       target.count = amount;
 
@@ -104,7 +104,7 @@ export default function reducer(state: CartState, action: CartAction): CartState
       if (0 > cartIndex || cartIndex > len) return state;
 
       const target = state.products[cartIndex];
-      const { product, price: optionPrice, count } = target;
+      const { product, optionPrice, count } = target;
       const newTotal = state.totalPrice - (product.price + optionPrice) * count;
 
       return {
