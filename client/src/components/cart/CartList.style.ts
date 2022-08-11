@@ -10,8 +10,6 @@ import {
 } from "@constants/style";
 
 export const ContainerUL = styled.ul`
-  ${HIDE_SCROLL_BAR}
-
   flex: 1 1 0;
   padding: 1rem;
   margin: 0 0 10px 0;
@@ -28,6 +26,14 @@ export const ContainerUL = styled.ul`
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: ${COLOR.titleActive};
+  }
 `;
 
 export const ItemLI = styled.li`
