@@ -6,6 +6,7 @@ export const ContainerColDiv = styled.div`
 
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `;
 
 export const ContainerRowDiv = styled.div`
@@ -13,4 +14,5 @@ export const ContainerRowDiv = styled.div`
   height: 100%;
 
   display: flex;
+  overflow: hidden;
 `;
