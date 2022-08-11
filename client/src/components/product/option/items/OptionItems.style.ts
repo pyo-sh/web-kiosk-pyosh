@@ -116,7 +116,8 @@ export const CountSpan = styled.span`
 
 export const WrapperCountLabel = styled(WrapperLabel)`
   flex: 1;
+  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 `;
