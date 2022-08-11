@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { BTN_STYLE } from "@constants/style";
 
 export const ContainerDiv = styled.div`
+  flex: 0 0 auto;
   width: 100%;
   margin-top: 1.5rem;
 `;

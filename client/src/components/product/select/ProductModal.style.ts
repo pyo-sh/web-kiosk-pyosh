@@ -33,13 +33,16 @@ export const ModalExitAnimateCSS = css`
 `;
 
 export const ContainerDiv = styled.div<{ isMobile: boolean }>`
+  width: 100%;
+  height: 100%;
+
   ${PROTECT_DRAG}
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  margin: 20px;
+  padding: 20px;
   ${({ isMobile }) =>
     isMobile
       ? `
@@ -78,6 +81,7 @@ export const CloseButton = styled.button`
 `;
 
 export const CollectorWrapperDiv = styled.div<{ isMobile: boolean }>`
+  flex: 1;
   display: flex;
   ${({ isMobile }) =>
     isMobile
