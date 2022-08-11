@@ -74,4 +74,49 @@ export const NameTagSpan = styled.span`
   font-size: 1.125rem;
 `;
 
-export const CountButton = styled.button``;
+export const CountNameTagSpan = styled(NameTagSpan)`
+  padding-left: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const CountSection = styled.section`
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+`;
+
+export const CountButton = styled.button`
+  width: 1.375rem;
+  height: 1.375rem;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  outline: none;
+  border: none;
+  border-radius: 0.188rem;
+  background-color: ${COLOR.primary};
+`;
+
+export const CountSpan = styled.span`
+  ${TEXT_BOLD_MEDIUM}
+  width: 3.125rem;
+  padding: 0.125rem 0.5rem 0 0.5rem;
+  text-align: center;
+  font-size: 1.125rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+export const WrapperCountLabel = styled(WrapperLabel)`
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
