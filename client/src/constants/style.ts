@@ -37,9 +37,6 @@ export const BTN_STYLE = `
   &:hover {
     background-color: ${COLOR.primary3};
   }
-  &:focus {
-    border: 2px solid ${COLOR.primary2};
-  }
   &:disabled {
     background-color: ${COLOR.primary2};
   }
@@ -54,9 +51,6 @@ export const CANCEL_BTN_STYLE = `
   cursor: pointer;
   &:hover {
     background-color: ${COLOR.darkError};
-  }
-  &:focus {
-    border: 2px solid ${COLOR.lightError};
   }
   &:disabled {
     background-color: ${COLOR.lightError};
