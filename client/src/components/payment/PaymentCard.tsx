@@ -4,9 +4,10 @@ import { useCartState } from "@hooks/store/cart";
 import { PAYMENT_METHOD } from "@constants/payment";
 import { billSet } from "@stores/bill";
 import { getBill } from "@apis/bill";
+import { ClockLoaderDiv, ContainerDiv } from "./PaymentCard.style";
 
-const MIN = 300;
-const MAX = 700;
+const MIN = 3000;
+const MAX = 7000;
 
 const PaymentCard: React.FC<{ closeModal: () => void }> = () => {
   const billDispatch = useBillDispatch();
@@ -25,7 +26,11 @@ const PaymentCard: React.FC<{ closeModal: () => void }> = () => {
     }, second);
   }, []);
 
-  return <div>로딩중</div>;
+  return (
+    <ContainerDiv>
+      <ClockLoaderDiv></ClockLoaderDiv>
+    </ContainerDiv>
+  );
 };
 
 export default PaymentCard;
