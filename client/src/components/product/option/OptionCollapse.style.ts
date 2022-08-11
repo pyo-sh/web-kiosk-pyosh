@@ -31,33 +31,31 @@ export const TitleH3 = styled.h3`
 `;
 
 export const SignSpan = styled.span<{ isOpen: boolean }>`
-  width: 12px;
-  height: 12px;
-  margin-bottom: 10px;
-  margin-right: 12px;
+  width: 0.875rem;
+  height: 0.875rem;
   padding: 0;
   border: none;
   outline: none;
   background-color: ${COLOR.offWhite};
   color: ${COLOR.titleActive};
   cursor: pointer;
+  position: relative;
+  top: 0.25rem;
 
   &::before,
   &::after {
     content: "";
-    width: 12px;
-    height: 2px;
+    width: 0.875rem;
+    height: 0.125rem;
 
-    display: inline-block;
-    position: relative;
-    top: -4px;
+    display: block;
+    position: absolute;
 
     background-color: ${COLOR.darkGreen};
     border-radius: 10px;
-    transition: transform 0.1s ease-out;
+    transition: transform 0.2s ease-out;
   }
   &::after {
-    left: -12px;
     ${({ isOpen }) => (isOpen ? "" : "transform: rotate(90deg)")};
   }
 `;
