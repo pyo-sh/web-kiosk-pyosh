@@ -118,7 +118,67 @@ yarn set version berry && yarn set version latest
    ```sh
    yarn dlx @yarnpkg/sdks vscode
    ```
-4. Set Environments in `.env` (**[Environments](<https://github.com/woowa-techcamp-2022/web-kiosk-pyosh/wiki/Environments-(dotenv)>)**)
+4. Set Environments in `.env` (**[Environments](https://chrome-submarine-cd8.notion.site/3042528af9fa4cb2abaab34f557d18f6)**)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## UIs
+
+### 메인 화면
+
+현재 DB에 저장되어 있는 상품 목록을 들고와 제공해줍니다
+
+<img width="820" alt="image" src="https://user-images.githubusercontent.com/55688122/184220720-42f369fe-671d-4c6c-923a-d7ca3dc832cb.png">
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### 상품 선택 및 옵션 선택
+
+상품을 클릭하면 옵션을 선택할 수 있는 모달 창이 뜹니다
+
+아래와 같이 수량, 옵션들을 선택할 수 있고 주문 목록에 넣을 수 있습니다
+
+|                                                              초기 옵션 선택                                                               |                                                               옵션 선택 후                                                                |
+| :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: |
+| <img width="410" alt="image" src="https://user-images.githubusercontent.com/55688122/184220806-26bb4c78-3180-413e-ab11-39dbe429d41d.png"> | <img width="410" alt="image" src="https://user-images.githubusercontent.com/55688122/184221119-ba3067c2-7f20-4300-974a-5b387136bef4.png"> |
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### 장바구니 확인
+
+담은 물품들을 확인할 수 있습니다
+
+모바일과 태블릿으로 나누어져 있습니다
+
+|                                                                  태블릿                                                                   |                                                                  모바일                                                                   |
+| :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: |
+| <img width="615" alt="image" src="https://user-images.githubusercontent.com/55688122/184221430-74a42901-6cda-4741-a902-0ad7a1a2ac20.png"> | <img width="205" alt="image" src="https://user-images.githubusercontent.com/55688122/184221504-cee2c519-857c-4d6c-a4a8-3b44d20cc4a5.png"> |
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### 결제
+
+어떤 방법으로 결제할 것인지 정할 수 있습니다
+
+카드는 3~7초 후 자동 결제됩니다
+
+현금은 현재 액수를 넘을 때 결제됩니다
+
+|                                                                 방법 선택                                                                 |                                                                 현금 결제                                                                 |                                                                 카드 결제                                                                 |
+| :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------: |
+| <img width="266" alt="image" src="https://user-images.githubusercontent.com/55688122/184221664-c64640dd-57e4-446a-80b6-bd2838df9583.png"> | <img width="266" alt="image" src="https://user-images.githubusercontent.com/55688122/184221931-39dc613b-0bf6-4abc-97df-d0bc73ca66c8.png"> | <img width="266" alt="image" src="https://user-images.githubusercontent.com/55688122/184222246-3b568cad-c78f-4fdf-abbb-5843365575c0.png"> |
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+### 영수증 확인
+
+결제 내역을 서버로 부터 받아온 뒤 확인할 수 있습니다
+
+<img width="266" alt="image" src="https://user-images.githubusercontent.com/55688122/184222387-66bf7761-e650-4eb5-ba2d-c97820e383c6.png">
+
+<!-- References -->
+<!-- https://github.com/othneildrew/Best-README-Template -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -129,7 +189,3 @@ yarn set version berry && yarn set version latest
 ![image](https://user-images.githubusercontent.com/55688122/183259287-319d1fcb-01f2-4cf2-bd29-c524f9aec44d.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- References -->
-<!-- https://github.com/othneildrew/Best-README-Template -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->

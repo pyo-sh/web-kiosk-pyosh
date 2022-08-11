@@ -28,12 +28,17 @@ const Payment: React.FC<PaymentPropsType> = ({ isOpen, closeModal }) => {
     setPayment(payment);
   };
 
-  if (!payment) return <PaymentSelect {...{ isOpen, closeModal, onClickPayment }} />;
+  const onClose = () => {
+    setPayment(undefined);
+    closeModal();
+  };
+
+  if (!payment) return <PaymentSelect {...{ isOpen, closeModal: onClose, onClickPayment }} />;
 
   const PaymentProcess = selectProcess(payment);
   return (
     <Modal isOpen={isOpen}>
-      <PaymentProcess closeModal={closeModal} />
+      <PaymentProcess closeModal={onClose} />
     </Modal>
   );
 };
