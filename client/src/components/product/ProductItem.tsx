@@ -17,16 +17,14 @@ const ProductItem: React.FC<ProductItemPropsType> = ({ product }) => {
   };
 
   return (
-    <>
+    <OptionProvider>
       <ContainerLI rand={Math.random()} onClick={() => setIsModalOpen(true)}>
         <Image src={image} />
         <Title>{name}</Title>
         <Price>{price}원</Price>
       </ContainerLI>
-      <OptionProvider>
-        <ProductModal {...{ product, isOpen: isModalOpen, closeModal }} />
-      </OptionProvider>
-    </>
+      <ProductModal {...{ product, isOpen: isModalOpen, closeModal }} />
+    </OptionProvider>
   );
 };
 

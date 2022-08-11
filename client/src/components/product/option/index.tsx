@@ -1,5 +1,5 @@
 import React from "react";
-import { ContainerDiv } from "./index.style";
+import { ContainerDiv, OptionContainerDiv, OptionTitleH3 } from "./index.style";
 import Option from "@kiosk/common/types/option";
 import OptionRadio from "./OptionRadio";
 import OptionCheck from "./OptionCheck";
@@ -32,10 +32,10 @@ const ProductOption: React.FC = () => {
         const optionType = opts[0].optionType;
         const OptionItems = getOptionComponent(optionType);
         return (
-          <div key={`option-${category}`}>
-            <h3>{category}</h3>
+          <OptionContainerDiv key={`option-${category}`}>
+            <OptionTitleH3>{category}</OptionTitleH3>
             <OptionItems category={category} siblingOptions={opts} />
-          </div>
+          </OptionContainerDiv>
         );
       })}
     </ContainerDiv>

@@ -35,11 +35,23 @@ export const ModalExitAnimateCSS = css`
 export const ContainerDiv = styled.div<{ isMobile: boolean }>`
   ${PROTECT_DRAG}
   display: flex;
-  flex-direction: ${({ isMobile }) => (isMobile ? "column" : "row")};
-  align-items: ${({ isMobile }) => (isMobile ? "center" : "flex-start")};
   justify-content: center;
 
   margin: 20px;
+  ${({ isMobile }) =>
+    isMobile
+      ? `
+      flex-direction: column;
+      align-items: center;
+      word-break: break-all;
+      white-space: normal;
+    `
+      : `
+      flex-direction: row;
+      align-items: flex-start;
+      word-break: keep-all;
+      white-space: nowrap;
+    `}
 `;
 
 export const ButtonWrapperDiv = styled.div`

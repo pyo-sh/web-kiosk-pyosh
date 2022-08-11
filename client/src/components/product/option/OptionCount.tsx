@@ -3,6 +3,7 @@ import Option from "@kiosk/common/types/option";
 import { useOptionDispatch, useOptionState } from "@hooks/store/option";
 import { CountSelection } from "@constants/option";
 import { optionSelectCount } from "@src/stores/option";
+import { WrapperLabel } from "./OptionItem.style";
 
 type OptionCountPropsType = {
   category: string;
@@ -28,7 +29,7 @@ const OptionCount: React.FC<OptionCountPropsType> = ({ category, siblingOptions 
       {siblingOptions.map(({ id, name, price }) => {
         const priceString = price ? ` (${price})` : "";
         return (
-          <label key={`option-${id}`}>
+          <WrapperLabel key={`option-${id}`}>
             <span>
               {name}
               {priceString}
@@ -40,7 +41,7 @@ const OptionCount: React.FC<OptionCountPropsType> = ({ category, siblingOptions 
             <button onClick={onClickCount} name={category} value={id} data-gap={1}>
               {">"}
             </button>
-          </label>
+          </WrapperLabel>
         );
       })}
     </>
