@@ -7,7 +7,7 @@ type CartProduct = {
   optionPrice: number;
   product: Omit<Product, "options">;
   options: OptionSelection;
-  optionContent: string;
+  optionContents: string[];
 };
 export type CartState = {
   totalPrice: number;

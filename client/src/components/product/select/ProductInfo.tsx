@@ -10,7 +10,6 @@ type ProductInfoPropsType = {
 const ProductInfo: React.FC<ProductInfoPropsType> = ({ product }) => {
   const { name, price, image } = product;
   const { optionPrice, count } = useOptionState();
-  console.log(optionPrice);
   const nowPrice = (price + optionPrice) * count;
 
   return (

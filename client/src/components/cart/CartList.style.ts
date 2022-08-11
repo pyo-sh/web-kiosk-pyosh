@@ -59,6 +59,7 @@ export const ItemInfoSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  overflow: hidden;
 `;
 
 export const TitleH3 = styled.h3`
@@ -67,6 +68,45 @@ export const TitleH3 = styled.h3`
 
   margin: 0;
   padding: 0;
+`;
+
+export const OptionWrapperDiv = styled.div`
+  max-width: 100%;
+  padding-bottom: 0.125rem;
+  overflow-x: scroll;
+
+  cursor: pointer;
+  &::-webkit-scrollbar {
+    height: 1px;
+  }
+  &::-webkit-scrollbar-thumb {
+    opacity: 0;
+    border-radius: 10px;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background: ${COLOR.primary};
+      opacity: 1;
+    }
+  }
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 0.5rem;
+`;
+
+export const ContentDiv = styled.div`
+  text-align: center;
+  word-break: keep-all;
+  white-space: nowrap;
+
+  padding: 0.125rem 0.375rem;
+  font-size: 0.8rem;
+  border-radius: 15px;
+  color: ${COLOR.offWhite};
+  background-color: ${COLOR.label};
 `;
 
 export const PriceWrapperDiv = styled.div<{ isMobile: boolean }>`
@@ -89,8 +129,8 @@ export const PriceSpan = styled.span`
   ${TEXT_BODY_MEDIUM}
   font-size: 1.1rem;
 
-  text-align: center;
   word-break: break-all;
+  white-space: nowrap;
 `;
 
 export const ButtonWrapperDiv = styled.div`
