@@ -2,6 +2,7 @@ import { PAYMENT_METHOD } from "@constants/payment";
 import { useBillDispatch, useBillState } from "@hooks/store/bill";
 import { billClear } from "@stores/bill";
 import React from "react";
+import { BackButton, BillDiv, ContainerDiv, InfoDiv, InfoSpan, TitleH1 } from "./index.style";
 
 const Receipt: React.FC = () => {
   const billDispatch = useBillDispatch();
@@ -13,15 +14,19 @@ const Receipt: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>주문번호 : {id}</h2>
-      <p>{content}</p>
-      <div>결제방식 : {paymentMethod}</div>
-      <div>투입금액 : {paymentPrice}</div>
-      <div>총 결제금액 : {totalPrice}</div>
-      <div>{isCash ? `잔돈 ${Math.abs(totalPrice - paymentPrice)}` : ""}</div>
-      <button onClick={clearBill}>돌아가기</button>
-    </div>
+    <ContainerDiv>
+      <BillDiv>
+        <TitleH1>주문번호 : {id}</TitleH1>
+        <p>{content}</p>
+        <InfoDiv>
+          <InfoSpan>결제방식 : {paymentMethod}</InfoSpan>
+          <InfoSpan>투입금액 : {paymentPrice}</InfoSpan>
+          <InfoSpan>총 결제금액 : {totalPrice}</InfoSpan>
+          <InfoSpan>{isCash ? `잔돈 ${Math.abs(totalPrice - paymentPrice)}` : ""}</InfoSpan>
+        </InfoDiv>
+      </BillDiv>
+      <BackButton onClick={clearBill}>돌아가기</BackButton>
+    </ContainerDiv>
   );
 };
 
