@@ -1,7 +1,7 @@
 import { COLOR, TEXT_BOLD_MEDIUM, TEXT_DISPLAY_SMALL } from "@constants/style";
 import styled from "@emotion/styled";
 
-export const CART_TABLET_WIDTH = 300;
+export const CART_TABLET_WIDTH = 500;
 export const CART_MOBILE_HEIGHT = 370;
 
 export const WrapperDiv = styled.div<{ isMobile: boolean }>`

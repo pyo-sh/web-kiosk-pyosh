@@ -1,4 +1,5 @@
 import { BOX_SHADOW, COLOR, TEXT_BOLD_LARGE } from "@constants/style";
+import { TRANSFORM_MAIN_ARRAY, TRANSFORM_SUB_ARRAY } from "@constants/transform";
 import styled from "@emotion/styled";
 
 export const ContainerLI = styled.li<{ rand: number }>`
@@ -14,6 +15,11 @@ export const ContainerLI = styled.li<{ rand: number }>`
 
   cursor: pointer;
   aspect-ratio: 1/1;
+
+  /* &:hover {
+    ${(props) => TRANSFORM_MAIN_ARRAY[Math.floor(TRANSFORM_MAIN_ARRAY.length * props.rand)]}
+    ${(props) => TRANSFORM_SUB_ARRAY[Math.floor(TRANSFORM_SUB_ARRAY.length * props.rand)]}
+  } */
 `;
 
 export const Image = styled.img`

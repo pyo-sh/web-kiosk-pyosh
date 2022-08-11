@@ -7,7 +7,7 @@ export const ContainerUL = styled.ul`
 
   display: grid;
   justify-content: center;
-  grid-template-rows: auto 1fr;
+  align-content: start;
   grid-template-columns: repeat(2, 1fr);
   @media screen and (min-width: 480px) {
     grid-template-columns: repeat(3, 1fr);
