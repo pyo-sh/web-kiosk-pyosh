@@ -13,7 +13,7 @@ export const OptionContainerDiv = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  row-gap: 4px;
+  row-gap: 0.5rem;
   &:last-child {
     margin-top: 10px;
     padding-top: 10px;
@@ -23,6 +23,7 @@ export const OptionContainerDiv = styled.div`
 
 export const OptionTitleH3 = styled.h3`
   ${TEXT_BODY_MEDIUM}
+  font-size: 1.25rem;
   padding: 0;
-  margin: 0 0 8px;
+  margin: 0 0 0.5rem;
 `;

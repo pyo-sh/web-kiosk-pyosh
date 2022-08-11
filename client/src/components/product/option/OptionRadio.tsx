@@ -3,7 +3,7 @@ import Option from "@kiosk/common/types/option";
 import { useOptionDispatch, useOptionState } from "@hooks/store/option";
 import { RadioSelection } from "@constants/option";
 import { optionSelectRadio } from "@src/stores/option";
-import { WrapperLabel } from "./OptionItem.style";
+import { HideInput, NameTagSpan, RadioSpan, WrapperLabel } from "./OptionItem.style";
 
 type OptionRadioPropsType = {
   category: string;
@@ -26,17 +26,18 @@ const OptionRadio: React.FC<OptionRadioPropsType> = ({ category, siblingOptions 
         const priceString = price ? ` (${price})` : "";
         return (
           <WrapperLabel key={`option-${id}`}>
-            <input
+            <HideInput
               onChange={onChangeRadio}
               type="radio"
               name={category}
               value={id}
               checked={selects === id}
             />
-            <span>
+            <RadioSpan id={"radio"}></RadioSpan>
+            <NameTagSpan>
               {name}
               {priceString}
-            </span>
+            </NameTagSpan>
           </WrapperLabel>
         );
       })}
