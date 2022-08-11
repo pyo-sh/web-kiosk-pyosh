@@ -141,3 +141,11 @@ export const PROTECT_DRAG_IMAGE = `
   -o-user-drag: none;
   user-drag: none;
 `;
+
+export const HIDE_SCROLL_BAR = `
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
+`;

@@ -1,11 +1,20 @@
+import { HIDE_SCROLL_BAR } from "@constants/style";
 import styled from "@emotion/styled";
 
-export const ContainerUL = styled.ul`
+export const WrapperDiv = styled.div`
   flex: 0 0 auto;
-  margin: 0;
-  padding: 15px;
+  overflow: hidden;
   width: 100%;
   height: 100%;
+`;
+
+export const ContainerUL = styled.ul`
+  ${HIDE_SCROLL_BAR}
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 15px;
 
   display: grid;
   justify-content: center;

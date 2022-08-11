@@ -12,7 +12,8 @@ export const ContainerDiv = styled.div`
 export const MenuWrapperDiv = styled.div<{ selectedIndex: number }>`
   flex: 1;
   display: flex;
+  max-height: calc(100% - 147px);
 
-  transform: translate3d(calc(-100% * ${({ selectedIndex }) => selectedIndex}), 0, 0);
+  transform: translateX(calc(-100% * ${({ selectedIndex }) => selectedIndex}));
   transition: transform 0.2s;
 `;
