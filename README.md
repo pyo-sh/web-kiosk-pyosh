@@ -22,7 +22,7 @@
     </a>
     <br />
     <br />
-    <a href="">Preparing Demo</a>
+    <a href="http://3.38.154.108/">Demo Page</a>
     ·
     <a href="https://github.com/woowa-techcamp-2022/web-kiosk-pyosh/issues">
       Report Bugs
