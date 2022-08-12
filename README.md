@@ -51,7 +51,10 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-        <li>
+    <li>
+      <a href="#uis">UIs</a>
+    </li>
+    <li>
       <a href="#documents">Documents</a>
       <ul>
         <li><a href="#eerd">EERD</a></li>
