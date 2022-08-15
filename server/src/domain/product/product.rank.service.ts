@@ -1,5 +1,4 @@
 import { Injectable } from "@nestjs/common";
-import { Interval } from "@nestjs/schedule";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { BillProductService } from "../bill-product/bill-product.service";
@@ -9,25 +8,20 @@ import { Product } from "./entities/product.entity";
 
 @Injectable()
 export class ProductRankService {
-  private menuWithRankedProducts: GetAllProductDto[];
-
   constructor(
     @InjectRepository(Product) private readonly productRepository: Repository<Product>,
     private readonly menuService: MenuService,
     private readonly billProductService: BillProductService,
-  ) {
-    this.setAllProducts();
-  }
+  ) {}
 
-  getAllProducts(): GetAllProductDto[] {
-    return this.menuWithRankedProducts;
-  }
-
-  @Interval(300000)
-  async setAllProducts() {
+  async getAllProducts(): Promise<GetAllProductDto[]> {
     const menus = await this.menuService.findAll();
     const products = await Promise.all(menus.map(({ id: menuId }) => this.rankProducts(menuId)));
-    this.menuWithRankedProducts = menus.map((menu, i) => ({ ...menu, products: products[i] }));
+    const allProducts: GetAllProductDto[] = menus.map((menu, i) => ({
+      ...menu,
+      products: products[i],
+    }));
+    return allProducts;
   }
 
   async rankProducts(menuId: number): Promise<Product[]> {
