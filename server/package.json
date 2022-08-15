@@ -1,6 +1,6 @@
 {
   "name": "@kiosk/server",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "description": "",
   "author": "",
   "private": true,
@@ -28,6 +28,7 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/schedule": "^2.1.0",
+    "@nestjs/serve-static": "^3.0.0",
     "@nestjs/swagger": "^6.0.5",
     "@nestjs/typeorm": "^9.0.0",
     "class-transformer": "^0.5.1",

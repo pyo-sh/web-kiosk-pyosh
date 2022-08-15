@@ -11,9 +11,15 @@ import { PersonalOptionModule } from "./domain/personal-option/personal-option.m
 import { BillModule } from "./domain/bill/bill.module";
 import { BillProductModule } from "./domain/bill-product/bill-product.module";
 import { Environment } from "./common/enums";
+import { join } from "path";
+import { ServeStaticModule } from "@nestjs/serve-static";
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, "..", "build"),
+      exclude: ["/api*"],
+    }),
     ConfigModule.forRoot({
       isGlobal: true,
       validate: validateEnv,
@@ -34,7 +40,7 @@ import { Environment } from "./common/enums";
         autoLoadEntities: true,
         extra: {
           decimalNumbers: true,
-        }
+        },
       }),
     }),
     MenuModule,
