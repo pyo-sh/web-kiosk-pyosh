@@ -1,0 +1,35 @@
+{
+  "name": "@kiosk/client",
+  "version": "3.0.0",
+  "private": true,
+  "dependencies": {
+    "@craco/craco": "^6.4.5",
+    "@emotion/css": "^11.10.0",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@kiosk/common": "workspace:common",
+    "axios": "^0.27.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.6.3",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "craco-alias": "^3.0.1",
+    "cross-env": "^7.0.3",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "start": "craco start",
+    "build": "cross-env BUILD_PATH='../server/build' craco build"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "packageManager": "yarn@3.2.2"
+}
