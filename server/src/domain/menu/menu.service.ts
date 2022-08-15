@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { DeleteResult, Repository } from "typeorm";
+import { DeleteResult, InsertResult, Repository } from "typeorm";
 import { CreateMenuDto } from "./dto/create-menu.dto";
 import { UpdateMenuDto } from "./dto/update-menu.dto";
 import { Menu } from "./entities/menu.entity";
@@ -34,6 +34,11 @@ export class MenuService {
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
+  }
+
+  async createAll(createMenuDtos: CreateMenuDto[]) {
+    const { generatedMaps } = await this.menuRepository.createQueryBuilder('menu').insert().into(Menu).values(createMenuDtos).execute();
+    return generatedMaps;
   }
 
   findAll(): Promise<Menu[]> {

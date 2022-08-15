@@ -40,6 +40,11 @@ export class PersonalOptionService {
     }
   }
 
+  async createAll(createPersonalOptionDtos: CreatePersonalOptionDto[]) {
+    const { generatedMaps } = await this.personalOptionRepository.createQueryBuilder('personal-option').insert().into(PersonalOption).values(createPersonalOptionDtos).execute();
+    return generatedMaps;
+  }
+
   findAll(): Promise<PersonalOption[]> {
     return this.personalOptionRepository.find();
   }

@@ -5,6 +5,7 @@ import { MenuService } from "src/domain/menu/menu.service";
 import { PersonalOptionService } from "src/domain/personal-option/personal-option.service";
 import { ProductService } from "src/domain/product/product.service";
 import mockData from "./dummy/mmthcoffeeMenu.json";
+import { getRepository } from "typeorm";
 
 @Injectable()
 export class MockService {
@@ -26,21 +27,31 @@ export class MockService {
   }
 
   async initMenu({ data }) {
-    for (const menu of data) {
-      const { id: menuId } = await this.menuService.create(menu);
-      await this.initProduct(menu, menuId);
-    }
+    const menus = data.map(({ name }) => ({ name }));
+    const menuMaps = await this.menuService.createAll(menus);
+
+    await this.initProduct(data, menuMaps);
   }
-  async initProduct({ products }, menuId) {
-    for (const product of products) {
-      const { id: productId } = await this.productService.create({ ...product, menuId });
-      await this.initOption(product, productId);
-    }
+
+  async initProduct(data, menuMaps) {
+    const products = data.reduce((array, { products }, i) => {
+      const menuId = menuMaps[i].id;
+      const mappedProducts = products.map(({ options, ...keys }) => ({ ...keys, menuId }));
+      return [...array, ...mappedProducts];
+    }, []);
+    const productMaps = await this.productService.createAll(products);
+
+    await this.initOption(data, productMaps);
   }
-  async initOption({ options }, productId) {
-    for (const option of options) {
-      const { optionType } = option;
-      await this.personalOptionService.create({ ...option, optionType, productId });
-    }
+
+  async initOption(data, productMaps) {
+    const products = data.reduce((array, { products }) => [...array, ...products], []);
+    const options = products.reduce((array, { options }, i) => {
+      const productId = productMaps[i].id;
+      const mappedOptions = options.map((opt) => ({ ...opt, productId }));
+      return [...array, ...mappedOptions];
+    }, []);
+
+    await this.personalOptionService.createAll(options);
   }
 }
