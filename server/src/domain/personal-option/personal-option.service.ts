@@ -41,8 +41,13 @@ export class PersonalOptionService {
   }
 
   async createAll(createPersonalOptionDtos: CreatePersonalOptionDto[]) {
-    const { generatedMaps } = await this.personalOptionRepository.createQueryBuilder('personal-option').insert().into(PersonalOption).values(createPersonalOptionDtos).execute();
-    return generatedMaps;
+    const { identifiers } = await this.personalOptionRepository
+      .createQueryBuilder("personal-option")
+      .insert()
+      .into(PersonalOption)
+      .values(createPersonalOptionDtos)
+      .execute();
+    return identifiers;
   }
 
   findAll(): Promise<PersonalOption[]> {
@@ -65,7 +70,7 @@ export class PersonalOptionService {
   }
 
   async findByProductId(productId: number): Promise<PersonalOption[]> {
-    try{
+    try {
       const personalOption = await this.personalOptionRepository.findBy({ productId });
       return personalOption;
     } catch (e) {
@@ -77,7 +82,6 @@ export class PersonalOptionService {
         HttpStatus.NOT_FOUND,
       );
     }
-
   }
 
   async findByCreateBillDto({

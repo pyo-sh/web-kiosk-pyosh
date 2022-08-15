@@ -37,8 +37,13 @@ export class ProductService {
   }
 
   async createAll(createProductDtos: CreateProductDto[]) {
-    const { generatedMaps } = await this.productRepository.createQueryBuilder('product').insert().into(Product).values(createProductDtos).execute();
-    return generatedMaps;
+    const { identifiers } = await this.productRepository
+      .createQueryBuilder("product")
+      .insert()
+      .into(Product)
+      .values(createProductDtos)
+      .execute();
+    return identifiers;
   }
 
   findAll(): Promise<Product[]> {

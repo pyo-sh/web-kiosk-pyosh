@@ -28,7 +28,8 @@ export class MockService {
 
   async initMenu({ data }) {
     const menus = data.map(({ name }) => ({ name }));
-    const menuMaps = await this.menuService.createAll(menus);
+    await this.menuService.createAll(menus);
+    const menuMaps = await this.menuService.findAll();
 
     await this.initProduct(data, menuMaps);
   }
@@ -39,7 +40,8 @@ export class MockService {
       const mappedProducts = products.map(({ options, ...keys }) => ({ ...keys, menuId }));
       return [...array, ...mappedProducts];
     }, []);
-    const productMaps = await this.productService.createAll(products);
+    await this.productService.createAll(products);
+    const productMaps = await this.productService.findAll();
 
     await this.initOption(data, productMaps);
   }

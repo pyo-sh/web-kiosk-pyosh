@@ -37,8 +37,13 @@ export class MenuService {
   }
 
   async createAll(createMenuDtos: CreateMenuDto[]) {
-    const { generatedMaps } = await this.menuRepository.createQueryBuilder('menu').insert().into(Menu).values(createMenuDtos).execute();
-    return generatedMaps;
+    const { identifiers } = await this.menuRepository
+      .createQueryBuilder("menu")
+      .insert()
+      .into(Menu)
+      .values(createMenuDtos)
+      .execute();
+    return identifiers;
   }
 
   findAll(): Promise<Menu[]> {
