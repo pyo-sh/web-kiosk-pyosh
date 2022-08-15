@@ -11,6 +11,9 @@ async function bootstrap() {
   app.enableCors();
   setupSwagger(app);
 
+  app.useStaticAssets(join(__dirname, "..", "images"), {
+    prefix: "/file/images/",
+  });
   app.useStaticAssets(join(__dirname, "..", "build"));
   app.setBaseViewsDir(join(__dirname, "..", "build"));
   app.setViewEngine("html");
