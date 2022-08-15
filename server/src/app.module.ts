@@ -3,7 +3,6 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
 import { validateEnv } from "./config/env.validation";
 import { MenuModule } from "./domain/menu/menu.module";
 import { ProductModule } from "./domain/product/product.module";
@@ -11,15 +10,9 @@ import { PersonalOptionModule } from "./domain/personal-option/personal-option.m
 import { BillModule } from "./domain/bill/bill.module";
 import { BillProductModule } from "./domain/bill-product/bill-product.module";
 import { Environment } from "./common/enums";
-import { join } from "path";
-import { ServeStaticModule } from "@nestjs/serve-static";
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, "..", "build"),
-      exclude: ["/api*"],
-    }),
     ConfigModule.forRoot({
       isGlobal: true,
       validate: validateEnv,
@@ -50,6 +43,6 @@ import { ServeStaticModule } from "@nestjs/serve-static";
     BillProductModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [],
 })
 export class AppModule {}
