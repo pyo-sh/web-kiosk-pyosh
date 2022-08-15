@@ -1,18 +1,21 @@
 import React, { useRef } from "react";
-import useDraggable from "@hooks/useDraggable";
 import { ContainerHeader, TitleH1, MenuNav, ControlButton, MenuUL } from "./index.style";
 import Menu from "@kiosk/common/types/menu";
+import useDraggable from "@hooks/useDraggable";
+import { COLOR } from "@constants/style";
+import { css } from "@emotion/css";
 
 interface NavigatorPropsType {
   menus: Menu[];
   setMenu: React.Dispatch<React.SetStateAction<number>>;
+  selectedIndex: number;
 }
 
-const Navigator: React.FC<NavigatorPropsType> = ({ menus, setMenu }) => {
+const Navigator: React.FC<NavigatorPropsType> = ({ menus, setMenu, selectedIndex }) => {
   const listRef = useRef<HTMLUListElement>(null);
 
   const handleClickNav = ({ target }: React.MouseEvent<HTMLUListElement>) => {
-    const id = (target as HTMLLIElement).getAttribute("data-id");
+    const id = (target as HTMLLIElement).getAttribute("data-index");
     if (id) {
       setMenu(Number(id));
     }
@@ -42,11 +45,20 @@ const Navigator: React.FC<NavigatorPropsType> = ({ menus, setMenu }) => {
           onMouseUp={onMouseUpList}
           onMouseLeave={onMouseLeaveList}
         >
-          {menus.map((menu) => {
-            const id = menu.id || -1;
+          {menus.map((menu, index) => {
             const name = menu.name || "";
             return (
-              <li data-id={id} key={`nav-${name}`}>
+              <li
+                className={
+                  selectedIndex === index
+                    ? css`
+                        border-bottom: 2px solid ${COLOR.primary};
+                      `
+                    : ""
+                }
+                data-index={index}
+                key={`nav-${name}`}
+              >
                 {name}
               </li>
             );

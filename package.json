@@ -16,7 +16,9 @@
     "initVscode": "yarn install && yarn dlx @yarnpkg/sdks vscode",
     "client": "yarn workspace @kiosk/client",
     "server": "yarn workspace @kiosk/server",
-    "common": "yarn workspace @kiosk/common"
+    "common": "yarn workspace @kiosk/common",
+    "build": "yarn client build && yarn server build",
+    "start": "node ./server/dist/main.js"
   },
   "devDependencies": {
     "@yarnpkg/pnpify": "^4.0.0-rc.14",

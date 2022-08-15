@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Product from "@kiosk/common/types/product";
 import ProductModal from "@components/product/select/ProductModal";
-import { ContainerLI, Image } from "./ProductItem.style";
+import { ContainerLI, Image, Price, Title } from "./ProductItem.style";
 import { OptionProvider } from "@hooks/store/option";
 
 type ProductItemPropsType = {
@@ -17,16 +17,14 @@ const ProductItem: React.FC<ProductItemPropsType> = ({ product }) => {
   };
 
   return (
-    <>
-      <ContainerLI onClick={() => setIsModalOpen(true)}>
+    <OptionProvider>
+      <ContainerLI rand={Math.random()} onClick={() => setIsModalOpen(true)}>
         <Image src={image} />
-        <span>{name}</span>
-        <span>{price}원</span>
+        <Title>{name}</Title>
+        <Price>{price}원</Price>
       </ContainerLI>
-      <OptionProvider>
-        <ProductModal {...{ product, isOpen: isModalOpen, closeModal }} />
-      </OptionProvider>
-    </>
+      <ProductModal {...{ product, isOpen: isModalOpen, closeModal }} />
+    </OptionProvider>
   );
 };
 

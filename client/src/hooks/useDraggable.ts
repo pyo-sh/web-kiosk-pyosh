@@ -2,9 +2,9 @@ import { useRef } from "react";
 
 const MAX_BOUNCE_MOVEMENT = 3;
 
-interface UseDraggablePropsType {
-  handleDrag: (event: React.MouseEvent<HTMLUListElement>) => void;
-  handleClick: (event: React.MouseEvent<HTMLUListElement>) => void;
+interface UseDraggablePropsType<T extends HTMLElement> {
+  handleDrag?: (event: React.MouseEvent<T>) => void;
+  handleClick?: (event: React.MouseEvent<T>) => void;
 }
 
 interface DragControllerType {
@@ -19,7 +19,10 @@ const initialController = {
   isDragging: false,
 };
 
-const useDraggable = ({ handleDrag, handleClick }: UseDraggablePropsType) => {
+const useDraggable = <T extends HTMLElement>({
+  handleDrag,
+  handleClick,
+}: UseDraggablePropsType<T>) => {
   const dragController = useRef<DragControllerType>({ ...initialController }).current;
 
   const setControllerReady = () => {
@@ -28,11 +31,11 @@ const useDraggable = ({ handleDrag, handleClick }: UseDraggablePropsType) => {
     dragController.isDragging = false;
   };
 
-  const onMouseDown: React.MouseEventHandler<HTMLUListElement> = () => {
+  const onMouseDown: React.MouseEventHandler<T> = () => {
     dragController.isActive = true;
   };
 
-  const onMouseMove: React.MouseEventHandler<HTMLUListElement> = (e) => {
+  const onMouseMove: React.MouseEventHandler<T> = (e) => {
     const { bouncing, isActive, isDragging } = dragController;
 
     if (isActive) {
@@ -46,22 +49,22 @@ const useDraggable = ({ handleDrag, handleClick }: UseDraggablePropsType) => {
       dragController.isDragging = true;
     }
 
-    if (isDragging) {
+    if (isDragging && handleDrag) {
       handleDrag(e);
     }
   };
 
-  const onMouseUp: React.MouseEventHandler<HTMLUListElement> = (e) => {
+  const onMouseUp: React.MouseEventHandler<T> = (e) => {
     const { isDragging } = dragController;
 
-    if (!isDragging) {
+    if (!isDragging && handleClick) {
       handleClick(e);
     }
 
     setControllerReady();
   };
 
-  const onMouseLeave: React.MouseEventHandler<HTMLUListElement> = setControllerReady;
+  const onMouseLeave: React.MouseEventHandler<T> = setControllerReady;
 
   return [onMouseDown, onMouseMove, onMouseUp, onMouseLeave];
 };

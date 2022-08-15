@@ -3,7 +3,6 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 import { AppController } from "./app.controller";
-import { AppService } from "./app.service";
 import { validateEnv } from "./config/env.validation";
 import { MenuModule } from "./domain/menu/menu.module";
 import { ProductModule } from "./domain/product/product.module";
@@ -36,7 +35,7 @@ import { MockModule } from "./mock/mock.module";
         dropSchema: true,
         extra: {
           decimalNumbers: true,
-        }
+        },
       }),
     }),
     MenuModule,
@@ -47,6 +46,6 @@ import { MockModule } from "./mock/mock.module";
     MockModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [],
 })
 export class AppModule {}

@@ -1,16 +1,15 @@
+import React from "react";
+import { ContainerDiv, CountButton, CountSpan } from "./ProductCount.style";
 import { useOptionDispatch, useOptionState } from "@hooks/store/option";
 import { optionChangeCount } from "@src/stores/option";
-import React from "react";
-import { ContainerDiv } from "./ProductCount.style";
+import ArrowIcon from "@icons/ArrowIcon";
 
 const ProductCount: React.FC = () => {
   const { count } = useOptionState();
   const optionDispatch = useOptionDispatch();
 
   const onClickCount = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const target = e.target as HTMLInputElement;
-    const { value } = target;
-    const id = Number(value);
+    const target = e.currentTarget as HTMLInputElement;
     const gap = Number(target.getAttribute("data-gap")) || 0;
 
     optionDispatch(optionChangeCount({ gap }));
@@ -18,13 +17,13 @@ const ProductCount: React.FC = () => {
 
   return (
     <ContainerDiv>
-      <button onClick={onClickCount} data-gap={-1}>
-        {"<"}
-      </button>
-      <span>{count || 0}</span>
-      <button onClick={onClickCount} data-gap={1}>
-        {">"}
-      </button>
+      <CountButton onClick={onClickCount} data-gap={-1}>
+        <ArrowIcon rotate={90} />
+      </CountButton>
+      <CountSpan>{count || 0}</CountSpan>
+      <CountButton onClick={onClickCount} data-gap={1}>
+        <ArrowIcon rotate={-90} />
+      </CountButton>
     </ContainerDiv>
   );
 };

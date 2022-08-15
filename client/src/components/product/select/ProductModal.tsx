@@ -1,14 +1,24 @@
-import { getProductOptions } from "@apis/product";
-import Modal from "@components/custom/Modal";
+import React, { useContext, useEffect, useState } from "react";
+import {
+  ButtonWrapperDiv,
+  CloseButton,
+  CollectorWrapperDiv,
+  ContainerDiv,
+  ModalExitAnimateCSS,
+  ModalShowAnimateCSS,
+} from "./ProductModal.style";
 import Product from "@kiosk/common/types/product";
-import React, { useEffect, useState } from "react";
+import Modal from "@components/custom/Modal";
 import ProductInfo from "./ProductInfo";
-import { CloseButton } from "./ProductModal.style";
 import ProductOption from "@components/product/option";
-import { useOptionDispatch } from "@hooks/store/option";
-import { optionInit, optionPickClear } from "@src/stores/option";
 import ProductCount from "./ProductCount";
 import ProductButtons from "./ProductButtons";
+import XIcon from "@icons/XIcon";
+import { getProductOptions } from "@apis/product";
+import { optionInit, optionPickClear } from "@src/stores/option";
+import { useOptionDispatch } from "@hooks/store/option";
+import { MediaContext } from "@hooks/useMediaQuery";
+import { COLOR } from "@constants/style";
 
 type ProductModalPropsType = {
   product: Product;
@@ -19,6 +29,19 @@ type ProductModalPropsType = {
 const ProductModal: React.FC<ProductModalPropsType> = ({ product, isOpen, closeModal }) => {
   const optionDispatch = useOptionDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isOffFired, setIsOffFired] = useState<boolean>(false);
+  const isMobile = useContext(MediaContext);
+
+  const fireCloseAnimate = () => {
+    setIsOffFired(true);
+  };
+
+  const onFireClose = () => {
+    if (isOffFired) {
+      setIsOffFired(false);
+      closeModal();
+    }
+  };
 
   useEffect(() => {
     if (isOpen && isLoading) {
@@ -33,13 +56,30 @@ const ProductModal: React.FC<ProductModalPropsType> = ({ product, isOpen, closeM
   }, [isLoading, isOpen]);
 
   if (isLoading) return <></>;
+
+  const ModalAnimation = isOffFired ? ModalExitAnimateCSS : ModalShowAnimateCSS;
   return (
-    <Modal isOpen={isOpen} closeModal={closeModal}>
-      <CloseButton onClick={closeModal} />
-      <ProductInfo product={product} />
-      <ProductCount />
-      <ProductOption />
-      <ProductButtons product={product} closeModal={closeModal} />
+    <Modal
+      onAnimationEnd={onFireClose}
+      className={ModalAnimation}
+      isOpen={isOpen}
+      closeModal={fireCloseAnimate}
+    >
+      <ContainerDiv isMobile={isMobile}>
+        <ButtonWrapperDiv>
+          <CloseButton onClick={fireCloseAnimate}>
+            <XIcon color={COLOR.offWhite} />
+          </CloseButton>
+        </ButtonWrapperDiv>
+        <CollectorWrapperDiv isMobile={isMobile}>
+          <div>
+            <ProductInfo product={product} />
+            <ProductCount />
+          </div>
+          <ProductOption />
+        </CollectorWrapperDiv>
+        <ProductButtons product={product} closeModal={fireCloseAnimate} />
+      </ContainerDiv>
     </Modal>
   );
 };

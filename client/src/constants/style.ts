@@ -14,6 +14,8 @@ export const COLOR = Object.freeze({
   darkError: "#CD6766",
   darkGreen: "#394032",
   white: "#ffffff",
+  yellow: "#fbc02d",
+  orange: "#ffa000",
 });
 
 export const INPUT_STYLE = `
@@ -37,9 +39,6 @@ export const BTN_STYLE = `
   &:hover {
     background-color: ${COLOR.primary3};
   }
-  &:focus {
-    border: 2px solid ${COLOR.primary2};
-  }
   &:disabled {
     background-color: ${COLOR.primary2};
   }
@@ -54,9 +53,6 @@ export const CANCEL_BTN_STYLE = `
   cursor: pointer;
   &:hover {
     background-color: ${COLOR.darkError};
-  }
-  &:focus {
-    border: 2px solid ${COLOR.lightError};
   }
   &:disabled {
     background-color: ${COLOR.lightError};
@@ -73,7 +69,6 @@ export const TEXT_DISPLAY_LARGE = `
   font-style: normal;
   font-weight: 400;
   font-size: 48px;
-  line-height: 56px;
 `;
 
 export const TEXT_DISPLAY_SMALL = `
@@ -81,7 +76,6 @@ export const TEXT_DISPLAY_SMALL = `
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
-  line-height: 24px;
 `;
 
 export const TEXT_BODY_REGULAR = `
@@ -89,7 +83,6 @@ export const TEXT_BODY_REGULAR = `
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
-  line-height: 24px;
 `;
 
 export const TEXT_BODY_MEDIUM = `
@@ -97,7 +90,6 @@ export const TEXT_BODY_MEDIUM = `
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
-  line-height: 24px;
 `;
 
 export const TEXT_BODY_LARGE = `
@@ -105,7 +97,6 @@ export const TEXT_BODY_LARGE = `
   font-style: normal;
   font-weight: 400;
   font-size: 22px;
-  line-height: 32px;
 `;
 
 export const TEXT_BOLD_SMALL = `
@@ -113,7 +104,6 @@ export const TEXT_BOLD_SMALL = `
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 16px;
 `;
 
 export const TEXT_BOLD_MEDIUM = `
@@ -121,7 +111,6 @@ export const TEXT_BOLD_MEDIUM = `
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
-  line-height: 16px;
 `;
 
 export const TEXT_BOLD_LARGE = `
@@ -129,7 +118,6 @@ export const TEXT_BOLD_LARGE = `
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
-  line-height: 16px;
 `;
 
 export const PROTECT_DRAG = `
@@ -138,4 +126,20 @@ export const PROTECT_DRAG = `
   -khtml-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+`;
+
+export const PROTECT_DRAG_IMAGE = `
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+`;
+
+export const HIDE_SCROLL_BAR = `
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
 `;

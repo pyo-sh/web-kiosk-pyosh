@@ -1,10 +1,12 @@
-import { CheckSelection, CountSelection, OptionGroup, OptionSelection } from "@constants/option";
 import Option from "@kiosk/common/types/option";
-import { getEmptyState, groupOptions } from "@utils/optionRefactor";
+import { CheckSelection, CountSelection, OptionGroup, OptionSelection } from "@constants/option";
+import { getEmptyState, getOptionInfo, groupOptions } from "@utils/optionRefactor";
 
 // State
 export type OptionState = {
   count: number;
+  optionPrice: number;
+  optionContents: string[];
   options: Option[];
   optionsMap: OptionGroup;
   picks: OptionSelection;
@@ -12,6 +14,8 @@ export type OptionState = {
 
 export const initialOptionType = Object.freeze({
   count: 1,
+  optionPrice: 0,
+  optionContents: [],
   options: [],
   optionsMap: new Map(),
   picks: {},
@@ -84,8 +88,13 @@ export default function reducer(state: OptionState, action: OptionAction): Optio
       return { ...initialOptionType };
     case OPTION_PICK_CLEAR: {
       const emptyPicks = getEmptyState(state.optionsMap);
+      const infos = getOptionInfo({
+        optionsMap: state.optionsMap,
+        picks: emptyPicks,
+      });
       return {
         ...state,
+        ...infos,
         count: 1,
         picks: emptyPicks,
       };
@@ -94,8 +103,13 @@ export default function reducer(state: OptionState, action: OptionAction): Optio
       const { options } = action as ReturnType<typeof optionInit>;
       const optionsMap = groupOptions(options);
       const emptyPicks = getEmptyState(optionsMap);
+      const infos = getOptionInfo({
+        optionsMap: optionsMap,
+        picks: emptyPicks,
+      });
       return {
         ...state,
+        ...infos,
         options,
         optionsMap,
         picks: emptyPicks,
@@ -103,9 +117,15 @@ export default function reducer(state: OptionState, action: OptionAction): Optio
     }
     case OPTION_SELECT_RADIO: {
       const { category, optionId } = action as ReturnType<typeof optionSelectRadio>;
+      const newPicks = { ...state.picks, [category]: optionId };
+      const infos = getOptionInfo({
+        optionsMap: state.optionsMap,
+        picks: newPicks,
+      });
       return {
         ...state,
-        picks: { ...state.picks, [category]: optionId },
+        ...infos,
+        picks: newPicks,
       };
     }
     case OPTION_SELECT_CHECK: {
@@ -117,9 +137,15 @@ export default function reducer(state: OptionState, action: OptionAction): Optio
       } else {
         newCheckSets.add(optionId);
       }
+      const newPicks = { ...state.picks, [category]: newCheckSets };
+      const infos = getOptionInfo({
+        optionsMap: state.optionsMap,
+        picks: newPicks,
+      });
       return {
         ...state,
-        picks: { ...state.picks, [category]: newCheckSets },
+        ...infos,
+        picks: newPicks,
       };
     }
     case OPTION_SELECT_COUNT: {
@@ -130,9 +156,16 @@ export default function reducer(state: OptionState, action: OptionAction): Optio
 
       const newCounts = { ...counts, [optionId]: amount };
       if (amount <= 0) delete newCounts[optionId];
+
+      const newPicks = { ...state.picks, [category]: newCounts };
+      const infos = getOptionInfo({
+        optionsMap: state.optionsMap,
+        picks: newPicks,
+      });
       return {
         ...state,
-        picks: { ...state.picks, [category]: newCounts },
+        ...infos,
+        picks: newPicks,
       };
     }
     case OPTION_CHANGE_COUNT: {

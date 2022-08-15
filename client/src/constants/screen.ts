@@ -1,6 +1,6 @@
 export const ScreenQuery = {
-  mobile: `(max-width: ${679}px)`,
-  tablet: `(min-width: ${680}px)`,
+  mobile: `(max-width: ${600}px)`,
+  tablet: `(min-width: ${600}px)`,
 };
 
 export const MediaScreen = {

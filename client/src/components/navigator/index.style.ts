@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { COLOR, PROTECT_DRAG, TEXT_DISPLAY_LARGE } from "@constants/style";
+import { COLOR, HIDE_SCROLL_BAR, PROTECT_DRAG, TEXT_DISPLAY_LARGE } from "@constants/style";
 
 export const ContainerHeader = styled.header`
   ${PROTECT_DRAG}
@@ -49,11 +49,7 @@ export const MenuUL = styled.ul`
   list-style: none;
 
   overflow-x: scroll;
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-  &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-  }
+  ${HIDE_SCROLL_BAR}
 
   & > li {
     padding: 10px;
