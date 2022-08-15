@@ -2529,7 +2529,6 @@ __metadata:
     "@nestjs/platform-express": ^9.0.0
     "@nestjs/schedule": ^2.1.0
     "@nestjs/schematics": ^9.0.0
-    "@nestjs/serve-static": ^3.0.0
     "@nestjs/swagger": ^6.0.5
     "@nestjs/testing": ^9.0.0
     "@nestjs/typeorm": ^9.0.0
@@ -2732,18 +2731,6 @@ __metadata:
   peerDependencies:
     typescript: ^4.3.5
   checksum: c4a382a0b498f4a90e4d79c6a4bb479ad9bd38fc37d1f2bd65bb6034833f87604d04dad35991ec029a63e7bba50701dd71f68be90d49d8454c320260b15354b2
-  languageName: node
-  linkType: hard
-
-"@nestjs/serve-static@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@nestjs/serve-static@npm:3.0.0"
-  dependencies:
-    path-to-regexp: 0.2.5
-  peerDependencies:
-    "@nestjs/common": ^9.0.0
-    "@nestjs/core": ^9.0.0
-  checksum: fb5873506c13ca3625e462c722d57fa0f1f5299803ed9d8d3b3afdc0aa8f337cf4aee7528cbe38a65aa511f440ad6d37c45885d0dae1444887915fa292e4697c
   languageName: node
   linkType: hard
 
@@ -11285,13 +11272,6 @@ __metadata:
   version: 0.1.7
   resolution: "path-to-regexp@npm:0.1.7"
   checksum: 69a14ea24db543e8b0f4353305c5eac6907917031340e5a8b37df688e52accd09e3cebfe1660b70d76b6bd89152f52183f28c74813dbf454ba1a01c82a38abce
-  languageName: node
-  linkType: hard
-
-"path-to-regexp@npm:0.2.5":
-  version: 0.2.5
-  resolution: "path-to-regexp@npm:0.2.5"
-  checksum: 44adcbd847d170786490de80d2abc4762d5e65cd8857f230b87bdff6ab1bd17a91baa201fea549954b4cbfd208ae021a3a4ebac19a69ebdf3fdc628c8344ad39
   languageName: node
   linkType: hard
 
